@@ -16,6 +16,7 @@ public class Controller2D : MonoBehaviour
 
     RaycastOrigins raycastOrigins;
     public LayerMask collisionMask;
+    public CollisionInfo objectCol;
 
     // Start is called before the first frame update
     void Start()
@@ -27,11 +28,13 @@ public class Controller2D : MonoBehaviour
 
     public void Move(Vector3 velocity){    
         UpdateRaycastOrigin();
+        objectCol.Reset();
+
         if(velocity.x != 0){
-        HorizontalCollision(ref velocity);
+            HorizontalCollision(ref velocity);
         }
         if(velocity.y != 0){
-        VerticalCollision(ref velocity);
+            VerticalCollision(ref velocity);
         }
         transform.Translate(velocity);
     }
@@ -49,6 +52,10 @@ public class Controller2D : MonoBehaviour
             if(hit){
                 velocity.x = (hit.distance - skinWidth) * dirX;
                 rayLength = hit.distance;
+
+                objectCol.left = dirX == -1;
+                objectCol.right = dirX == 1;
+    
             }
         }
     }
@@ -66,6 +73,10 @@ public class Controller2D : MonoBehaviour
             if(hit){
                 velocity.y = (hit.distance - skinWidth) * dirY;
                 rayLength = hit.distance;
+
+                objectCol.below = dirY == -1;
+                objectCol.above = dirY == 1;
+    
             }
         }
     }
@@ -92,5 +103,13 @@ public class Controller2D : MonoBehaviour
     struct RaycastOrigins{
         public Vector2 topLeft, topRight;
         public Vector2 bottomLeft, bottomRight;
+    }
+    public struct CollisionInfo{
+        public bool above,below;
+        public bool left,right;
+        public void Reset(){
+            above = below = false;
+            left = right = false;
+        }
     }
 }
