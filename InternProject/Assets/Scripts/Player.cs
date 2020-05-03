@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     Vector3 velocity;
 
     float moveSpeed = 6;
-    float gravity = -20;
+    float gravity = -50;
     Controller2D controller;
     // Start is called before the first frame update
     void Start()
@@ -25,7 +25,6 @@ public class Player : MonoBehaviour
         //update gravity to the velocity
         velocity.y += gravity * Time.deltaTime;
 
-        //move the player
         controller.Move(velocity * Time.deltaTime);
         
     }

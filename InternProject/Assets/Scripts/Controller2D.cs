@@ -1,7 +1,7 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent (typeof(BoxCollider2D))]
 public class Controller2D : MonoBehaviour
 {
     const float skinWidth = 0.015f;
@@ -25,11 +25,6 @@ public class Controller2D : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
     public void Move(Vector3 velocity){    
         UpdateRaycastOrigin();
         if(velocity.x != 0){
@@ -38,7 +33,7 @@ public class Controller2D : MonoBehaviour
         if(velocity.y != 0){
         VerticalCollision(ref velocity);
         }
-        transform.Translate (velocity);
+        transform.Translate(velocity);
     }
 
     void HorizontalCollision(ref Vector3 velocity){
@@ -46,11 +41,11 @@ public class Controller2D : MonoBehaviour
         float rayLength = Mathf.Abs(velocity.x) * skinWidth;
 
         for(int i=0; i < horizontalRayCount; i++){
-            Vector2  rayOrigin = (dirX == -1)? raycastOrigins.bottomLeft : raycastOrigins.bottomRight;
+            Vector2  rayOrigin = (dirX == -1)?raycastOrigins.bottomLeft:raycastOrigins.bottomRight;
             rayOrigin += Vector2.up * (horizontalRaySpacing * i);
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * dirX, rayLength, collisionMask); 
 
-            Debug.DrawRay(rayOrigin, Vector2.right * dirX * rayLength, Color.cyan);
+            Debug.DrawRay(rayOrigin, Vector2.right * dirX * rayLength,Color.cyan);
             if(hit){
                 velocity.x = (hit.distance - skinWidth) * dirX;
                 rayLength = hit.distance;
@@ -63,11 +58,11 @@ public class Controller2D : MonoBehaviour
         float rayLength = Mathf.Abs(velocity.y) + skinWidth;
 
         for(int i=0; i < verticalRayCount; i++){
-            Vector2  rayOrigin = (dirY == -1)? raycastOrigins.bottomLeft : raycastOrigins.topLeft;
+            Vector2  rayOrigin = (dirY == -1)?raycastOrigins.bottomLeft:raycastOrigins.topLeft;
             rayOrigin += Vector2.right * (verticalRaySpacing * i + velocity.x);
-            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * dirY, rayLength,collisionMask); 
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * dirY, rayLength, collisionMask); 
 
-            Debug.DrawRay(rayOrigin, Vector2.up * dirY * rayLength, Color.cyan);
+            Debug.DrawRay(rayOrigin, Vector2.up * dirY * rayLength,Color.cyan);
             if(hit){
                 velocity.y = (hit.distance - skinWidth) * dirY;
                 rayLength = hit.distance;
@@ -76,11 +71,11 @@ public class Controller2D : MonoBehaviour
     }
     void UpdateRaycastOrigin(){
         Bounds bounds = boxcollider.bounds;
-        bounds.Expand(skinWidth *-2);
+        bounds.Expand(skinWidth * -2);
 
         raycastOrigins.bottomLeft = new Vector2(bounds.min.x,bounds.min.y);
-        raycastOrigins.bottomRight = new Vector2(bounds.max.x,bounds.max.y);
-        raycastOrigins.topLeft = new Vector2(bounds.min.x,bounds.min.y);
+        raycastOrigins.bottomRight = new Vector2(bounds.max.x,bounds.min.y);
+        raycastOrigins.topLeft = new Vector2(bounds.min.x,bounds.max.y);
         raycastOrigins.topRight = new Vector2(bounds.max.x,bounds.max.y);        
     }
 
@@ -97,6 +92,5 @@ public class Controller2D : MonoBehaviour
     struct RaycastOrigins{
         public Vector2 topLeft, topRight;
         public Vector2 bottomLeft, bottomRight;
-
     }
 }
