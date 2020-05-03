@@ -6,12 +6,15 @@ public class Player : MonoBehaviour
 {
     public float jumpHeight = 4;
     public float timeToJumpApex = .4f;
-    Vector3 velocity;
+    public float accelerationTimeAirborne = .2f;
+    public float accelerationTimeGrounded = .1f;
 
     float moveSpeed = 6;
     float gravity;
     float jumpVelocity;
+    float velocityXSmoothing;
     Controller2D controller;
+    Vector3 velocity;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +35,8 @@ public class Player : MonoBehaviour
             velocity.y = jumpVelocity;
         }
 
-        velocity.x = input.x * moveSpeed;
+        float targetVelocityX = input.x * moveSpeed;
+        velocity.x= Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing,(controller.objectCol.below)?accelerationTimeGrounded:accelerationTimeAirborne);
         //update gravity to the velocity
         velocity.y += gravity * Time.deltaTime;
 
