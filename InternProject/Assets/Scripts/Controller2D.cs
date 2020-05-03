@@ -10,6 +10,7 @@ public class Controller2D : MonoBehaviour
     public int verticalRayCount = 4;
 
     float maxClimbAngle = 80;
+    float maxDescendAngle = 75;
     float horizontalRaySpacing;
     float verticalRaySpacing;
 
@@ -31,7 +32,11 @@ public class Controller2D : MonoBehaviour
     {    
         UpdateRaycastOrigin();
         objectCol.Reset();
+        objectCol.velocityOld = velocity;
 
+        if(velocity.y < 0){
+            DescendSlope(ref velocity);
+        }
         if(velocity.x != 0){
             HorizontalCollision(ref velocity);
         }
@@ -59,20 +64,16 @@ public class Controller2D : MonoBehaviour
                 float slopeAngle = Vector2.Angle(hit.normal, Vector2.up);
 
                 if(i == 0 && slopeAngle <= maxClimbAngle){
-                    //float distanceToSlopeStart =0;
-                    // if(slopeAngle != objectCol.slopeAngleOld){
-                    //     distanceToSlopeStart = hit.distance-skinWidth;
-                    //     velocity.x -= distanceToSlopeStart + dirX;
-                    // }
+                    if(objectCol.isDescending){
+                        objectCol.isDescending = false;
+                        velocity = objectCol.velocityOld;
+                    }
                     ClimbSlope(ref velocity, slopeAngle);    
-                    //velocity.x += distanceToSlopeStart * dirX;       
                 }
                 if(!objectCol.isClimbing || slopeAngle > maxClimbAngle){
                     velocity.x = (hit.distance - skinWidth) * dirX;
                     rayLength = hit.distance;    
-                    // if(objectCol.isClimbing){
-                    //     velocity.y = Mathf.Tan(objectCol.slopeAngle * Mathf.Deg2Rad) * Mathf.Abs(velocity.x)
-                    // }
+                
                     objectCol.left = dirX == -1;
                     objectCol.right = dirX == 1;
                 }  
@@ -103,6 +104,19 @@ public class Controller2D : MonoBehaviour
     
             }
         }
+        if(objectCol.isClimbing){
+            float dirX =Mathf.Sign(velocity.x);
+            rayLength = Mathf.Abs(velocity.x) + skinWidth;
+			Vector2 rayOrigin = ((dirX == -1)?raycastOrigins.bottomLeft:raycastOrigins.bottomRight) + Vector2.up * velocity.y;
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * dirX, rayLength, collisionMask);
+            if(hit){
+                float slopeAngle = Vector2.Angle(hit.normal,Vector2.up);
+                if(slopeAngle != objectCol.slopeAngle){
+                    velocity.x = (hit.distance - skinWidth) * dirX;
+                    objectCol.slopeAngle = slopeAngle;
+                }
+            }
+        }
     }
     
     void ClimbSlope(ref Vector3 velocity, float slopeAngle){
@@ -115,6 +129,29 @@ public class Controller2D : MonoBehaviour
             objectCol.isClimbing=true;
             objectCol.slopeAngle=slopeAngle;
          }
+    }
+    void DescendSlope(ref Vector3 velocity){
+        float dirX = Mathf.Sign(velocity.x);
+        Vector2 rayOrigin = (dirX == -1)?raycastOrigins.bottomRight:raycastOrigins.bottomLeft;
+        RaycastHit2D hit = Physics2D.Raycast(rayOrigin, -Vector2.up, Mathf.Infinity,collisionMask);
+
+        if(hit){
+            float slopeAngle = Vector2.Angle(hit.normal, Vector2.up);
+            if(slopeAngle != 0 && slopeAngle <= maxDescendAngle){
+                if(Mathf.Sign(hit.normal.x) == dirX){
+                    if(hit.distance - skinWidth <= Mathf.Tan(slopeAngle * Mathf.Deg2Rad) * Mathf.Abs(velocity.x)){
+                        float moveDistance = Mathf.Abs(velocity.x);
+                        float descendVelocityY = Mathf.Sin (slopeAngle * Mathf.Deg2Rad) * moveDistance;
+						velocity.x = Mathf.Cos (slopeAngle * Mathf.Deg2Rad) * moveDistance * Mathf.Sign (velocity.x);
+						velocity.y -= descendVelocityY;
+
+						objectCol.slopeAngle = slopeAngle;
+						objectCol.isDescending = true;
+						objectCol.below = true;
+                    }
+                }
+            }
+        }
     }
     void UpdateRaycastOrigin(){
         Bounds bounds = boxcollider.bounds;
@@ -146,11 +183,14 @@ public class Controller2D : MonoBehaviour
         public bool above,below;
         public bool left,right;
         public bool isClimbing;
+        public bool isDescending;
         public float slopeAngle, slopeAngleOld;
+        public Vector3 velocityOld;
         public void Reset(){
             above = below = false;
             left = right = false;
             isClimbing = false;
+            isDescending = false;
 
             slopeAngleOld = slopeAngle;
             slopeAngle = 0;
