@@ -1,6 +1,8 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
+//This code belongs to Sebastian Lague
 [RequireComponent (typeof(Controller2D))]
 public class Player : MonoBehaviour
 {

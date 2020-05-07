@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//This code belongs to Sebastian Lague
 [RequireComponent (typeof(BoxCollider2D))]
 public class Controller2D : MonoBehaviour
 {
