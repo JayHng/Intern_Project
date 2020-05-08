@@ -53,7 +53,13 @@ public class Player : MonoBehaviour
         //update gravity to the velocity
         velocity.y += gravity * Time.deltaTime;
 
-        controller.Move(velocity * Time.deltaTime);    
+        controller.Move(velocity * Time.deltaTime);
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log(collision.tag);
     }
 
     //This code belongs to me

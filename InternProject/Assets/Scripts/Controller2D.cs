@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 //This code belongs to Sebastian Lague
 [RequireComponent (typeof(BoxCollider2D))]
@@ -19,14 +20,16 @@ public class Controller2D : MonoBehaviour
 
     RaycastOrigins raycastOrigins;
     public LayerMask collisionMask;
+    public LayerMask collisionDoor;
     public CollisionInfo objectCol;
+
+    public int leveltoLoad;
 
     // Start is called before the first frame update
     void Start()
     {
         boxcollider = GetComponent<BoxCollider2D>();
         CalculateRaySpacing();
-
     }
 
     public void Move(Vector3 velocity)
@@ -40,6 +43,7 @@ public class Controller2D : MonoBehaviour
         }
         if(velocity.x != 0){
             HorizontalCollision(ref velocity);
+            DoorDetection(ref velocity);
         }
         if(velocity.y != 0){
             VerticalCollision(ref velocity);
@@ -61,7 +65,6 @@ public class Controller2D : MonoBehaviour
             Debug.DrawRay(rayOrigin, Vector2.right * dirX * rayLength,Color.cyan);
             if(hit)
             {
-
                 float slopeAngle = Vector2.Angle(hit.normal, Vector2.up);
 
                 if(i == 0 && slopeAngle <= maxClimbAngle){
@@ -77,8 +80,25 @@ public class Controller2D : MonoBehaviour
                 
                     objectCol.left = dirX == -1;
                     objectCol.right = dirX == 1;
-                }  
+                }
+
             }
+        }
+    }
+
+    void LoadLevel() => SceneManager.LoadScene(leveltoLoad);
+
+    void DoorDetection(ref Vector3 velocity)
+    {
+        float dirX = Mathf.Sign(velocity.x);
+        float rayLength = Mathf.Abs(velocity.x) + skinWidth;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right * dirX, rayLength, collisionDoor);
+
+        if (hit)
+        {
+            Debug.Log("Entering the door");
+            GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().enabled = false;
+            Invoke("LoadLevel", 1f);
         }
     }
 
@@ -196,5 +216,9 @@ public class Controller2D : MonoBehaviour
             slopeAngleOld = slopeAngle;
             slopeAngle = 0;
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
     }
 }
