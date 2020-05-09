@@ -20,10 +20,12 @@ public class Controller2D : MonoBehaviour
 
     RaycastOrigins raycastOrigins;
     public LayerMask collisionMask;
-    public LayerMask collisionDoor;
     public CollisionInfo objectCol;
 
+    public LayerMask collisionDoor;
     public int leveltoLoad;
+    int currentLevel = 2;
+    AsyncOperation async;
 
     // Start is called before the first frame update
     void Start()
@@ -86,7 +88,12 @@ public class Controller2D : MonoBehaviour
         }
     }
 
-    void LoadLevel() => SceneManager.LoadScene(leveltoLoad);
+    void LoadLevel()
+    {
+        SceneManager.UnloadSceneAsync(leveltoLoad - 1);
+        async = SceneManager.LoadSceneAsync(leveltoLoad, LoadSceneMode.Additive);
+    }
+
 
     void DoorDetection(ref Vector3 velocity)
     {
@@ -96,6 +103,7 @@ public class Controller2D : MonoBehaviour
 
         if (hit)
         {
+            leveltoLoad = currentLevel + 1;
             Debug.Log("Entering the door");
             GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().enabled = false;
             Invoke("LoadLevel", 1f);
@@ -218,7 +226,4 @@ public class Controller2D : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-    }
 }

@@ -5,39 +5,45 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static bool isPaused = false;
-    public GameObject pauseMenuUI;
+    AsyncOperation async;
 
-    public void PlayGame(){
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }
-    public void QuitGame(){
-        Application.Quit();
+    public string sceneName = "Level1";
+    
+    bool done;
+
+    public UIFunctions ui;
+
+    void Start()
+    {
+        async = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+        ui = FindObjectOfType<UIFunctions>();
     }
 
     void Update(){
-        if(Input.GetKeyDown(KeyCode.Escape)){
-            if(isPaused){
-                Resume();
-            }else{
-                Pause();
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (ui.IsPaused())
+            { 
+                ui.Resume();
+            }
+            else
+            {
+                ui.Pause();
             }
         }
-    }
-    public void Resume(){
-        pauseMenuUI.SetActive(false);
-        Time.timeScale = 1f;
-        isPaused = false;
-    }
+        if (async.isDone && !done)
+        {
+            done = true;
+            //WaypointCircuit circuit = FindObjectOfType<WaypointCircuit>();
+            //WaypointProgressTracker[] aiCars = FindObjectsOfType<WaypointProgressTracker>();
+            //foreach (WaypointProgressTracker car in aiCars)
+            //{
+            //    car.circuit = circuit;
+            //}
+            //hider.SetActive(false);
 
-    void Pause(){
-        pauseMenuUI.SetActive(true);
-        Time.timeScale = 0f;
-        isPaused = true;
+            Time.timeScale = 1;
+        }
     }
-
-    public void LoadMenu(){
-        SceneManager.LoadScene("TitleScreen");
-
-    }
+    
 }
