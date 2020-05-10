@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3839363715877824325}
   m_Layer: 8
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125,6 +125,10 @@ MonoBehaviour:
   collisionMask:
     serializedVersion: 2
     m_Bits: 512
+  collisionDoor:
+    serializedVersion: 2
+    m_Bits: 1024
+  levelToLoad: 0
 --- !u!114 &3839363715877824325
 MonoBehaviour:
   m_ObjectHideFlags: 0

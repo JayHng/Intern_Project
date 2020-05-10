@@ -11,15 +11,33 @@ public class GameManager : MonoBehaviour
     
     bool done;
 
-    public UIFunctions ui;
+    private UIFunctions ui;
+    public static GameManager gm;
+    public Player player;
+    public Transform spawnPoint;
+    public Controller2D control;
 
     void Start()
     {
         async = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
         ui = FindObjectOfType<UIFunctions>();
+        //spawnPoint = GameObject.FindGameObjectWithTag("StartingPoint").transform;
+        if (gm == null)
+        {
+            gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        }
+
     }
 
-    void Update(){
+    public void SetStartingPoint()
+    {
+        spawnPoint = GameObject.FindGameObjectWithTag("StartingPoint").transform;
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+
+        player.gameObject.transform.position = spawnPoint.position;
+    }
+
+    void Update() {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (ui.IsPaused())
@@ -31,17 +49,19 @@ public class GameManager : MonoBehaviour
                 ui.Pause();
             }
         }
+
+
+        if (spawnPoint == null)
+            SetStartingPoint();
+
+        //Check the last scene
+        //if (control.levelToLoad > 4)
+        //{
+        //    SceneManager.LoadScene(0);
+        //}
         if (async.isDone && !done)
         {
             done = true;
-            //WaypointCircuit circuit = FindObjectOfType<WaypointCircuit>();
-            //WaypointProgressTracker[] aiCars = FindObjectsOfType<WaypointProgressTracker>();
-            //foreach (WaypointProgressTracker car in aiCars)
-            //{
-            //    car.circuit = circuit;
-            //}
-            //hider.SetActive(false);
-
             Time.timeScale = 1;
         }
     }

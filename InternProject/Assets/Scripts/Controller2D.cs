@@ -23,13 +23,16 @@ public class Controller2D : MonoBehaviour
     public CollisionInfo objectCol;
 
     public LayerMask collisionDoor;
-    public int leveltoLoad;
-    int currentLevel = 2;
+    public int levelToLoad;
+    public int currentLevel;
     AsyncOperation async;
+
+    public GameManager gm;
 
     // Start is called before the first frame update
     void Start()
     {
+        currentLevel = 2;
         boxcollider = GetComponent<BoxCollider2D>();
         CalculateRaySpacing();
     }
@@ -88,10 +91,20 @@ public class Controller2D : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if(currentLevel < 4)
+        {
+            if (async != null)
+                if (async.isDone) currentLevel = levelToLoad;
+        }
+    }
+
     void LoadLevel()
     {
-        SceneManager.UnloadSceneAsync(leveltoLoad - 1);
-        async = SceneManager.LoadSceneAsync(leveltoLoad, LoadSceneMode.Additive);
+        SceneManager.UnloadSceneAsync(levelToLoad - 1);
+        async = SceneManager.LoadSceneAsync(levelToLoad, LoadSceneMode.Additive);
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().enabled = true;
     }
 
 
@@ -103,10 +116,14 @@ public class Controller2D : MonoBehaviour
 
         if (hit)
         {
-            leveltoLoad = currentLevel + 1;
+            levelToLoad = currentLevel + 1;
             Debug.Log("Entering the door");
             GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().enabled = false;
-            Invoke("LoadLevel", 1f);
+            if(levelToLoad <= 4)
+                Invoke("LoadLevel", 1f);
+            else
+                SceneManager.LoadScene(0);
+                Debug.Log("Go back to menu");
         }
     }
 

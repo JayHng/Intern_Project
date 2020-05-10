@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
         print("Gravity: " + gravity + "  Jump Velocity: " + jumpVelocity);
 
         //This code belongs to me
-        currentHP = maxHP;
+        currentHP = maxHP;    
     }
     // Update is called once per frame
     void Update()
