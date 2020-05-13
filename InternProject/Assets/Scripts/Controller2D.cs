@@ -48,7 +48,6 @@ public class Controller2D : MonoBehaviour
         }
         if(velocity.x != 0){
             HorizontalCollision(ref velocity);
-            DoorDetection(ref velocity);
         }
         if(velocity.y != 0){
             VerticalCollision(ref velocity);
@@ -97,33 +96,6 @@ public class Controller2D : MonoBehaviour
         {
             if (async != null)
                 if (async.isDone) currentLevel = levelToLoad;
-        }
-    }
-
-    void LoadLevel()
-    {
-        SceneManager.UnloadSceneAsync(levelToLoad - 1);
-        async = SceneManager.LoadSceneAsync(levelToLoad, LoadSceneMode.Additive);
-        GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().enabled = true;
-    }
-
-
-    void DoorDetection(ref Vector3 velocity)
-    {
-        float dirX = Mathf.Sign(velocity.x);
-        float rayLength = Mathf.Abs(velocity.x) + skinWidth;
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right * dirX, rayLength, collisionDoor);
-
-        if (hit)
-        {
-            levelToLoad = currentLevel + 1;
-            Debug.Log("Entering the door");
-            GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().enabled = false;
-            if(levelToLoad <= 4)
-                Invoke("LoadLevel", 1f);
-            else
-                SceneManager.LoadScene(0);
-                Debug.Log("Go back to menu");
         }
     }
 

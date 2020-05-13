@@ -17,24 +17,15 @@ public class GameManager : MonoBehaviour
     public Transform spawnPoint;
     public Controller2D control;
 
-    void Start()
+    void Awake()
     {
         async = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
         ui = FindObjectOfType<UIFunctions>();
-        //spawnPoint = GameObject.FindGameObjectWithTag("StartingPoint").transform;
         if (gm == null)
         {
             gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         }
 
-    }
-
-    public void SetStartingPoint()
-    {
-        spawnPoint = GameObject.FindGameObjectWithTag("StartingPoint").transform;
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-
-        player.gameObject.transform.position = spawnPoint.position;
     }
 
     void Update() {
@@ -49,10 +40,6 @@ public class GameManager : MonoBehaviour
                 ui.Pause();
             }
         }
-
-
-        if (spawnPoint == null)
-            SetStartingPoint();
 
         //Check the last scene
         //if (control.levelToLoad > 4)
