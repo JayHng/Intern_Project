@@ -72,4 +72,12 @@ public class Player : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+    public void Damage(int dam){
+        currentHP -= dam;
+    }
+    public void Knockback(Vector3 knockDir){
+        velocity = new Vector3(0,0,0);
+        velocity = new Vector3(knockDir.x * -10, jumpVelocity-10, 0);
+    }
 }

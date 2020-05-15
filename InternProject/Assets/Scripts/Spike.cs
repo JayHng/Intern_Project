@@ -1,15 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-
-public class HeartUI : MonoBehaviour
+public class Spike : MonoBehaviour
 {
-    public Sprite[] heartSprite;
     public Player player;
-    public Image heart;
-
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +15,12 @@ public class HeartUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        heart.sprite = heartSprite[player.currentHP];
+        
+    }
+    private void OnTriggerEnter2D(Collider2D other) {
+        if(other.tag=="Player"){
+            player.Damage(1);
+            player.Knockback(player.transform.position);
+        }
     }
 }

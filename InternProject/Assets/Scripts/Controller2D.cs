@@ -14,6 +14,7 @@ public class Controller2D : MonoBehaviour
     float maxClimbAngle = 80;
     float maxDescendAngle = 75;
     float horizontalRaySpacing;
+
     float verticalRaySpacing;
 
     BoxCollider2D boxcollider;
