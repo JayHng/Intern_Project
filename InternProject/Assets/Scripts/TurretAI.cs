@@ -66,7 +66,7 @@ public class TurretAI : MonoBehaviour
  
         if (bulletTimer >= shootInterval)
         {                     
-            Vector2 direction = target.transform.position - transform.position;
+            Vector2 direction = target.transform.position - this.transform.position;
             direction.Normalize();
  
             if (attackright)
@@ -87,5 +87,9 @@ public class TurretAI : MonoBehaviour
                 bulletTimer = 0;
             }
         }
+    }
+
+    public void Damage(int dam){
+        turretHP -= dam;
     }
 }

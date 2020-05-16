@@ -19,7 +19,7 @@ public class Spike : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.tag=="Player"){
-            player.Damage(1);
+            player.PlayerDamage(1);
             player.Knockback(player.transform.position);
         }
     }

@@ -73,7 +73,7 @@ public class Player : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public void Damage(int dam){
+    public void PlayerDamage(int dam){
         currentHP -= dam;
     }
     public void Knockback(Vector3 knockDir){
