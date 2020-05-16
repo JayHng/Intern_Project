@@ -15,7 +15,7 @@ public class TurretAI : MonoBehaviour
     public bool isLookRight = true;
 
     public GameObject bullet;
-    public Transform targetPosition;
+    public Player target;
     public Animator anim;
     public Transform shootPointL, shootPointR;
 
@@ -26,7 +26,7 @@ public class TurretAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
     // Update is called once per frame
@@ -35,14 +35,57 @@ public class TurretAI : MonoBehaviour
         anim.SetBool("Awake", isAwake);
         anim.SetBool("isLookRight", isLookRight);
 
-        if(targetPosition.transform.position.x > this.transform.position.x){
+        RangeCheck();
+
+        if(target.transform.position.x > this.transform.position.x){                          
             isLookRight = true;
         }
-        if(targetPosition.transform.position.x < this.transform.position.x){
+        if(target.transform.position.x < this.transform.position.x){
             isLookRight = false;
         }
         if(turretHP < 0){
             Destroy(gameObject);
+        }
+    }
+    void RangeCheck()
+    {
+        playerDistance = Vector2.Distance(this.transform.position, target.transform.position);
+ 
+        if (playerDistance < awakeRange)
+            isAwake = true;
+ 
+        if (playerDistance > awakeRange)
+            isAwake = false;
+    }
+
+
+
+    public void Attack(bool attackright)
+    {
+        bulletTimer += Time.deltaTime;
+ 
+        if (bulletTimer >= shootInterval)
+        {                     
+            Vector2 direction = target.transform.position - transform.position;
+            direction.Normalize();
+ 
+            if (attackright)
+            {
+                GameObject bulletclone;
+                bulletclone = Instantiate(bullet, shootPointR.transform.position, shootPointR.transform.rotation) as GameObject;
+                bulletclone.GetComponent<Rigidbody2D>().velocity = direction * bulletSpeed;
+ 
+                bulletTimer = 0;
+            }
+ 
+            if (!attackright)
+            {
+                GameObject bulletclone;
+                bulletclone = Instantiate(bullet, shootPointL.transform.position, shootPointL.transform.rotation) as GameObject;
+                bulletclone.GetComponent<Rigidbody2D>().velocity = direction * bulletSpeed;
+ 
+                bulletTimer = 0;
+            }
         }
     }
 }
