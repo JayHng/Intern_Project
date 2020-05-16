@@ -8,6 +8,7 @@ TagManager:
   - PauseMenu
   - GameManager
   - StartingPoint
+  - Turret
   layers:
   - Default
   - TransparentFX
