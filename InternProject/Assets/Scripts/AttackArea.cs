@@ -8,7 +8,7 @@ public class AttackArea : MonoBehaviour
     public bool isLeft = false;
 
 
-    void Awake()
+    private void Awake()
     {
         turret = gameObject.GetComponentInParent<TurretAI>();
     }
@@ -16,9 +16,9 @@ public class AttackArea : MonoBehaviour
     private void OnTriggerStay2D(Collider2D other) {
         if(other.CompareTag("Player")){
             if(isLeft){
-                turret.Attack(false);
+                turret.TurretAttack(false);
             }else{
-                turret.Attack(true);
+                turret.TurretAttack(true);
             }
         }
     }

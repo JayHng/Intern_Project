@@ -8,7 +8,7 @@ public class TurretAI : MonoBehaviour
     public float playerDistance;
     public float awakeRange;
     public float shootInterval;
-    public float bulletSpeed = 5;
+    public float bulletSpeed = 10;
     public float bulletTimer;
     
     public bool isAwake = false;
@@ -60,7 +60,7 @@ public class TurretAI : MonoBehaviour
 
 
 
-    public void Attack(bool attackright)
+    public void TurretAttack(bool attackRight)
     {
         bulletTimer += Time.deltaTime;
  
@@ -69,7 +69,7 @@ public class TurretAI : MonoBehaviour
             Vector2 direction = target.transform.position - this.transform.position;
             direction.Normalize();
  
-            if (attackright)
+            if (attackRight)
             {
                 GameObject bulletclone;
                 bulletclone = Instantiate(bullet, shootPointR.transform.position, shootPointR.transform.rotation) as GameObject;
@@ -78,7 +78,7 @@ public class TurretAI : MonoBehaviour
                 bulletTimer = 0;
             }
  
-            if (!attackright)
+            if (!attackRight)
             {
                 GameObject bulletclone;
                 bulletclone = Instantiate(bullet, shootPointL.transform.position, shootPointL.transform.rotation) as GameObject;
