@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿  using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +11,7 @@ public class TurretAI : MonoBehaviour
     public float bulletSpeed = 10;
     public float bulletTimer;
     
-    public bool isAwake = false;
+    public bool isAwake;
     public bool isLookRight = true;
 
     public GameObject bullet;
@@ -59,32 +59,26 @@ public class TurretAI : MonoBehaviour
     }
 
 
-
+    //I don't know why this function doesnt work. I try it on other 2D game and it works, but not this one. I try Debug.log to check but it doesnt work.
     public void TurretAttack(bool attackRight)
     {
         bulletTimer += Time.deltaTime;
- 
-        if (bulletTimer >= shootInterval)
-        {                     
-            Vector2 direction = target.transform.position - this.transform.position;
-            direction.Normalize();
- 
-            if (attackRight)
-            {
-                GameObject bulletclone;
-                bulletclone = Instantiate(bullet, shootPointR.transform.position, shootPointR.transform.rotation) as GameObject;
-                bulletclone.GetComponent<Rigidbody2D>().velocity = direction * bulletSpeed;
- 
-                bulletTimer = 0;
+        
+        if(bulletTimer >= shootInterval){
+            Vector2 dir = target.transform.position - this.transform.position;
+            dir.Normalize();
+
+            if(attackRight){
+                GameObject bulletClone;
+                bulletClone = Instantiate(bullet, shootPointR.transform.position, shootPointR.transform.rotation);
+                bulletClone.GetComponent<Rigidbody2D>().velocity = dir * bulletSpeed;
+                bulletTimer=0;
             }
- 
-            if (!attackRight)
-            {
-                GameObject bulletclone;
-                bulletclone = Instantiate(bullet, shootPointL.transform.position, shootPointL.transform.rotation) as GameObject;
-                bulletclone.GetComponent<Rigidbody2D>().velocity = direction * bulletSpeed;
- 
-                bulletTimer = 0;
+            if(!attackRight){
+                GameObject bulletClone;
+                bulletClone = Instantiate(bullet, shootPointL.transform.position, shootPointL.transform.rotation);
+                bulletClone.GetComponent<Rigidbody2D>().velocity = dir * bulletSpeed;
+                bulletTimer=0;
             }
         }
     }

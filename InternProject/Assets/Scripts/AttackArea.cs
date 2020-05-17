@@ -13,7 +13,7 @@ public class AttackArea : MonoBehaviour
         turret = gameObject.GetComponentInParent<TurretAI>();
     }
 
-    private void OnTriggerStay2D(Collider2D other) {
+    void OnTriggerStay2D(Collider2D other) {
         if(other.CompareTag("Player")){
             if(isLeft){
                 turret.TurretAttack(false);

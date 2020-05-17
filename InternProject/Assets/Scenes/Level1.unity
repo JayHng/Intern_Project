@@ -245,13 +245,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 607762582}
-  m_LocalRotation: {x: -0, y: -0, z: -0.38839957, w: 0.9214911}
-  m_LocalPosition: {x: -7.15, y: 0.09500003, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0.21438141, w: 0.97675}
+  m_LocalPosition: {x: -11.710001, y: 0.09500003, z: 0}
   m_LocalScale: {x: 8, y: 0.4, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -45.710003}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -24.758001}
 --- !u!1 &1044441749
 GameObject:
   m_ObjectHideFlags: 0
@@ -351,13 +351,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1044441749}
-  m_LocalRotation: {x: -0, y: -0, z: -0.5668882, w: 0.8237948}
-  m_LocalPosition: {x: -7, y: 0.09500003, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0.40765795, w: 0.91313475}
+  m_LocalPosition: {x: -11.569918, y: 0.14863679, z: 0}
   m_LocalScale: {x: 8, y: 0.4, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -69.067}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -48.116}
 --- !u!1 &1221678481
 GameObject:
   m_ObjectHideFlags: 0
@@ -383,7 +383,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1221678481}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.6, y: 2.685, z: 0}
+  m_LocalPosition: {x: -12.8, y: 3.97, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -473,6 +473,12 @@ PrefabInstance:
       propertyPath: shootInterval
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 3807767884802433135, guid: c0b21d825a82b9040927899925b7b55b,
+        type: 3}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 4332713519383309983, guid: a0b9ced0ae9f39a49911902944349603,
+        type: 3}
     - target: {fileID: 3807767884915926977, guid: c0b21d825a82b9040927899925b7b55b,
         type: 3}
       propertyPath: m_IsTrigger
@@ -482,6 +488,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_UsedByEffector
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3807767886581980693, guid: c0b21d825a82b9040927899925b7b55b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.67
+      objectReference: {fileID: 0}
+    - target: {fileID: 3807767886731699601, guid: c0b21d825a82b9040927899925b7b55b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.56
       objectReference: {fileID: 0}
     - target: {fileID: 3807767886912376871, guid: c0b21d825a82b9040927899925b7b55b,
         type: 3}
