@@ -10,7 +10,7 @@ public class SkeletonController : MonoBehaviour
     }
     private State currentState;
     [SerializeField]
-    private float groundDistance, wallDistance, movementSpeed, maxHealth, knockbackDuration;
+    private float groundDistance, wallDistance, movementSpeed, maxHP, knockbackDuration;
     [SerializeField]private Transform groundCheck, wallCheck;
     [SerializeField]private LayerMask IsGround;
     [SerializeField]private Vector2 knockbackSpeed;
@@ -27,6 +27,7 @@ public class SkeletonController : MonoBehaviour
         aliverb = alive.GetComponent<Rigidbody2D>();
         aliveAnim = GetComponent<Animator>();
         faceDir = 1;
+        currentHP = maxHP;
     }
     private void Update(){
         switch(currentState){
