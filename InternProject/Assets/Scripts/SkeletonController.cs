@@ -21,6 +21,9 @@ public class SkeletonController : MonoBehaviour
     private Rigidbody2D aliverb;
     private float currentHP, knockbackStartTime;
     private Animator aliveAnim;
+    [SerializeField] private GameObject hitParticle;
+    public Player player;
+
 
     public void Start(){
         alive = transform.Find("Alive").gameObject;
@@ -28,6 +31,7 @@ public class SkeletonController : MonoBehaviour
         aliveAnim = GetComponent<Animator>();
         faceDir = 1;
         currentHP = maxHP;
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
     private void Update(){
         switch(currentState){
@@ -136,14 +140,34 @@ public class SkeletonController : MonoBehaviour
             SwitchState(State.Dead);
         }
     }
+    // private void SkeDamage(float damage){
+    //     currentHP -= 2;
+    //     if(player.transform.position.x > alive.transform.position.x){
+    //         damageDir =-1;
+    //     }
+    //     else{
+    //         damageDir =1;
+    //     }
+    //     //Hit particle
+    //     if(currentHP > 0.0f){
+    //         SwitchState(State.Knockback);
+    //     }else if(currentHP <= 0.0f){
+    //         SwitchState(State.Dead);
+    //     }
+    // }
 
     /// <summary>
     /// Callback to draw gizmos that are pickable and always drawn.
     /// </summary>
-    void OnDrawGizmos()
+    private void OnDrawGizmos()
     {
         Gizmos.DrawLine(groundCheck.position, new Vector2(groundCheck.position.x, groundCheck.position.y - groundDistance));
         Gizmos.DrawLine(wallCheck.position, new Vector2(wallCheck.position.x + wallDistance, wallCheck.position.y));
+    }
+    private void OnTriggerEnter2D(Collider2D other) {
+        if(other.tag=="Player"){
+            player.PlayerDamage(1);
+        }
     }
 
 }

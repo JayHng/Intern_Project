@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     public float accelerationTimeAirborne = .2f;
     public float accelerationTimeGrounded = .1f;
 
-    float moveSpeed = 6;
+    float moveSpeed = 5;
     float gravity;
     float jumpVelocity;
     float velocityXSmoothing;
@@ -78,6 +78,6 @@ public class Player : MonoBehaviour
     }
     public void Knockback(Vector3 knockDir){
         velocity = new Vector3(0,0,0);
-        velocity = new Vector3(knockDir.x * -10, jumpVelocity-10, 0);
+        velocity = new Vector3(knockDir.x * -100, jumpVelocity-10, 0);
     }
 }
