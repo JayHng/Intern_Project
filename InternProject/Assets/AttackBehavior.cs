@@ -2,20 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IdleBehaviour : StateMachineBehaviour
+public class AttackBehavior : StateMachineBehaviour
 {
+    [SerializeField] private Player playerPos;
+    public GameObject skeleton;
+    // Distance between skeleton and player
+    public float skeDistance;
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
-    //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    
-    //}
+    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        playerPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        skeleton = GameObject.FindGameObjectWithTag("Skeleton");
+    }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-       if(Input.GetKeyDown(KeyCode.E)){
-           animator.SetBool("isFollowing", true);
-       }
+        skeDistance = Vector2.Distance(skeleton.transform.position, this.playerPos.transform.position);
+
+        if(skeDistance > 2){
+            animator.SetBool("isAttacking", false);
+            //animator.SetBool("isFollowing", true);
+        }
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

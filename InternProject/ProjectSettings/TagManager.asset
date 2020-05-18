@@ -9,6 +9,7 @@ TagManager:
   - GameManager
   - StartingPoint
   - Turret
+  - Skeleton
   layers:
   - Default
   - TransparentFX

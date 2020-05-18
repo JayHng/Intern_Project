@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class TurretAI : MonoBehaviour
 {
-    public int turretHP = 100;
-    public float playerDistance;
+    [SerializeField]private int turretHP = 100;
+    [SerializeField]private float playerDistance;
     public float awakeRange;
     public float shootInterval;
     public float bulletSpeed = 10;
