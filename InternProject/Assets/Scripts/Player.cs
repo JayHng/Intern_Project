@@ -78,6 +78,6 @@ public class Player : MonoBehaviour
     }
     public void Knockback(Vector3 knockDir){
         velocity = new Vector3(0,0,0);
-        velocity = new Vector3(knockDir.x * -100, jumpVelocity-10, 0);
+        velocity = new Vector3(knockDir.x * -15, jumpVelocity-7, 0);
     }
 }

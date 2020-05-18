@@ -125,14 +125,14 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 15
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!95 &2295257288449941372
 Animator:
@@ -222,8 +222,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7704344286305758906}
-  - component: {fileID: 1417440170761522632}
-  - component: {fileID: 5864539731029336916}
+  - component: {fileID: 6412740942022077583}
   m_Layer: 0
   m_Name: Ske
   m_TagString: Untagged
@@ -246,30 +245,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1417440170761522632
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7704344286305758909}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cf33059c22b8f54fa02ae01a9520db8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  groundDistance: 0
-  wallDistance: 0
-  movementSpeed: 0
-  maxHealth: 0
-  knockbackDuration: 0
-  groundCheck: {fileID: 0}
-  wallCheck: {fileID: 0}
-  IsGround:
-    serializedVersion: 2
-    m_Bits: 0
-  knockbackSpeed: {x: 0, y: 0}
---- !u!114 &5864539731029336916
+--- !u!114 &6412740942022077583
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -284,7 +260,7 @@ MonoBehaviour:
   groundDistance: 0.5
   wallDistance: 0.1
   movementSpeed: 2
-  maxHealth: 30
+  maxHP: 0
   knockbackDuration: 0
   groundCheck: {fileID: 8140907614650643851}
   wallCheck: {fileID: 4573554054688134951}
@@ -292,3 +268,5 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   knockbackSpeed: {x: 10, y: 5}
+  hitParticle: {fileID: 0}
+  player: {fileID: 0}

@@ -26,7 +26,7 @@ public class PlayerCombatController : MonoBehaviour
     private void CheckCombatInput(){
         if(Input.GetMouseButtonDown(0)){
             if(combatEnabled){
-                //inputEntered = true;
+                inputEntered = true;
                 lastInputTime = Time.time;
             }
         }

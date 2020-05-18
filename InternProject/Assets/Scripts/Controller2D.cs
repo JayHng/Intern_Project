@@ -22,13 +22,9 @@ public class Controller2D : MonoBehaviour
     RaycastOrigins raycastOrigins;
     public LayerMask collisionMask;
     public CollisionInfo objectCol;
-
-    public LayerMask collisionDoor;
     public int levelToLoad;
     public int currentLevel;
     AsyncOperation async;
-
-    public GameManager gm;
 
     // Start is called before the first frame update
     void Start()

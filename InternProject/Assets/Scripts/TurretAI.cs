@@ -5,10 +5,10 @@ using UnityEngine;
 public class TurretAI : MonoBehaviour
 {
     [SerializeField]private int turretHP = 100;
-    [SerializeField]private float playerDistance;
-    public float awakeRange;
+    public float playerDistance;
+    [SerializeField]private float awakeRange = 5;
+    [SerializeField]private float bulletSpeed = 10;
     public float shootInterval;
-    public float bulletSpeed = 10;
     public float bulletTimer;
     
     public bool isAwake;
@@ -26,7 +26,7 @@ public class TurretAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //target = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
     // Update is called once per frame
