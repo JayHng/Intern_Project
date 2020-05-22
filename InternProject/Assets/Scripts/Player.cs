@@ -20,10 +20,12 @@ public class Player : MonoBehaviour
     //This code belongs to me
     public int currentHP;
     public int maxHP = 5;
+    public Rigidbody2D playerRb;
 
     // Start is called before the first frame update
     void Start()
     {
+        playerRb = gameObject.GetComponent<Rigidbody2D>();
         //This code belongs to Sebastian Lague
         controller = GetComponent<Controller2D>();
         gravity = -(2*jumpHeight)/Mathf.Pow(timeToJumpApex,2);
@@ -78,6 +80,7 @@ public class Player : MonoBehaviour
     }
     public void Knockback(Vector3 knockDir){
         velocity = new Vector3(0,0,0);
-        velocity = new Vector3(knockDir.x * -15, jumpVelocity-7, 0);
+        //playerRb.AddForce(new Vector3(knockDir.x * -100, knockDir.y * knockPow,0)); 
+        velocity = new Vector3(knockDir.x * -5, knockDir.y *10, 0);
     }
 }

@@ -13,10 +13,9 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        //to avoid the bullet disappears when hit the "AttackArea" collider
         if(other.isTrigger == false){
             if(other.CompareTag("Player")){
-                other.SendMessageUpwards("Damage", 1);
+                other.SendMessageUpwards("PlayerDamage", 1);
             }
         }
         Destroy(gameObject);
