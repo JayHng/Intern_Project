@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 [RequireComponent (typeof(Controller2D))]
 public class Player : MonoBehaviour
 {
-    public float jumpHeight = 7;
+    public float jumpHeight = 4;
     public float timeToJumpApex = .4f;
     public float accelerationTimeAirborne = .2f;
     public float accelerationTimeGrounded = .1f;
@@ -14,19 +14,16 @@ public class Player : MonoBehaviour
     float gravity;
     float jumpVelocity;
     float velocityXSmoothing;
+    Controller2D controller;
     Vector3 velocity;
 
-    Controller2D controller;
-    
     //This code belongs to me
     public int currentHP;
     public int maxHP = 5;
-    private Rigidbody2D playerRb;
 
     // Start is called before the first frame update
     void Start()
     {
-        playerRb = gameObject.GetComponent<Rigidbody2D>();
         //This code belongs to Sebastian Lague
         controller = GetComponent<Controller2D>();
         gravity = -(2*jumpHeight)/Mathf.Pow(timeToJumpApex,2);
@@ -81,7 +78,6 @@ public class Player : MonoBehaviour
     }
     public void Knockback(Vector3 knockDir){
         velocity = new Vector3(0,0,0);
-        //playerRb.AddForce(new Vector3(knockDir.x * -100, knockDir.y * knockPow,0)); 
-        velocity = new Vector3(knockDir.x * -5, knockDir.y *10, 0);
+        velocity = new Vector3(knockDir.x * -15, jumpVelocity-7, 0);
     }
 }

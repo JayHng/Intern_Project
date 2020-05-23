@@ -5,33 +5,20 @@ using UnityEngine.SceneManagement;
 
 //This code belongs to Sebastian Lague
 [RequireComponent (typeof(BoxCollider2D))]
-public class Controller2D : MonoBehaviour
+public class Controller2D : RaycastController
 {
-    const float skinWidth = 0.015f;
-    public int horizontalRayCount = 4;
-    public int verticalRayCount = 4;
-
     float maxClimbAngle = 80;
     float maxDescendAngle = 75;
-    float horizontalRaySpacing;
-
-    float verticalRaySpacing;
-
-    BoxCollider2D boxcollider;
-
-    RaycastOrigins raycastOrigins;
-    public LayerMask collisionMask;
     public CollisionInfo objectCol;
     public int levelToLoad;
     public int currentLevel;
     AsyncOperation async;
 
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
+        base.Start();
         currentLevel = 2;
-        boxcollider = GetComponent<BoxCollider2D>();
-        CalculateRaySpacing();
     }
 
     public void Move(Vector3 velocity)
@@ -176,31 +163,6 @@ public class Controller2D : MonoBehaviour
                 }
             }
         }
-    }
-    void UpdateRaycastOrigin(){
-        Bounds bounds = boxcollider.bounds;
-        bounds.Expand(skinWidth * -2);
-
-        raycastOrigins.bottomLeft = new Vector2(bounds.min.x,bounds.min.y);
-        raycastOrigins.bottomRight = new Vector2(bounds.max.x,bounds.min.y);
-        raycastOrigins.topLeft = new Vector2(bounds.min.x,bounds.max.y);
-        raycastOrigins.topRight = new Vector2(bounds.max.x,bounds.max.y);        
-    }
-
-    void CalculateRaySpacing(){
-        Bounds bounds = boxcollider.bounds;
-        bounds.Expand(skinWidth * -2);
-
-        horizontalRayCount = Mathf.Clamp(horizontalRayCount, 2, int.MaxValue);
-        verticalRayCount = Mathf.Clamp(verticalRayCount, 2, int.MaxValue);
-
-        horizontalRaySpacing = bounds.size.y / (horizontalRayCount - 1);
-        verticalRaySpacing = bounds.size.x / (verticalRayCount - 1);        
-    }
-
-    struct RaycastOrigins{
-        public Vector2 topLeft, topRight;
-        public Vector2 bottomLeft, bottomRight;
     }
 
     public struct CollisionInfo{
