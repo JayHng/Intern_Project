@@ -73,16 +73,25 @@ public class Controller2D : MonoBehaviour
                         objectCol.isDescending = false;
                         velocity = objectCol.velocityOld;
                     }
-                    ClimbSlope(ref velocity, slopeAngle);    
+                    float distanceToSlopeStart = 0;
+					if (slopeAngle != objectCol.slopeAngleOld) {
+						distanceToSlopeStart = hit.distance-skinWidth;
+						velocity.x -= distanceToSlopeStart * dirX;
+					}
+					ClimbSlope(ref velocity, slopeAngle);
+					velocity.x += distanceToSlopeStart * dirX;   
                 }
                 if(!objectCol.isClimbing || slopeAngle > maxClimbAngle){
                     velocity.x = (hit.distance - skinWidth) * dirX;
                     rayLength = hit.distance;    
                 
+                    if (objectCol.isClimbing) {
+						velocity.y = Mathf.Tan(objectCol.slopeAngle * Mathf.Deg2Rad) * Mathf.Abs(velocity.x);
+					}
+
                     objectCol.left = dirX == -1;
                     objectCol.right = dirX == 1;
                 }
-
             }
         }
     }

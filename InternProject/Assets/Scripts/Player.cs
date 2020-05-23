@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 [RequireComponent (typeof(Controller2D))]
 public class Player : MonoBehaviour
 {
-    public float jumpHeight = 4;
+    public float jumpHeight = 7;
     public float timeToJumpApex = .4f;
     public float accelerationTimeAirborne = .2f;
     public float accelerationTimeGrounded = .1f;
@@ -14,13 +14,14 @@ public class Player : MonoBehaviour
     float gravity;
     float jumpVelocity;
     float velocityXSmoothing;
-    Controller2D controller;
     Vector3 velocity;
 
+    Controller2D controller;
+    
     //This code belongs to me
     public int currentHP;
     public int maxHP = 5;
-    public Rigidbody2D playerRb;
+    private Rigidbody2D playerRb;
 
     // Start is called before the first frame update
     void Start()
