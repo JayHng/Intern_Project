@@ -22,9 +22,13 @@ public class MovingPlatController : RaycastController
     {
         base.Start();
 
-        globalWaypoints = new Vector3[localWaypoints.Length];
-        for(int i=0; i<localWaypoints.Length;i++){
-            globalWaypoints[i] = localWaypoints[i] + transform.position;
+        if (localWaypoints != null && localWaypoints.Length > 0)
+        {
+            globalWaypoints = new Vector3[localWaypoints.Length];
+            for (int i = 0; i < localWaypoints.Length; i++)
+            {
+                globalWaypoints[i] = localWaypoints[i] + transform.position;
+            } 
         }
     }
 
@@ -41,7 +45,14 @@ public class MovingPlatController : RaycastController
         transform.Translate(velocity);
         MovePassengers(false);
     }
+
     Vector3 CalculatePlatformMovement(){
+
+        if (globalWaypoints == null || globalWaypoints.Length == 0)
+        {
+            return Vector3.zero;
+        }
+
         int toWaypointIndex = fromWaypointIndex +1;
         float distanceBetweenWaypoints = Vector3.Distance(globalWaypoints[fromWaypointIndex], globalWaypoints [toWaypointIndex]);
         percentBetweenWaypoints += Time.deltaTime * speed/distanceBetweenWaypoints;
