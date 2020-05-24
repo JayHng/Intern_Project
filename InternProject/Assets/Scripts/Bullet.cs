@@ -13,19 +13,22 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.isTrigger == false){
-            if(other.CompareTag("Player")){
+        if (other.isTrigger == false)
+        {
+            if (other.CompareTag("Player"))
+            {
                 other.SendMessageUpwards("PlayerDamage", 1);
+                Destroy(gameObject);
             }
         }
-        Destroy(gameObject);
     }
 
     // Update is called once per frame
     void Update()
     {
         lifetime -= Time.deltaTime;
-        if(lifetime <= 0){
+        if (lifetime <= 0)
+        {
             Destroy(gameObject);
         }
     }
