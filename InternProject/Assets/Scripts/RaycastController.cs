@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//This code belongs to Sebastian Lague(Youtuber)
 public class RaycastController : MonoBehaviour
 {
     public LayerMask collisionMask;

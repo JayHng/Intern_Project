@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//This code belongs to Sebastian Lague
+//This code belongs to Sebastian Lague(Youtuber)
 public class MovingPlatController : RaycastController
 {
     public LayerMask passengerMask;
@@ -11,8 +11,11 @@ public class MovingPlatController : RaycastController
     Vector3[] globalWaypoints;
 
     public float speed;
+    public bool cyclic;
+    public float waitTime;
     int fromWaypointIndex;
     float percentBetweenWaypoints;
+    float nextMoveTime;
 
     List<PassengerMovement> passengerMovement;
     Dictionary<Transform, Controller2D> passengerDictionary = new Dictionary<Transform, Controller2D>();
@@ -47,14 +50,13 @@ public class MovingPlatController : RaycastController
     }
 
     Vector3 CalculatePlatformMovement(){
-
-        if (globalWaypoints == null || globalWaypoints.Length == 0)
-        {
+        if(Time.time <nextMoveTime){
             return Vector3.zero;
         }
 
-        int toWaypointIndex = fromWaypointIndex +1;
-        float distanceBetweenWaypoints = Vector3.Distance(globalWaypoints[fromWaypointIndex], globalWaypoints [toWaypointIndex]);
+        fromWaypointIndex %= globalWaypoints.Length;
+        int toWaypointIndex = (fromWaypointIndex +1) % globalWaypoints.Length;
+        float distanceBetweenWaypoints = Vector3.Distance(globalWaypoints[fromWaypointIndex], globalWaypoints[toWaypointIndex]);
         percentBetweenWaypoints += Time.deltaTime * speed/distanceBetweenWaypoints;
 
         Vector3 newPos = Vector3.Lerp(globalWaypoints[fromWaypointIndex], globalWaypoints[toWaypointIndex], percentBetweenWaypoints);
@@ -62,10 +64,13 @@ public class MovingPlatController : RaycastController
         if(percentBetweenWaypoints >= 1){
             percentBetweenWaypoints =0;
             fromWaypointIndex++;
-            if(fromWaypointIndex >= globalWaypoints.Length-1){
-                fromWaypointIndex =0;
-                System.Array.Reverse(globalWaypoints);
+            if(!cyclic){
+                if(fromWaypointIndex >= globalWaypoints.Length-1){
+                    fromWaypointIndex =0;
+                    System.Array.Reverse(globalWaypoints);
+                }
             }
+            nextMoveTime = Time.time;
         }
         return newPos - transform.position;
     }
