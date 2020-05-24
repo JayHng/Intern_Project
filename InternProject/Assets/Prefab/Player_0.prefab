@@ -165,11 +165,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be7e537f173e3f54599d75ef0e41cb8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalRayCount: 4
-  verticalRayCount: 4
   collisionMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 512
+  horizontalRayCount: 4
+  verticalRayCount: 4
+  horizontalRaySpacing: 0
+  verticalRaySpacing: 0
+  boxcollider: {fileID: 0}
   levelToLoad: 0
   currentLevel: 0
 --- !u!114 &8201472896758576406
@@ -190,4 +193,3 @@ MonoBehaviour:
   accelerationTimeGrounded: 0.1
   currentHP: 0
   maxHP: 5
-  playerRb: {fileID: 0}
