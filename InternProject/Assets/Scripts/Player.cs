@@ -10,16 +10,19 @@ public class Player : MonoBehaviour
     public float accelerationTimeAirborne = .2f;
     public float accelerationTimeGrounded = .1f;
 
-    float moveSpeed = 5;
-    float gravity;
-    float jumpVelocity;
-    float velocityXSmoothing;
-    Controller2D controller;
-    Vector3 velocity;
+    [SerializeField] private float moveSpeed = 5;
+    [SerializeField] private float gravity;
+    [SerializeField] private float jumpVelocity;
+    [SerializeField] private float velocityXSmoothing;
+    [SerializeField] private Controller2D controller;
+    [SerializeField] private Vector3 velocity;
 
     //This code belongs to me
     public int currentHP;
     public int maxHP = 5;
+
+    //This code belongs to me
+    [SerializeField] private bool faceright;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +31,7 @@ public class Player : MonoBehaviour
         controller = GetComponent<Controller2D>();
         gravity = -(2*jumpHeight)/Mathf.Pow(timeToJumpApex,2);
         jumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
-        print("Gravity: " + gravity + "  Jump Velocity: " + jumpVelocity);
+        //print("Gravity: " + gravity + "  Jump Velocity: " + jumpVelocity);
 
         //This code belongs to me
         currentHP = maxHP;    
@@ -52,7 +55,6 @@ public class Player : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -61,12 +63,24 @@ public class Player : MonoBehaviour
     }
 
     //This code belongs to me
-    private void FixedUpdate()
+    void FixedUpdate()
     {
         if (currentHP <= 0)
         {
             Death();
         }
+
+        // float inputDir = Input.GetAxisRaw("Horizontal");
+        // Debug.Log(inputDir);
+
+        // if(inputDir>0 && !faceright)
+        // {
+        //     Flip();
+        // }
+        // if(inputDir<0 && faceright){
+        //     Flip();
+        // }
+
     }
     public void Death()
     {
@@ -79,5 +93,10 @@ public class Player : MonoBehaviour
     public void Knockback(Vector3 knockDir){
         velocity = new Vector3(0,0,0);
         velocity = new Vector3(knockDir.x * -15, jumpVelocity-7, 0);
+    }
+
+    public void Flip(){
+        faceright = ! faceright;
+        transform.Rotate(0.0f,180.0f,0.0f);
     }
 }

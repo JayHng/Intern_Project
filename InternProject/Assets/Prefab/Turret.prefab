@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3807767884802433135}
   m_Layer: 0
   m_Name: Turret
-  m_TagString: Untagged
+  m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,7 +121,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turretHP: 100
-  playerDistance: 0
   awakeRange: 5
   bulletSpeed: 4
   shootInterval: 1
@@ -129,10 +128,12 @@ MonoBehaviour:
   isAwake: 0
   isLookRight: 1
   bullet: {fileID: 4332713519383309983, guid: a0b9ced0ae9f39a49911902944349603, type: 3}
-  target: {fileID: 0}
+  player: {fileID: 0}
   anim: {fileID: 0}
   shootPointL: {fileID: 3807767886581980693}
   shootPointR: {fileID: 3807767886731699601}
+  playerDistance: 0
+  distanceToPlayer: 0
 --- !u!1 &3807767884915926983
 GameObject:
   m_ObjectHideFlags: 0

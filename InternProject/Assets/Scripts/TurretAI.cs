@@ -1,13 +1,12 @@
-﻿  using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TurretAI : MonoBehaviour
 {
     [SerializeField]private int turretHP = 100;
-    public float playerDistance;
-    [SerializeField]private float awakeRange = 5;
-    [SerializeField]private float bulletSpeed = 10;
+    [SerializeField]private float awakeRange = 10f;
+    [SerializeField]private float bulletSpeed = 100f;
     public float shootInterval;
     public float bulletTimer;
     
@@ -15,57 +14,55 @@ public class TurretAI : MonoBehaviour
     public bool isLookRight = true;
 
     public GameObject bullet;
-    public Player target;
+    public Player player;
     public Animator anim;
     public Transform shootPointL, shootPointR;
 
-
+    public float distanceToPlayer;
     void Awake(){
         anim = GetComponent<Animator>();
     }
     // Start is called before the first frame update
     void Start()
     {
-        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        isAwake = false;
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>(); //Async to MainScene
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        RangeCheck();
         anim.SetBool("Awake", isAwake);
         anim.SetBool("isLookRight", isLookRight);
 
-        RangeCheck();
-
-        if(target.transform.position.x > this.transform.position.x){                          
+        if(player.transform.position.x > this.transform.position.x){                          
             isLookRight = true;
         }
-        if(target.transform.position.x < this.transform.position.x){
+        if(player.transform.position.x < this.transform.position.x){
             isLookRight = false;
         }
+
         if(turretHP < 0){
-            Destroy(gameObject);
+            GameObject.FindGameObjectWithTag("Turret").GetComponent<TurretAI>().enabled = false; 
         }
     }
+
     void RangeCheck()
     {
-        playerDistance = Vector2.Distance(this.transform.position, target.transform.position);
- 
-        if (playerDistance < awakeRange)
-            isAwake = true;
- 
-        if (playerDistance > awakeRange)
-            isAwake = false;
+        //Distance from turret to player 
+        distanceToPlayer = Vector2.Distance(this.transform.position, player.transform.position);
+
+        if(distanceToPlayer > awakeRange) isAwake = false; else isAwake = true;
     }
 
-
-    //I don't know why this function doesnt work. I try it on other 2D game and it works, but not this one. I try Debug.log to check but it doesnt work.
     public void TurretAttack(bool attackRight)
     {
         bulletTimer += Time.deltaTime;
         
         if(bulletTimer >= shootInterval){
-            Vector2 dir = target.transform.position - this.transform.position;
+            Vector2 dir = player.transform.position - this.transform.position;
             dir.Normalize();
 
             if(attackRight){

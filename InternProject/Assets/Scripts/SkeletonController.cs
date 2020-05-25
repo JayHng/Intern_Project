@@ -31,7 +31,7 @@ public class SkeletonController : MonoBehaviour
         aliveAnim = GetComponent<Animator>();
         faceDir = 1;
         currentHP = maxHP;
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>(); //Async to MainScene
     }
     private void Update(){
         switch(currentState){
