@@ -131,6 +131,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   localWaypoints:
-  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: -3.41, z: 0}
   - {x: 0, y: 2.73, z: 0}
-  speed: 0
+  - {x: -3.76, y: 2.73, z: 0}
+  speed: 3
+  cyclic: 1
+  waitTime: 1
+  easeAmount: 2

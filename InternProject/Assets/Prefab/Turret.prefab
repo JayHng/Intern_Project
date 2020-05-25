@@ -123,8 +123,8 @@ MonoBehaviour:
   turretHP: 100
   playerDistance: 0
   awakeRange: 5
+  bulletSpeed: 4
   shootInterval: 1
-  bulletSpeed: 3
   bulletTimer: 0
   isAwake: 0
   isLookRight: 1

@@ -13,6 +13,10 @@ public class MovingPlatController : RaycastController
     public float speed;
     public bool cyclic;
     public float waitTime;
+
+    [Range(0,2)]
+    public float easeAmount;
+
     int fromWaypointIndex;
     float percentBetweenWaypoints;
     float nextMoveTime;
@@ -49,6 +53,11 @@ public class MovingPlatController : RaycastController
         MovePassengers(false);
     }
 
+    float Ease(float x){
+        float a=easeAmount+1;
+        return Mathf.Pow(x,a)/(Mathf.Pow(x,a)+Mathf.Pow(1-x,a));
+    }
+
     Vector3 CalculatePlatformMovement(){
         if(Time.time <nextMoveTime){
             return Vector3.zero;
@@ -58,6 +67,8 @@ public class MovingPlatController : RaycastController
         int toWaypointIndex = (fromWaypointIndex +1) % globalWaypoints.Length;
         float distanceBetweenWaypoints = Vector3.Distance(globalWaypoints[fromWaypointIndex], globalWaypoints[toWaypointIndex]);
         percentBetweenWaypoints += Time.deltaTime * speed/distanceBetweenWaypoints;
+        percentBetweenWaypoints = Mathf.Clamp01(percentBetweenWaypoints);
+        float easedPercentBetweenWaypoints  = Ease(percentBetweenWaypoints);
 
         Vector3 newPos = Vector3.Lerp(globalWaypoints[fromWaypointIndex], globalWaypoints[toWaypointIndex], percentBetweenWaypoints);
 
@@ -70,7 +81,7 @@ public class MovingPlatController : RaycastController
                     System.Array.Reverse(globalWaypoints);
                 }
             }
-            nextMoveTime = Time.time;
+            nextMoveTime = Time.time + waitTime;
         }
         return newPos - transform.position;
     }
