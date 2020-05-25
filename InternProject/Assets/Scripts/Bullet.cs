@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public float lifetime = 2;
-    //public Player player;
+    public Player player;
 
     // Start is called before the first frame update
     void Start()
@@ -19,10 +19,12 @@ public class Bullet : MonoBehaviour
         {
             if (other.tag == "Player")
             {
-                //player.PlayerDamage(1);
+                player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+                player.PlayerDamage(1);
                 other.SendMessageUpwards("PlayerDamage", 1);
-            }
                 Destroy(gameObject);
+            }
+                
         }
     }
 

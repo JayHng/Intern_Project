@@ -48,6 +48,15 @@ public class Player : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space) && controller.objectCol.below){
             velocity.y = jumpVelocity;
         }
+        //Debug.Log(input.x);
+        //Y là di chuyển nó đi về 1 hướng thôi chứ gì?
+        if(input.x < 0 && !faceright)
+        {
+            Flip();
+        }
+        if(input.x > 0 && faceright){
+            Flip();
+        }
 
         float targetVelocityX = input.x * moveSpeed;
         velocity.x= Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing,(controller.objectCol.below)?accelerationTimeGrounded:accelerationTimeAirborne);
@@ -59,7 +68,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.tag);
+        //Debug.Log(collision.tag);
     }
 
     //This code belongs to me
@@ -69,18 +78,6 @@ public class Player : MonoBehaviour
         {
             Death();
         }
-
-        // float inputDir = Input.GetAxisRaw("Horizontal");
-        // Debug.Log(inputDir);
-
-        // if(inputDir>0 && !faceright)
-        // {
-        //     Flip();
-        // }
-        // if(inputDir<0 && faceright){
-        //     Flip();
-        // }
-
     }
     public void Death()
     {
@@ -97,6 +94,6 @@ public class Player : MonoBehaviour
 
     public void Flip(){
         faceright = ! faceright;
-        transform.Rotate(0.0f,180.0f,0.0f);
+        transform.Rotate(0.0f,-180.0f,0.0f);
     }
 }
