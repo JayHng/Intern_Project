@@ -7,18 +7,83 @@ using UnityEngine.SceneManagement;
 [RequireComponent (typeof(BoxCollider2D))]
 public class Controller2D : RaycastController
 {
-    float maxClimbAngle = 80;
-    float maxDescendAngle = 75;
+    [SerializeField] private float maxClimbAngle = 80;
+    [SerializeField] private float maxDescendAngle = 75;
+    [SerializeField] private float accelerationTimeAirborne = .2f;
+    [SerializeField] private float accelerationTimeGrounded = .1f;
     public CollisionInfo objectCol;
     public int levelToLoad;
     public int currentLevel;
     AsyncOperation async;
+    public bool faceright;
+    [SerializeField] private float gravity;
+    public float jumpVelocity;
+    [SerializeField] private float jumpHeight = 4;
+    [SerializeField] private float timeToJumpApex = .4f;
+    [SerializeField] private Vector3 velocity;
+    [SerializeField] private float velocityXSmoothing;
+
+     //This code belongs to me
+    [SerializeField] private float moveSpeed = 4f;
+    [SerializeField] private Vector2 input;
+  
 
     // Start is called before the first frame update
     public override void Start()
     {
         base.Start();
         currentLevel = 2;
+        gravity = -(2*jumpHeight)/Mathf.Pow(timeToJumpApex,2);
+        jumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
+    }
+
+    private void Update()
+    {
+        if (objectCol.above || objectCol.below){
+            velocity.y = 0;
+        }
+        if(currentLevel < 4)
+        {
+            if (async != null)
+                if (async.isDone) currentLevel = levelToLoad;
+        }
+
+        input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+
+        // if(input.x < 0 && !faceright)
+        // {
+        //     Flip();
+        //     //faceright=true;
+        // }
+        // if(input.x > 0 && faceright){
+        //     Flip();
+        //     //faceright=false;
+        // }
+
+        if(Input.GetKeyDown(KeyCode.Space) && objectCol.below){
+            velocity.y = jumpVelocity;
+        }
+
+        float targetVelocityX = input.x * moveSpeed;
+        Debug.Log(targetVelocityX);
+        velocity.x= Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing,(objectCol.below)?accelerationTimeGrounded:accelerationTimeAirborne);
+        
+        //update gravity to the velocity
+        velocity.y += gravity * Time.deltaTime;
+
+        Move(velocity * Time.deltaTime); 
+    }
+    
+    public void Flip(){
+        faceright = !faceright;
+        transform.Rotate(0.0f,-180.0f,0.0f);
+        
+        // if(faceright){
+        //     transform.Rotate(0.0f,180.0f,0.0f);
+
+        // }else if(!faceright){
+        //     transform.Rotate(0.0f,-180.0f,0.0f);
+        // }
     }
 
     public void Move(Vector3 velocity, bool standingOnPlatform = false)
@@ -36,8 +101,8 @@ public class Controller2D : RaycastController
         if(velocity.y != 0){
             VerticalCollision(ref velocity);
         }
-        transform.Translate(velocity);
 
+        transform.Translate(velocity);
         if(standingOnPlatform){
             objectCol.below = true;
         }
@@ -88,15 +153,6 @@ public class Controller2D : RaycastController
                     objectCol.right = dirX == 1;
                 }
             }
-        }
-    }
-
-    private void Update()
-    {
-        if(currentLevel < 4)
-        {
-            if (async != null)
-                if (async.isDone) currentLevel = levelToLoad;
         }
     }
 
