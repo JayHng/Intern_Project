@@ -29,6 +29,7 @@ public class Controller2D : RaycastController
     AsyncOperation async;
     [SerializeField] private Animator anim;
     public Rigidbody2D playerRb;
+    public float targetVelocityX;
 
     // Start is called before the first frame update
     public override void Start()
@@ -49,19 +50,18 @@ public class Controller2D : RaycastController
                 if (async.isDone) currentLevel = levelToLoad;
         }
         anim.SetBool("Grounded", objectCol.below);
-        anim.SetFloat("Speed", Mathf.Abs(playerRb.velocity.x));
+        anim.SetFloat("Speed", Mathf.Abs(targetVelocityX));
         CheckInput();
         MovementDirection();
-        //isFaceRight();
     }
 
     //This code belongs to me
     private void MovementDirection(){
-        if(input.x < 0 && faceright)
+        if(input.x < 0 && !faceright)
         {
             Flip();
         }
-        else if(input.x > 0 && !faceright){
+        else if(input.x > 0 && faceright){
             Flip();
         }
     }
@@ -88,8 +88,6 @@ public class Controller2D : RaycastController
             velocity.y = 0;
         }
         input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        //input = Input.GetAxisRaw("Horizontal");
-        Debug.Log(input.x);
 
         if(Input.GetKeyDown(KeyCode.Space) && objectCol.below){
             if(objectCol.below){
@@ -98,7 +96,8 @@ public class Controller2D : RaycastController
             }
         }
 
-        float targetVelocityX = input.x * moveSpeed;
+        targetVelocityX = input.x * moveSpeed;
+
         velocity.x= Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing,(objectCol.below)?accelerationTimeGrounded:accelerationTimeAirborne);
         
         //update gravity to the velocity
