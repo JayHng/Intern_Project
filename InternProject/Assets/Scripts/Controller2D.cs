@@ -12,26 +12,31 @@ public class Controller2D : RaycastController
     [SerializeField] private float accelerationTimeAirborne = .2f;
     [SerializeField] private float accelerationTimeGrounded = .1f;
     public CollisionInfo objectCol;
-    public int levelToLoad;
-    public int currentLevel;
-    AsyncOperation async;
-    public bool faceright;
     [SerializeField] private float gravity;
     public float jumpVelocity;
     [SerializeField] private float jumpHeight = 4;
     [SerializeField] private float timeToJumpApex = .4f;
     [SerializeField] private Vector3 velocity;
+    
+    [SerializeField] private Vector2 input;
     [SerializeField] private float velocityXSmoothing;
 
      //This code belongs to me
-    [SerializeField] private float moveSpeed = 4f;
-    [SerializeField] private Vector2 input;
-  
+    public int levelToLoad;
+    public int currentLevel;
+    public bool faceright;
+    [SerializeField] private float moveSpeed = 10.0f; 
+    AsyncOperation async;
+    [SerializeField] private Animator anim;
+    public Rigidbody2D playerRb;
+    public bool grounded;
 
     // Start is called before the first frame update
     public override void Start()
     {
         base.Start();
+        anim=GetComponent<Animator>();
+        playerRb = GetComponent<Rigidbody2D>();
         currentLevel = 2;
         gravity = -(2*jumpHeight)/Mathf.Pow(timeToJumpApex,2);
         jumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
@@ -39,33 +44,59 @@ public class Controller2D : RaycastController
 
     private void Update()
     {
-        if (objectCol.above || objectCol.below){
-            velocity.y = 0;
-        }
         if(currentLevel < 4)
         {
             if (async != null)
                 if (async.isDone) currentLevel = levelToLoad;
         }
+        anim.SetBool("Grounded", grounded);
+        anim.SetFloat("Speed", Mathf.Abs(playerRb.velocity.x));
+        CheckInput();
+        MovementDirection();
+        //isFaceRight();
+    }
 
+    //This code belongs to me
+    private void MovementDirection(){
+        if(input.x < 0 && faceright)
+        {
+            Flip();
+        }
+        else if(input.x > 0 && !faceright){
+            Flip();
+        }
+    }
+    
+    public void Flip(){
+        // faceright = !faceright;
+        // transform.Rotate(0.0f,-180.0f,0.0f);
+        
+        // if(faceright){
+        //     transform.Rotate(0.0f,-180.0f,0.0f);
+
+        // }else if(!faceright){
+        //     transform.Rotate(0.0f,180.0f,0.0f);
+        // }
+
+        faceright = !faceright;
+        Vector3 Scale;
+        Scale = transform.localScale;
+        Scale.x *= -1;
+        transform.localScale = Scale;
+    }
+    private void CheckInput(){
+        if (objectCol.above || objectCol.below){
+            velocity.y = 0;
+        }
         input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-
-        // if(input.x < 0 && !faceright)
-        // {
-        //     Flip();
-        //     //faceright=true;
-        // }
-        // if(input.x > 0 && faceright){
-        //     Flip();
-        //     //faceright=false;
-        // }
+        //input = Input.GetAxisRaw("Horizontal");
+        Debug.Log(input.x);
 
         if(Input.GetKeyDown(KeyCode.Space) && objectCol.below){
             velocity.y = jumpVelocity;
         }
 
         float targetVelocityX = input.x * moveSpeed;
-        Debug.Log(targetVelocityX);
         velocity.x= Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing,(objectCol.below)?accelerationTimeGrounded:accelerationTimeAirborne);
         
         //update gravity to the velocity
@@ -73,19 +104,8 @@ public class Controller2D : RaycastController
 
         Move(velocity * Time.deltaTime); 
     }
-    
-    public void Flip(){
-        faceright = !faceright;
-        transform.Rotate(0.0f,-180.0f,0.0f);
-        
-        // if(faceright){
-        //     transform.Rotate(0.0f,180.0f,0.0f);
 
-        // }else if(!faceright){
-        //     transform.Rotate(0.0f,-180.0f,0.0f);
-        // }
-    }
-
+    //This code belongs to Sebastian Lague
     public void Move(Vector3 velocity, bool standingOnPlatform = false)
     {    
         UpdateRaycastOrigin();
@@ -105,8 +125,7 @@ public class Controller2D : RaycastController
         transform.Translate(velocity);
         if(standingOnPlatform){
             objectCol.below = true;
-        }
-        
+        }      
     }
 
     void HorizontalCollision(ref Vector3 velocity)
@@ -246,5 +265,4 @@ public class Controller2D : RaycastController
             slopeAngle = 0;
         }
     }
-
 }

@@ -198,6 +198,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 1.049
       objectReference: {fileID: 0}
+    - target: {fileID: 3807767884802433135, guid: c0b21d825a82b9040927899925b7b55b,
+        type: 3}
+      propertyPath: shootInterval
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 3807767886581980693, guid: c0b21d825a82b9040927899925b7b55b,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -225,12 +230,12 @@ PrefabInstance:
     - target: {fileID: 8947346101785454269, guid: 047c7b6bceae4da46b01972cbedc6454,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.35
+      value: 16.62
       objectReference: {fileID: 0}
     - target: {fileID: 8947346101785454269, guid: 047c7b6bceae4da46b01972cbedc6454,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.84
+      value: 4.91
       objectReference: {fileID: 0}
     - target: {fileID: 8947346101785454269, guid: 047c7b6bceae4da46b01972cbedc6454,
         type: 3}
@@ -314,7 +319,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1221678481}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.41, y: 1.08, z: 0}
+  m_LocalPosition: {x: -9.67, y: 1.08, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -347,7 +352,7 @@ PrefabInstance:
     - target: {fileID: 8947346101785454269, guid: 047c7b6bceae4da46b01972cbedc6454,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.84
+      value: -17.43
       objectReference: {fileID: 0}
     - target: {fileID: 8947346101785454269, guid: 047c7b6bceae4da46b01972cbedc6454,
         type: 3}
@@ -426,12 +431,12 @@ PrefabInstance:
     - target: {fileID: 5014831611720569521, guid: 168ce692a1d174441a949d207077c01a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.12
+      value: 18.01
       objectReference: {fileID: 0}
     - target: {fileID: 5014831611720569521, guid: 168ce692a1d174441a949d207077c01a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.72
+      value: 6.7899995
       objectReference: {fileID: 0}
     - target: {fileID: 5014831611720569521, guid: 168ce692a1d174441a949d207077c01a,
         type: 3}
@@ -506,7 +511,7 @@ PrefabInstance:
     - target: {fileID: 4267566583116691708, guid: d3f70c407fdc22d4eb6bd52d06c477e5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.81
+      value: 6.65
       objectReference: {fileID: 0}
     - target: {fileID: 4267566583116691708, guid: d3f70c407fdc22d4eb6bd52d06c477e5,
         type: 3}
@@ -561,12 +566,17 @@ PrefabInstance:
     - target: {fileID: 5121202926567722711, guid: d3f70c407fdc22d4eb6bd52d06c477e5,
         type: 3}
       propertyPath: localWaypoints.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5121202926567722711, guid: d3f70c407fdc22d4eb6bd52d06c477e5,
         type: 3}
       propertyPath: speed
-      value: 2
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5121202926567722711, guid: d3f70c407fdc22d4eb6bd52d06c477e5,
+        type: 3}
+      propertyPath: localWaypoints.Array.data[2].x
+      value: 3.52
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3f70c407fdc22d4eb6bd52d06c477e5, type: 3}
@@ -685,7 +695,7 @@ PrefabInstance:
     - target: {fileID: 8947346101785454269, guid: 047c7b6bceae4da46b01972cbedc6454,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.08
+      value: 1.61
       objectReference: {fileID: 0}
     - target: {fileID: 8947346101785454269, guid: 047c7b6bceae4da46b01972cbedc6454,
         type: 3}
@@ -740,7 +750,7 @@ PrefabInstance:
     - target: {fileID: 8947346101785454269, guid: 047c7b6bceae4da46b01972cbedc6454,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 18.119106
+      value: 28.76408
       objectReference: {fileID: 0}
     - target: {fileID: 8947346101785454269, guid: 047c7b6bceae4da46b01972cbedc6454,
         type: 3}
