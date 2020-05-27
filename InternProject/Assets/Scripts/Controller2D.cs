@@ -29,7 +29,6 @@ public class Controller2D : RaycastController
     AsyncOperation async;
     [SerializeField] private Animator anim;
     public Rigidbody2D playerRb;
-    public bool grounded;
 
     // Start is called before the first frame update
     public override void Start()
@@ -49,7 +48,7 @@ public class Controller2D : RaycastController
             if (async != null)
                 if (async.isDone) currentLevel = levelToLoad;
         }
-        anim.SetBool("Grounded", grounded);
+        anim.SetBool("Grounded", objectCol.below);
         anim.SetFloat("Speed", Mathf.Abs(playerRb.velocity.x));
         CheckInput();
         MovementDirection();
@@ -93,7 +92,10 @@ public class Controller2D : RaycastController
         Debug.Log(input.x);
 
         if(Input.GetKeyDown(KeyCode.Space) && objectCol.below){
-            velocity.y = jumpVelocity;
+            if(objectCol.below){
+                velocity.y = jumpVelocity;
+                objectCol.below = false;
+            }
         }
 
         float targetVelocityX = input.x * moveSpeed;
