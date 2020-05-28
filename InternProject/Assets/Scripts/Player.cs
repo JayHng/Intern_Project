@@ -5,8 +5,6 @@ using UnityEngine.SceneManagement;
 [RequireComponent (typeof(Controller2D))]
 public class Player : MonoBehaviour
 {
-
-
     [SerializeField] private Controller2D controller;
     [SerializeField] private Vector3 velocity;
     //This code belongs to me
@@ -24,7 +22,6 @@ public class Player : MonoBehaviour
     }
     void Update()
     {
-
         if (currentHP <= 0)
         {
             Death();

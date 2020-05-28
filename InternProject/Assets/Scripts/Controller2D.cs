@@ -35,7 +35,7 @@ public class Controller2D : RaycastController
     public override void Start()
     {
         base.Start();
-        anim=GetComponent<Animator>();
+        anim = GetComponent<Animator>();
         playerRb = GetComponent<Rigidbody2D>();
         currentLevel = 2;
         gravity = -(2*jumpHeight)/Mathf.Pow(timeToJumpApex,2);
@@ -43,16 +43,20 @@ public class Controller2D : RaycastController
     }
 
     private void Update()
-    {
-        if(currentLevel < 4)
-        {
-            if (async != null)
-                if (async.isDone) currentLevel = levelToLoad;
-        }
+    {      
         anim.SetBool("Grounded", objectCol.below);
         anim.SetFloat("Speed", Mathf.Abs(targetVelocityX));
+        LoadAsyncLevel();
         CheckInput();
         MovementDirection();
+    }
+
+    private void LoadAsyncLevel(){
+        if(currentLevel < 4)
+            {
+                if (async != null)
+                    if (async.isDone) currentLevel = levelToLoad;
+            }
     }
 
     //This code belongs to me
@@ -67,16 +71,6 @@ public class Controller2D : RaycastController
     }
     
     public void Flip(){
-        // faceright = !faceright;
-        // transform.Rotate(0.0f,-180.0f,0.0f);
-        
-        // if(faceright){
-        //     transform.Rotate(0.0f,-180.0f,0.0f);
-
-        // }else if(!faceright){
-        //     transform.Rotate(0.0f,180.0f,0.0f);
-        // }
-
         faceright = !faceright;
         Vector3 Scale;
         Scale = transform.localScale;
