@@ -2,29 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//Thiscode belongs to Bardent
+//Thiscode belongs to Bardent(Youtuber)
 public class PlayerCombatController : MonoBehaviour
 {
-    [SerializeField]private bool combatEnabled, inputEntered;
+    [SerializeField]private bool combatEnabled;
     [SerializeField]private float inputTimer, attack1Radius, attack1Damage;
     [SerializeField]private Transform attack1HitBoxPos;
     [SerializeField]private LayerMask isDamageable;
-    private float lastInputTime=Mathf.NegativeInfinity;
+    private float lastInputTime = Mathf.NegativeInfinity;
     public float[] attackDetails = new float[2];
+    private Animator anim;
+    private bool isAttacking, inputEntered, isFirstAttack;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        anim=GetComponent<Animator>();
+        anim.SetBool("canAttack", combatEnabled);
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         CheckCombatInput();
+        CheckAttacks();
     }
     private void CheckCombatInput(){
-        if(Input.GetMouseButtonDown(0)){
+        if(Input.GetKeyDown(KeyCode.Q)){
             if(combatEnabled){
                 inputEntered = true;
                 lastInputTime = Time.time;
@@ -32,16 +36,37 @@ public class PlayerCombatController : MonoBehaviour
         }
     }
     
+    private void CheckAttacks(){
+        if(inputEntered){
+            if(!isAttacking){
+                inputEntered = false;
+                isAttacking = true;
+                isFirstAttack = !isFirstAttack;
+                anim.SetBool("attack1", true);
+                anim.SetBool("firstAttack", isFirstAttack);
+                anim.SetBool("isAttacking", isAttacking);
+            }
+        }
+        if(Time.time >= lastInputTime + inputTimer){
+            inputEntered=false;
+        }
+    }
+
     private void CheckAttackHitBox(){
         Collider2D[] detectedObjects = Physics2D.OverlapCircleAll(attack1HitBoxPos.position, attack1Radius, isDamageable);
-        attackDetails[0] = attack1Damage;
-        attackDetails[1] = transform.position.x;
+        // attackDetails[0] = attack1Damage;
+        // attackDetails[1] = transform.position.x;
 
         foreach(Collider2D collider in detectedObjects){
             collider.transform.parent.SendMessage("Damage", attack1Damage);
         }
     }
 
+    private void FinishAttack(){
+        anim.SetBool("isAttacking", isAttacking);
+        isAttacking=false;
+        anim.SetBool("attack1", false);
+    }
     private void OnDrawGizmos() {
         Gizmos.DrawWireSphere(attack1HitBoxPos.position, attack1Radius);
     }

@@ -77,6 +77,8 @@ public class Controller2D : RaycastController
         Scale.x *= -1;
         transform.localScale = Scale;
     }
+
+
     private void CheckInput(){
         if (objectCol.above || objectCol.below){
             velocity.y = 0;
