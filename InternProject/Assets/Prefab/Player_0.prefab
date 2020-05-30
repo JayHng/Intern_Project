@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7292369000432439236}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.213, y: -0.038, z: 0}
+  m_LocalPosition: {x: 0.388, y: -0.038, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8201472896758576407}
@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 8201472896758576400}
   - component: {fileID: 8201472896758576401}
   - component: {fileID: 8201472896758576406}
+  - component: {fileID: 2659119177627059116}
   m_Layer: 8
   m_Name: Player_0
   m_TagString: Player
@@ -60,7 +61,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8201472896758576410}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.61, y: -1.101, z: 0}
+  m_LocalPosition: {x: -6.77, y: -1.101, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5670508736520616034}
@@ -175,7 +176,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.84210527, y: 1.0526316}
+    oldSize: {x: 0.8888889, y: 1.1111112}
     newSize: {x: 0.84210527, y: 1.0526316}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -238,3 +239,23 @@ MonoBehaviour:
   velocity: {x: 0, y: 0, z: 0}
   currentHP: 0
   maxHP: 5
+--- !u!114 &2659119177627059116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8201472896758576410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97aacba622a8d15428d783e69c65c7c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  combatEnabled: 1
+  inputTimer: 0.2
+  attack1Radius: 0.7
+  attack1Damage: 10
+  attack1HitBoxPos: {fileID: 5670508736520616034}
+  isDamageable:
+    serializedVersion: 2
+    m_Bits: 0

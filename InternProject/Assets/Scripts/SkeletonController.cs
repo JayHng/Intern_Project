@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//This code belongs to Bardent
+//This code belongs to Bardent(Youtuber)
 public class SkeletonController : MonoBehaviour
 {
     private enum State{
@@ -22,7 +22,7 @@ public class SkeletonController : MonoBehaviour
     private float currentHP, knockbackStartTime;
     private Animator aliveAnim;
     [SerializeField] private GameObject hitParticle;
-    public Player player;
+    //spublic Player player;
 
 
     public void Start(){
@@ -31,7 +31,7 @@ public class SkeletonController : MonoBehaviour
         aliveAnim = GetComponent<Animator>();
         faceDir = 1;
         currentHP = maxHP;
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>(); //Async to MainScene
+        //player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>(); //Async to MainScene
     }
     private void Update(){
         switch(currentState){
@@ -46,7 +46,7 @@ public class SkeletonController : MonoBehaviour
                 break;
         }
     }
-    //--------------MOVING STATE---------------------
+    //---------------------------------------MOVING STATE------------------------------------------
     private void EnterMovingState(){
 
     }
@@ -67,8 +67,9 @@ public class SkeletonController : MonoBehaviour
 
     }
 
-    //----------------KNOCKBACK STATE-------------------
+    //-------------------------------------KNOCKBACK STATE-----------------------------------------
     private void EnterKnockbackState(){
+
         knockbackStartTime=Time.time;
         movement.Set(knockbackSpeed.x * damageDir, knockbackSpeed.y);
         aliverb.velocity = movement;
@@ -84,7 +85,7 @@ public class SkeletonController : MonoBehaviour
         aliveAnim.SetBool("SkeKnockback",false);      
     }
 
-    //-----------------DEAD STATE-----------------------
+    //-----------------------------------------DEAD STATE-------------------------------------------
     private void EnterDeadState(){
         //Spawn chunks and blood
         Destroy(gameObject);
@@ -96,7 +97,7 @@ public class SkeletonController : MonoBehaviour
 
     }
 
-    //OTHER FUNCTION
+    //-------------------------------------OTHER FUNCTION---------------------------------------------
     private void SwitchState(State state){
         switch(currentState){
             case State.Moving:
@@ -126,7 +127,7 @@ public class SkeletonController : MonoBehaviour
         faceDir *= -1;
         alive.transform.Rotate(0.0f, 180.0f,0.0f);
     }
-    private void Damage(float[] attackDetails){
+    private void SkeDamage(float[] attackDetails){
         currentHP -= attackDetails[0];
         if(attackDetails[1] > alive.transform.position.x){
             damageDir = -1;
@@ -140,8 +141,8 @@ public class SkeletonController : MonoBehaviour
             SwitchState(State.Dead);
         }
     }
-    // private void SkeDamage(float damage){
-    //     currentHP -= 2;
+    // private void SkeDamage(float[] attackDetails){
+    //     currentHP -= attackDetails[0];
     //     if(player.transform.position.x > alive.transform.position.x){
     //         damageDir =-1;
     //     }
@@ -164,11 +165,11 @@ public class SkeletonController : MonoBehaviour
         Gizmos.DrawLine(groundCheck.position, new Vector2(groundCheck.position.x, groundCheck.position.y - groundDistance));
         Gizmos.DrawLine(wallCheck.position, new Vector2(wallCheck.position.x + wallDistance, wallCheck.position.y));
     }
-    private void OnTriggerEnter2D(Collider2D other) {
-        if(other.tag=="Player"){
-            player.PlayerDamage(1);
-        }
-    }
+    // private void OnTriggerEnter2D(Collider2D other) {
+    //     if(other.tag=="Player"){
+    //         player.PlayerDamage(1);
+    //     }
+    // }
 
 }
 

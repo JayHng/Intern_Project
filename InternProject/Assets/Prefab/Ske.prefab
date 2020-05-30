@@ -125,7 +125,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 15
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -133,7 +133,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!95 &2295257288449941372
 Animator:
   serializedVersion: 3
@@ -260,13 +260,12 @@ MonoBehaviour:
   groundDistance: 0.5
   wallDistance: 0.1
   movementSpeed: 2
-  maxHP: 0
-  knockbackDuration: 0
+  maxHP: 30
+  knockbackDuration: 0.1
   groundCheck: {fileID: 8140907614650643851}
   wallCheck: {fileID: 4573554054688134951}
   IsGround:
     serializedVersion: 2
     m_Bits: 512
-  knockbackSpeed: {x: 10, y: 5}
+  knockbackSpeed: {x: 5, y: 2}
   hitParticle: {fileID: 0}
-  player: {fileID: 0}
