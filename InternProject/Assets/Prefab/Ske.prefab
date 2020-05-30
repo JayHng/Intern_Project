@@ -267,5 +267,7 @@ MonoBehaviour:
   IsGround:
     serializedVersion: 2
     m_Bits: 512
-  knockbackSpeed: {x: 5, y: 2}
-  hitParticle: {fileID: 0}
+  knockbackSpeed: {x: 0, y: 0}
+  hitParticle: {fileID: 2273012858384306483, guid: d18197b37c9c3f04fa0ea131aa923095,
+    type: 3}
+  deadChunkParticle: {fileID: 0}

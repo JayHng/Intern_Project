@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent (typeof (Animator))]
 //This code belongs to Bardent(Youtuber)
 public class SkeletonController : MonoBehaviour
 {
@@ -20,9 +21,9 @@ public class SkeletonController : MonoBehaviour
     private Vector2 movement;
     private Rigidbody2D aliverb;
     private float currentHP, knockbackStartTime;
-    private Animator aliveAnim;
-    [SerializeField] private GameObject hitParticle;
-    //spublic Player player;
+    public Animator aliveAnim;
+    [SerializeField]private GameObject hitParticle, brokenBoneParticle;
+    //public Player player;
 
 
     public void Start(){
@@ -129,6 +130,7 @@ public class SkeletonController : MonoBehaviour
     }
     private void SkeDamage(float[] attackDetails){
         currentHP -= attackDetails[0];
+        Instantiate(hitParticle, alive.transform.position, Quaternion.Euler(0.0f,0.0f, Random.Range(0.0f, 360.0f)));
         if(attackDetails[1] > alive.transform.position.x){
             damageDir = -1;
         }else{
@@ -141,21 +143,6 @@ public class SkeletonController : MonoBehaviour
             SwitchState(State.Dead);
         }
     }
-    // private void SkeDamage(float[] attackDetails){
-    //     currentHP -= attackDetails[0];
-    //     if(player.transform.position.x > alive.transform.position.x){
-    //         damageDir =-1;
-    //     }
-    //     else{
-    //         damageDir =1;
-    //     }
-    //     //Hit particle
-    //     if(currentHP > 0.0f){
-    //         SwitchState(State.Knockback);
-    //     }else if(currentHP <= 0.0f){
-    //         SwitchState(State.Dead);
-    //     }
-    // }
 
     /// <summary>
     /// Callback to draw gizmos that are pickable and always drawn.
