@@ -239,7 +239,7 @@ Transform:
   m_GameObject: {fileID: 7704344286305758909}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -12.91, y: -0.713279, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_Children:
   - {fileID: 677850717009355934}
   m_Father: {fileID: 0}
@@ -268,6 +268,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   knockbackSpeed: {x: 0, y: 0}
+  aliveAnim: {fileID: 0}
   hitParticle: {fileID: 2273012858384306483, guid: d18197b37c9c3f04fa0ea131aa923095,
     type: 3}
-  deadChunkParticle: {fileID: 0}
+  brokenBoneParticle: {fileID: 0}

@@ -88,7 +88,7 @@ public class SkeletonController : MonoBehaviour
 
     //-----------------------------------------DEAD STATE-------------------------------------------
     private void EnterDeadState(){
-        //Spawn chunks and blood
+        Instantiate(brokenBoneParticle,alive.transform.position, brokenBoneParticle.transform.rotation);
         Destroy(gameObject);
     }
     private void UpdateDeadState(){
