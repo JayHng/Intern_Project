@@ -11,20 +11,30 @@ public class SkeletonController : MonoBehaviour
     }
     private State currentState;
     [SerializeField]
-    private float groundDistance, wallDistance, movementSpeed, maxHP, knockbackDuration;
-    [SerializeField]private Transform groundCheck, wallCheck;
-    [SerializeField]private LayerMask IsGround;
+    private float 
+        groundDistance, 
+        wallDistance, 
+        movementSpeed, 
+        maxHP, 
+        knockbackDuration,
+        lastTouchDamageTime,
+        touchDamageCooldown,
+        touchDamage,
+        touchDamageWidth,
+        touchDamageHeight;
+    [SerializeField]private Transform groundCheck, wallCheck, touchDamageCheck;
+    [SerializeField]private LayerMask isGround, isPlayer;
     [SerializeField]private Vector2 knockbackSpeed;
     private bool groundDetected, wallDetected;
     private int faceDir, damageDir;
     private GameObject alive;
-    private Vector2 movement;
+    private Vector2 movement, touchDamageBotLeft, touchDamageTopRight;
+    private float[] attackDetails = new float[2]; 
     private Rigidbody2D aliverb;
     private float currentHP, knockbackStartTime;
     public Animator aliveAnim;
-    [SerializeField]private GameObject hitParticle, brokenBoneParticle;
-    //public Player player;
 
+    [SerializeField]private GameObject hitParticle, brokenBoneParticle;
 
     public void Start(){
         alive = transform.Find("Alive").gameObject;
@@ -52,8 +62,10 @@ public class SkeletonController : MonoBehaviour
 
     }
     private void UpdateMovingState(){
-        groundDetected = Physics2D.Raycast(groundCheck.position, Vector2.down, groundDistance, IsGround);
-        wallDetected = Physics2D.Raycast(wallCheck.position, transform.right, wallDistance, IsGround);
+        groundDetected = Physics2D.Raycast(groundCheck.position, Vector2.down, groundDistance, isGround);
+        wallDetected = Physics2D.Raycast(wallCheck.position, transform.right, wallDistance, isGround);
+
+        CheckTouchDamage();
 
         if(!groundDetected || wallDetected){
             Flip();
@@ -143,20 +155,27 @@ public class SkeletonController : MonoBehaviour
             SwitchState(State.Dead);
         }
     }
+    private void CheckTouchDamage(){
+        if(Time.time >= lastTouchDamageTime + touchDamageCooldown){
+            touchDamageBotLeft.Set(touchDamageCheck.position.x - (touchDamageWidth/2), touchDamageCheck.position.y - (touchDamageHeight/2));
+            touchDamageTopRight.Set(touchDamageCheck.position.x + (touchDamageWidth/2), touchDamageCheck.position.y + (touchDamageHeight/2));
 
-    /// <summary>
-    /// Callback to draw gizmos that are pickable and always drawn.
-    /// </summary>
+            Collider2D hit = Physics2D.OverlapArea(touchDamageBotLeft, touchDamageTopRight, isPlayer);
+
+            if(hit != null){
+                lastTouchDamageTime =Time.time;
+                attackDetails[0] = touchDamage;
+                attackDetails[1] = alive.transform.position.x;
+                hit.SendMessage("SkeDamage", attackDetails);
+            }
+        }
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.DrawLine(groundCheck.position, new Vector2(groundCheck.position.x, groundCheck.position.y - groundDistance));
         Gizmos.DrawLine(wallCheck.position, new Vector2(wallCheck.position.x + wallDistance, wallCheck.position.y));
     }
-    // private void OnTriggerEnter2D(Collider2D other) {
-    //     if(other.tag=="Player"){
-    //         player.PlayerDamage(1);
-    //     }
-    // }
 
 }
 

@@ -14,12 +14,12 @@ public class Controller2D : RaycastController
     public CollisionInfo objectCol;
     [SerializeField] private float gravity;
     public float jumpVelocity;
-    [SerializeField] private float jumpHeight = 4;
-    [SerializeField] private float timeToJumpApex = .4f;
+    private float jumpHeight = 4;
+    private float timeToJumpApex = .4f;
     [SerializeField] private Vector3 velocity;
     
-    [SerializeField] private Vector2 input;
-    [SerializeField] private float velocityXSmoothing;
+    private Vector2 input;
+    private float velocityXSmoothing;
 
      //This code belongs to me
     public int levelToLoad;
@@ -30,6 +30,12 @@ public class Controller2D : RaycastController
     [SerializeField] private Animator anim;
     public Rigidbody2D playerRb;
     public float targetVelocityX;
+
+    //This code belongs to Bardent(Youtuber)
+    public bool playerKnockback;
+    private float knockbackStartTime;
+    [SerializeField] private Vector2 knockbackSpeed;
+    [SerializeField] private float knockbackDuration;
 
     // Start is called before the first frame update
     public override void Start()
@@ -260,6 +266,21 @@ public class Controller2D : RaycastController
 
             slopeAngleOld = slopeAngle;
             slopeAngle = 0;
+        }
+    }
+
+    //This code belongs to Bardent(Youtuber)
+    private void PlayerKnockback(int knockDir){
+        playerKnockback = true;
+        knockbackStartTime =Time.time;
+        playerRb.velocity = new Vector2(knockbackSpeed.x * knockDir, knockbackSpeed.y);
+    }
+
+    private void CheckKnockback(){
+        if(Time.time >= knockbackStartTime + knockbackDuration){
+            playerKnockback=false;
+            playerRb.velocity = new Vector2(0.0f, playerRb.velocity.y);
+
         }
     }
 }
