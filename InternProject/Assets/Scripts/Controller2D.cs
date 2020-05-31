@@ -11,21 +11,21 @@ public class Controller2D : RaycastController
     [SerializeField] private float maxDescendAngle = 75;
     [SerializeField] private float accelerationTimeAirborne = .2f;
     [SerializeField] private float accelerationTimeGrounded = .1f;
-    public CollisionInfo objectCol;
+    private CollisionInfo objectCol;
     [SerializeField] private float gravity;
     public float jumpVelocity;
     private float jumpHeight = 4;
     private float timeToJumpApex = .4f;
     [SerializeField] private Vector3 velocity;
-    
+
     private Vector2 input;
     private float velocityXSmoothing;
 
      //This code belongs to me
     public int levelToLoad;
     public int currentLevel;
-    public bool faceright;
-    [SerializeField] private float moveSpeed = 10.0f; 
+    private bool faceright;
+    [SerializeField] private float moveSpeed = 10.0f;
     AsyncOperation async;
     [SerializeField] private Animator anim;
     private Rigidbody2D playerRb;
@@ -49,7 +49,13 @@ public class Controller2D : RaycastController
     }
 
     private void Update()
-    {      
+    {
+        // if (objectCol.above || objectCol.below && velocity.y != 0){
+        //     velocity.y = 0;
+        // }
+        if(objectCol.above && velocity.y != 0){
+            velocity.y=0;
+        }
         anim.SetBool("Grounded", objectCol.below);
         anim.SetFloat("Speed", Mathf.Abs(targetVelocityX));
         LoadAsyncLevel();
@@ -76,7 +82,7 @@ public class Controller2D : RaycastController
             Flip();
         }
     }
-    
+
     public void Flip(){
         if(!playerKnockback){
             faceright = !faceright;
@@ -88,31 +94,27 @@ public class Controller2D : RaycastController
     }
 
     private void CheckInput(){
-        if (objectCol.above || objectCol.below){
-            velocity.y = 0;
-        }
+
         input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
         if(Input.GetKeyDown(KeyCode.Space) && objectCol.below){
-            if(objectCol.below){
-                velocity.y = jumpVelocity;
-                objectCol.below = false;
-            }
+            velocity.y = jumpVelocity;
+            objectCol.below = false;
         }
 
         targetVelocityX = input.x * moveSpeed;
 
-        velocity.x= Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing,(objectCol.below)?accelerationTimeGrounded:accelerationTimeAirborne);
-        
+        velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing,(objectCol.below)?accelerationTimeGrounded:accelerationTimeAirborne);
+
         //update gravity to the velocity
         velocity.y += gravity * Time.deltaTime;
 
-        Move(velocity * Time.deltaTime); 
+        Move(velocity * Time.deltaTime);
     }
 
     //This code belongs to Sebastian Lague
     public void Move(Vector3 velocity, bool standingOnPlatform = false)
-    {    
+    {
         UpdateRaycastOrigin();
         objectCol.Reset();
         objectCol.velocityOld = velocity;
@@ -128,9 +130,10 @@ public class Controller2D : RaycastController
         }
 
         transform.Translate(velocity);
-        if(standingOnPlatform){
+
+        if(standingOnPlatform && !playerKnockback){
             objectCol.below = true;
-        }      
+        }
     }
 
     void HorizontalCollision(ref Vector3 velocity)
@@ -142,7 +145,7 @@ public class Controller2D : RaycastController
         {
             Vector2  rayOrigin = (dirX == -1)?raycastOrigins.bottomLeft:raycastOrigins.bottomRight;
             rayOrigin += Vector2.up * (horizontalRaySpacing * i);
-            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * dirX, rayLength, collisionMask); 
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * dirX, rayLength, collisionMask);
 
             Debug.DrawRay(rayOrigin, Vector2.right * dirX * rayLength,Color.cyan);
             if(hit)
@@ -163,12 +166,12 @@ public class Controller2D : RaycastController
 						velocity.x -= distanceToSlopeStart * dirX;
 					}
 					ClimbSlope(ref velocity, slopeAngle);
-					velocity.x += distanceToSlopeStart * dirX;   
+					velocity.x += distanceToSlopeStart * dirX;
                 }
                 if(!objectCol.isClimbing || slopeAngle > maxClimbAngle){
                     velocity.x = (hit.distance - skinWidth) * dirX;
-                    rayLength = hit.distance;    
-                
+                    rayLength = hit.distance;
+
                     if (objectCol.isClimbing) {
 						velocity.y = Mathf.Tan(objectCol.slopeAngle * Mathf.Deg2Rad) * Mathf.Abs(velocity.x);
 					}
@@ -187,7 +190,7 @@ public class Controller2D : RaycastController
         for(int i=0; i < verticalRayCount; i++){
             Vector2  rayOrigin = (dirY == -1)?raycastOrigins.bottomLeft:raycastOrigins.topLeft;
             rayOrigin += Vector2.right * (verticalRaySpacing * i + velocity.x);
-            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * dirY, rayLength, collisionMask); 
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * dirY, rayLength, collisionMask);
 
             Debug.DrawRay(rayOrigin, Vector2.up * dirY * rayLength,Color.cyan);
             if(hit){
@@ -200,7 +203,7 @@ public class Controller2D : RaycastController
 
                 objectCol.below = dirY == -1;
                 objectCol.above = dirY == 1;
-    
+
             }
         }
         if(objectCol.isClimbing){
@@ -217,7 +220,7 @@ public class Controller2D : RaycastController
             }
         }
     }
-    
+
     void ClimbSlope(ref Vector3 velocity, float slopeAngle){
          float moveDistance = Mathf.Abs(velocity.x);
          float climbVelocityY=Mathf.Sin(slopeAngle * Mathf.Deg2Rad)* moveDistance;
@@ -284,5 +287,11 @@ public class Controller2D : RaycastController
             playerRb.velocity = new Vector2(0.0f, playerRb.velocity.y);
 
         }
+    }
+    private void isOnGround(){
+        objectCol.below=true;
+    }
+    private void isInAir(){
+        objectCol.below=false;
     }
 }

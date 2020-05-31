@@ -129,7 +129,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 5
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -239,7 +239,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7704344286305758909}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.91, y: -0.713279, z: 0}
+  m_LocalPosition: {x: -12.753, y: -0.713279, z: 0}
   m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_Children:
   - {fileID: 677850717009355934}
@@ -266,8 +266,8 @@ MonoBehaviour:
   lastTouchDamageTime: 0
   touchDamageCooldown: 0.2
   touchDamage: 10
-  touchDamageWidth: 0.89
-  touchDamageHeight: 1.31
+  touchDamageWidth: 1.38
+  touchDamageHeight: 2.04
   groundCheck: {fileID: 8140907614650643851}
   wallCheck: {fileID: 4573554054688134951}
   touchDamageCheck: {fileID: 5983168952142689732}
@@ -277,7 +277,7 @@ MonoBehaviour:
   isPlayer:
     serializedVersion: 2
     m_Bits: 256
-  knockbackSpeed: {x: 0, y: 0}
+  knockbackSpeed: {x: 10, y: 5}
   aliveAnim: {fileID: 0}
   hitParticle: {fileID: 2273012858384306483, guid: d18197b37c9c3f04fa0ea131aa923095,
     type: 3}
@@ -307,7 +307,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7728461477408125567}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.004, y: 0.004, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 677850717009355934}
