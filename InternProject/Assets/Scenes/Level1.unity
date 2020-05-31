@@ -587,6 +587,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6412740942022077583, guid: f707953a051861d4c8c00a207d166421,
+        type: 3}
+      propertyPath: touchDamageWidth
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6412740942022077583, guid: f707953a051861d4c8c00a207d166421,
+        type: 3}
+      propertyPath: touchDamageHeight
+      value: 1.31
+      objectReference: {fileID: 0}
     - target: {fileID: 7704344286305758906, guid: f707953a051861d4c8c00a207d166421,
         type: 3}
       propertyPath: m_LocalPosition.x

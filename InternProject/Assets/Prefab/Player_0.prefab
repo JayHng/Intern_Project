@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7292369000432439236}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.388, y: -0.038, z: 0}
+  m_LocalPosition: {x: 0.431, y: 0.054, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8201472896758576407}
@@ -211,18 +211,14 @@ MonoBehaviour:
   accelerationTimeGrounded: 0.1
   gravity: 0
   jumpVelocity: 0
-  jumpHeight: 4
-  timeToJumpApex: 0.4
   velocity: {x: 0, y: 0, z: 0}
-  input: {x: 0, y: 0}
-  velocityXSmoothing: 0
   levelToLoad: 0
   currentLevel: 0
-  faceright: 0
   moveSpeed: 10
   anim: {fileID: 0}
-  playerRb: {fileID: 0}
-  targetVelocityX: 0
+  playerKnockback: 0
+  knockbackSpeed: {x: 0, y: 0}
+  knockbackDuration: 0
 --- !u!114 &8201472896758576406
 MonoBehaviour:
   m_ObjectHideFlags: 0

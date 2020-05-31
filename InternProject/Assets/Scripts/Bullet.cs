@@ -21,7 +21,7 @@ public class Bullet : MonoBehaviour
             {
                 player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
                 player.PlayerDamage(1);
-                other.SendMessageUpwards("PlayerDamage", 1);
+                //other.SendMessageUpwards("PlayerDamage", 1);
                 Destroy(gameObject);
             }
                 

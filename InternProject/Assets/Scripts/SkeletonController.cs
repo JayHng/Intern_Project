@@ -32,7 +32,8 @@ public class SkeletonController : MonoBehaviour
     private float[] attackDetails = new float[2]; 
     private Rigidbody2D aliverb;
     private float currentHP, knockbackStartTime;
-    public Animator aliveAnim;
+    private Animator aliveAnim;
+    public Player player;
 
     [SerializeField]private GameObject hitParticle, brokenBoneParticle;
 
@@ -40,9 +41,9 @@ public class SkeletonController : MonoBehaviour
         alive = transform.Find("Alive").gameObject;
         aliverb = alive.GetComponent<Rigidbody2D>();
         aliveAnim = GetComponent<Animator>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         faceDir = 1;
         currentHP = maxHP;
-        //player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>(); //Async to MainScene
     }
     private void Update(){
         switch(currentState){
@@ -167,6 +168,10 @@ public class SkeletonController : MonoBehaviour
                 attackDetails[0] = touchDamage;
                 attackDetails[1] = alive.transform.position.x;
                 hit.SendMessage("Damage", attackDetails);
+
+                if(hit.tag == "Player"){
+                    player.PlayerDamage(1);
+                }
             }
         }
     }

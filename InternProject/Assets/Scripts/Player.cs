@@ -35,6 +35,7 @@ public class Player : MonoBehaviour
 
     public void PlayerDamage(int dam){
         currentHP -= dam;
+        gameObject.GetComponent<Animation>().Play("redflash");
     }
     public void Knockback(Vector3 knockDir){
         velocity = new Vector3(0,0,0);
