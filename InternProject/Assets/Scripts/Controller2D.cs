@@ -28,8 +28,8 @@ public class Controller2D : RaycastController
     [SerializeField] private float moveSpeed = 10.0f; 
     AsyncOperation async;
     [SerializeField] private Animator anim;
-    public Rigidbody2D playerRb;
-    public float targetVelocityX;
+    private Rigidbody2D playerRb;
+    private float targetVelocityX;
 
     //This code belongs to Bardent(Youtuber)
     public bool playerKnockback;
@@ -55,6 +55,7 @@ public class Controller2D : RaycastController
         LoadAsyncLevel();
         CheckInput();
         MovementDirection();
+        CheckKnockback();
     }
 
     private void LoadAsyncLevel(){
@@ -77,13 +78,14 @@ public class Controller2D : RaycastController
     }
     
     public void Flip(){
-        faceright = !faceright;
-        Vector3 Scale;
-        Scale = transform.localScale;
-        Scale.x *= -1;
-        transform.localScale = Scale;
+        if(!playerKnockback){
+            faceright = !faceright;
+            Vector3 Scale;
+            Scale = transform.localScale;
+            Scale.x *= -1;
+            transform.localScale = Scale;
+        }
     }
-
 
     private void CheckInput(){
         if (objectCol.above || objectCol.below){
@@ -270,14 +272,14 @@ public class Controller2D : RaycastController
     }
 
     //This code belongs to Bardent(Youtuber)
-    private void PlayerKnockback(int knockDir){
+    public void PlayerKnockback(int knockDir){
         playerKnockback = true;
-        knockbackStartTime =Time.time;
+        knockbackStartTime = Time.time;
         playerRb.velocity = new Vector2(knockbackSpeed.x * knockDir, knockbackSpeed.y);
     }
 
     private void CheckKnockback(){
-        if(Time.time >= knockbackStartTime + knockbackDuration){
+        if(Time.time >= knockbackStartTime + knockbackDuration && playerKnockback){
             playerKnockback=false;
             playerRb.velocity = new Vector2(0.0f, playerRb.velocity.y);
 

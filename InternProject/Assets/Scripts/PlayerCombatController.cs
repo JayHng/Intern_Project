@@ -14,11 +14,13 @@ public class PlayerCombatController : MonoBehaviour
     private Animator anim;
     private bool isAttacking, inputEntered, isFirstAttack;
 
+    private Controller2D playerController;
     // Start is called before the first frame update
     void Start()
     {
         anim=GetComponent<Animator>();
         anim.SetBool("canAttack", combatEnabled);
+        playerController = GetComponent<Controller2D>();
     }
 
     // Update is called once per frame
@@ -66,6 +68,16 @@ public class PlayerCombatController : MonoBehaviour
         anim.SetBool("isAttacking", isAttacking);
         isAttacking=false;
         anim.SetBool("attack1", false);
+    }
+
+    private void Damage(float[] attackDetails){
+        int dir;
+        if(attackDetails[1] < this.transform.position.x){
+            dir = 1;
+        }else{
+            dir = -1;
+        }
+        playerController.PlayerKnockback(dir);
     }
     private void OnDrawGizmos() {
         Gizmos.DrawWireSphere(attack1HitBoxPos.position, attack1Radius);

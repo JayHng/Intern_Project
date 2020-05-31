@@ -33,6 +33,7 @@ Transform:
   m_Children:
   - {fileID: 8140907614650643851}
   - {fileID: 4573554054688134951}
+  - {fileID: 5983168952142689732}
   m_Father: {fileID: 7704344286305758906}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -259,16 +260,56 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundDistance: 0.5
   wallDistance: 0.1
-  movementSpeed: 2
+  movementSpeed: 1.3
   maxHP: 30
   knockbackDuration: 0.1
+  lastTouchDamageTime: 0
+  touchDamageCooldown: 0.2
+  touchDamage: 10
+  touchDamageWidth: 0.89
+  touchDamageHeight: 1.31
   groundCheck: {fileID: 8140907614650643851}
   wallCheck: {fileID: 4573554054688134951}
-  IsGround:
+  touchDamageCheck: {fileID: 5983168952142689732}
+  isGround:
     serializedVersion: 2
     m_Bits: 512
+  isPlayer:
+    serializedVersion: 2
+    m_Bits: 256
   knockbackSpeed: {x: 0, y: 0}
   aliveAnim: {fileID: 0}
   hitParticle: {fileID: 2273012858384306483, guid: d18197b37c9c3f04fa0ea131aa923095,
     type: 3}
-  brokenBoneParticle: {fileID: 0}
+  brokenBoneParticle: {fileID: 8650365346734743979, guid: 94387645415575f4f9a5dd2952b1acd8,
+    type: 3}
+--- !u!1 &7728461477408125567
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5983168952142689732}
+  m_Layer: 11
+  m_Name: TouchDamageCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5983168952142689732
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7728461477408125567}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 677850717009355934}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
