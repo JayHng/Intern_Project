@@ -139,7 +139,7 @@ public class SkeletonController : MonoBehaviour
     }
     private void Flip(){
         faceDir *= -1;
-        alive.transform.Rotate(0.0f, 180.0f,0.0f);
+        alive.transform.Rotate(0f, 180f,0f);
     }
     private void SkeDamage(float[] attackDetails){
         currentHP -= attackDetails[0];
@@ -156,6 +156,7 @@ public class SkeletonController : MonoBehaviour
             SwitchState(State.Dead);
         }
     }
+    
     private void CheckTouchDamage(){
         if(Time.time >= lastTouchDamageTime + touchDamageCooldown){
             touchDamageBotLeft.Set(touchDamageCheck.position.x - (touchDamageWidth/2), touchDamageCheck.position.y - (touchDamageHeight/2));
@@ -168,10 +169,6 @@ public class SkeletonController : MonoBehaviour
                 attackDetails[0] = touchDamage;
                 attackDetails[1] = alive.transform.position.x;
                 hit.SendMessage("Damage", attackDetails);
-
-                // if(hit.tag == "Player"){
-                //     player.DecreasePlayerHP(1);
-                // }
             }
         }
     }

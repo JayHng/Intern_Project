@@ -49,6 +49,7 @@ public class GameManager : MonoBehaviour
     public  IEnumerator RespawnCoroutine(){
         player.gameObject.SetActive(false);
         yield return new WaitForSeconds(1.5f);
+        
         ReloadScene();
         player.gameObject.SetActive(true);
         player.gameObject.transform.position = player.respawnPosition;
