@@ -13,14 +13,15 @@ public class PlayerCombatController : MonoBehaviour
     private float[] attackDetails = new float[2];
     private Animator anim;
     private bool isAttacking, inputEntered, isFirstAttack;
-
     private Controller2D playerController;
+    private Player player;
     // Start is called before the first frame update
     void Start()
     {
         anim=GetComponent<Animator>();
         anim.SetBool("canAttack", combatEnabled);
         playerController = GetComponent<Controller2D>();
+        player=GetComponent<Player>();
     }
 
     // Update is called once per frame
@@ -72,6 +73,7 @@ public class PlayerCombatController : MonoBehaviour
 
     private void Damage(float[] attackDetails){
         int dir;
+        player.DecreasePlayerHP(1);
         if(attackDetails[1] < this.transform.position.x){
             dir = 1;
         }else{

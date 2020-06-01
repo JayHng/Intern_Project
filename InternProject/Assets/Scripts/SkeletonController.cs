@@ -164,14 +164,14 @@ public class SkeletonController : MonoBehaviour
             Collider2D hit = Physics2D.OverlapArea(touchDamageBotLeft, touchDamageTopRight, isPlayer);
 
             if(hit != null){
-                lastTouchDamageTime =Time.time;
+                lastTouchDamageTime = Time.time;
                 attackDetails[0] = touchDamage;
                 attackDetails[1] = alive.transform.position.x;
                 hit.SendMessage("Damage", attackDetails);
 
-                if(hit.tag == "Player"){
-                    player.PlayerDamage(1);
-                }
+                // if(hit.tag == "Player"){
+                //     player.DecreasePlayerHP(1);
+                // }
             }
         }
     }

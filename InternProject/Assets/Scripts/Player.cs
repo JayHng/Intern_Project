@@ -9,36 +9,44 @@ public class Player : MonoBehaviour
     [SerializeField] private Vector3 velocity;
     //This code belongs to me
     public int currentHP;
-    public int maxHP = 5;
+    [SerializeField] private int maxHP = 5;
+    [SerializeField] private GameObject deadChunkParticle, bloodParticle; 
+
+    private GameManager gm;
 
     // Start is called before the first frame update
     void Start()
     {
         //This code belongs to Sebastian Lague
         controller = GetComponent<Controller2D>();
-
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         //This code belongs to me
         currentHP = maxHP;    
     }
     void Update()
     {
+        
+    }
+    //This code belongs to me
+    public void Death()
+    {
+        Instantiate(deadChunkParticle, transform.position, deadChunkParticle.transform.rotation);
+        Instantiate(bloodParticle, transform.position, bloodParticle.transform.rotation);
+        Destroy(gameObject);
+        gm.Respawn();
+    }
+
+    public void DecreasePlayerHP(int dam){
+        currentHP -= dam;
+        gameObject.GetComponent<Animation>().Play("redflash");
         if (currentHP <= 0)
         {
             Death();
         }
     }
-    //This code belongs to me
-    public void Death()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-
-    public void PlayerDamage(int dam){
-        currentHP -= dam;
-        gameObject.GetComponent<Animation>().Play("redflash");
-    }
     public void Knockback(Vector3 knockDir){
         velocity = new Vector3(0,0,0);
         velocity = new Vector3(knockDir.x * -15, controller.jumpVelocity-2, 0);
-    } 
+    }
+
 }

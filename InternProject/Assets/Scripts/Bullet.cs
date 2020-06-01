@@ -20,7 +20,7 @@ public class Bullet : MonoBehaviour
             if (other.tag == "Player")
             {
                 player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-                player.PlayerDamage(1);
+                player.DecreasePlayerHP(1);
                 //other.SendMessageUpwards("PlayerDamage", 1);
                 Destroy(gameObject);
             }
