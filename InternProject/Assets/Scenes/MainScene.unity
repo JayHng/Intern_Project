@@ -343,7 +343,7 @@ GameObject:
   - component: {fileID: 410415728}
   - component: {fileID: 410415729}
   m_Layer: 0
-  m_Name: PlayerCamera
+  m_Name: Player Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1858,5 +1858,15 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1595418468}
+    - target: {fileID: 1609839180666256133, guid: 30589e4c18399c445a289e3af3ade53e,
+        type: 3}
+      propertyPath: respawnPoint
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1609839180666256133, guid: 30589e4c18399c445a289e3af3ade53e,
+        type: 3}
+      propertyPath: respawnTime
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30589e4c18399c445a289e3af3ade53e, type: 3}

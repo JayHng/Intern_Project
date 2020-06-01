@@ -44,6 +44,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: Level1
-  player: {fileID: 0}
-  spawnPoint: {fileID: 0}
-  control: {fileID: 0}
+  player: {fileID: 8201472896758576406, guid: 4526da9fbe5c0c5429e22295988e647e, type: 3}

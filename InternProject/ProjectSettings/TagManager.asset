@@ -10,6 +10,7 @@ TagManager:
   - StartingPoint
   - Turret
   - Skeleton
+  - Death
   layers:
   - Default
   - TransparentFX

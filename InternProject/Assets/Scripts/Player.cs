@@ -11,8 +11,8 @@ public class Player : MonoBehaviour
     public int currentHP;
     [SerializeField] private int maxHP = 5;
     [SerializeField] private GameObject deadChunkParticle, bloodParticle; 
-
     private GameManager gm;
+    public Vector2 respawnPosition;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         //This code belongs to me
         currentHP = maxHP;    
+        respawnPosition = this.transform.position;
     }
     void Update()
     {
@@ -32,6 +33,7 @@ public class Player : MonoBehaviour
     {
         Instantiate(deadChunkParticle, transform.position, deadChunkParticle.transform.rotation);
         Instantiate(bloodParticle, transform.position, bloodParticle.transform.rotation);
+        gm.Respawn();
         Destroy(gameObject);
     }
 
@@ -47,5 +49,11 @@ public class Player : MonoBehaviour
         velocity = new Vector3(0,0,0);
         velocity = new Vector3(knockDir.x * -15, controller.jumpVelocity-2, 0);
     }
-
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.tag == "Death")
+        {
+            gm.Respawn();
+        }
+    }
 }
