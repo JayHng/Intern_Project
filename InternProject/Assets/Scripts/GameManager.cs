@@ -14,8 +14,6 @@ public class GameManager : MonoBehaviour
     private UIFunctions ui;
     public static GameManager gm;
     public Player player;
-    public Transform spawnPoint;
-    public Controller2D control;
 
     void Awake()
     {
@@ -40,12 +38,6 @@ public class GameManager : MonoBehaviour
                 ui.Pause();
             }
         }
-
-        //Check the last scene
-        //if (control.levelToLoad > 4)
-        //{
-        //    SceneManager.LoadScene(0);
-        //}
         if (async.isDone && !done)
         {
             done = true;

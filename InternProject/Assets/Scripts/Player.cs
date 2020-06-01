@@ -33,7 +33,6 @@ public class Player : MonoBehaviour
         Instantiate(deadChunkParticle, transform.position, deadChunkParticle.transform.rotation);
         Instantiate(bloodParticle, transform.position, bloodParticle.transform.rotation);
         Destroy(gameObject);
-        gm.Respawn();
     }
 
     public void DecreasePlayerHP(int dam){

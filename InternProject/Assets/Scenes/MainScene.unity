@@ -1416,6 +1416,18 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 0.9483357
       objectReference: {fileID: 0}
+    - target: {fileID: 8201472896758576406, guid: 4526da9fbe5c0c5429e22295988e647e,
+        type: 3}
+      propertyPath: bloodParticle
+      value: 
+      objectReference: {fileID: 6884136422300797269, guid: 3d47cb4fc710c5c488298efbcabc555e,
+        type: 3}
+    - target: {fileID: 8201472896758576406, guid: 4526da9fbe5c0c5429e22295988e647e,
+        type: 3}
+      propertyPath: deadChunkParticle
+      value: 
+      objectReference: {fileID: 8016964648119592625, guid: 23eeea4b37f548841a47c9bd23f51c07,
+        type: 3}
     - target: {fileID: 8201472896758576407, guid: 4526da9fbe5c0c5429e22295988e647e,
         type: 3}
       propertyPath: m_LocalPosition.x
