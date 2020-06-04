@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.tag == "Death")
+        if(other.tag == "Death")
         {
             gm.Respawn();
         }

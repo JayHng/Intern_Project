@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
     }
     public  IEnumerator RespawnCoroutine(){
         player.gameObject.SetActive(false);
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         
         ReloadScene();
         player.gameObject.SetActive(true);
