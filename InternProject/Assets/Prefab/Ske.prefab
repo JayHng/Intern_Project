@@ -266,8 +266,8 @@ MonoBehaviour:
   lastTouchDamageTime: 0
   touchDamageCooldown: 0.2
   touchDamage: 10
-  touchDamageWidth: 1.38
-  touchDamageHeight: 2.04
+  touchDamageWidth: 0.9
+  touchDamageHeight: 1.31
   groundCheck: {fileID: 8140907614650643851}
   wallCheck: {fileID: 4573554054688134951}
   touchDamageCheck: {fileID: 5983168952142689732}
@@ -278,7 +278,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   knockbackSpeed: {x: 10, y: 5}
-  aliveAnim: {fileID: 0}
+  player: {fileID: 0}
   hitParticle: {fileID: 2273012858384306483, guid: d18197b37c9c3f04fa0ea131aa923095,
     type: 3}
   brokenBoneParticle: {fileID: 8650365346734743979, guid: 94387645415575f4f9a5dd2952b1acd8,
