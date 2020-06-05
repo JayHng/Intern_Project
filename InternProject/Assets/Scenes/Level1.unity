@@ -809,10 +809,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4047303973430261731, guid: f707953a051861d4c8c00a207d166421,
+        type: 3}
+      propertyPath: m_GravityScale
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4406458312939172693, guid: f707953a051861d4c8c00a207d166421,
+        type: 3}
+      propertyPath: m_Name
+      value: LedgeCheck
+      objectReference: {fileID: 0}
     - target: {fileID: 7704344286305758906, guid: f707953a051861d4c8c00a207d166421,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -20.19
+      value: -18.36
       objectReference: {fileID: 0}
     - target: {fileID: 7704344286305758906, guid: f707953a051861d4c8c00a207d166421,
         type: 3}
@@ -896,7 +906,43 @@ PrefabInstance:
     - {fileID: 7704344286305758908, guid: f707953a051861d4c8c00a207d166421, type: 3}
     - {fileID: 0}
     - {fileID: 0}
+    - {fileID: 6412740942022077583, guid: f707953a051861d4c8c00a207d166421, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f707953a051861d4c8c00a207d166421, type: 3}
+--- !u!1 &7704344286895344240 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7704344286305758909, guid: f707953a051861d4c8c00a207d166421,
+    type: 3}
+  m_PrefabInstance: {fileID: 7704344286895344239}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7704344286895344241 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8140907614650643851, guid: f707953a051861d4c8c00a207d166421,
+    type: 3}
+  m_PrefabInstance: {fileID: 7704344286895344239}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7704344286895344242 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4573554054688134951, guid: f707953a051861d4c8c00a207d166421,
+    type: 3}
+  m_PrefabInstance: {fileID: 7704344286895344239}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7704344286895344243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7704344286895344240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2538e2bb798d75b4dbb2f3fe960c06a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entityData: {fileID: 11400000, guid: 5399bdda23101a44f988c6bd9da091c6, type: 2}
+  wallCheck: {fileID: 7704344286895344242}
+  ledgeCheck: {fileID: 7704344286895344241}
+  idleStateData: {fileID: 11400000, guid: 56b32af758b70254ca3346bf80e4f97b, type: 2}
+  moveStateData: {fileID: 11400000, guid: 06de9a8907cea50469cc4f6218a9c299, type: 2}
 --- !u!1001 &8947346101199851470
 PrefabInstance:
   m_ObjectHideFlags: 0

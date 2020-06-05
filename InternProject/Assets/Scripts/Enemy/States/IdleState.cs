@@ -11,17 +11,15 @@ public class IdleState : State
     protected float idleTime;
     protected bool isIdleTimeOver;
 
-    public IdleState(Entity entity1, FiniteStateMachine stateMachine1, string animBoolName1, D_IdleState stateData1) : base(entity1, stateMachine1, animBoolName1){
-        this.stateData = stateData1;
+    public IdleState(Entity entity1, FiniteStateMachine stateMachine, string animBoolName, D_IdleState stateData) : base(entity1, stateMachine, animBoolName){
+        this.stateData = stateData;
     }
-
     public override void Enter(){
         base.Enter();
-        entity.SetVelocity(0f);
+        entity.SetVelocity(0.0f);
         isIdleTimeOver = false;
         SetRandomIdleTime();
     }
-
     public override void Exit(){
         base.Exit();
 
@@ -29,7 +27,6 @@ public class IdleState : State
             entity.Flip();
         }
     }
-
     public override void LogicUpdate(){
         base.LogicUpdate();
 
@@ -37,11 +34,9 @@ public class IdleState : State
             isIdleTimeOver = true;
         }
     }
-
     public override void PhysicsUpdate(){
         base.PhysicsUpdate();
     }
-
     public void SetFlipAfterIdle(bool flip){
         flipAfterIdle = flip;
     }

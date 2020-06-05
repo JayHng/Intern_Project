@@ -5,18 +5,18 @@ using UnityEngine;
 //This code belongs to Bardent(Youtuber)
 public class MoveState : State
 {
-    protected D_MoveState  stateData;
+    protected D_MoveState stateData;
     protected bool isDetectingWall;
     protected bool isDetectingLedge;
-    public MoveState(Entity entity1, FiniteStateMachine stateMachine1, string animBoolName1, D_MoveState stateData1) : base(entity1, stateMachine1, animBoolName1){
-        this.stateData = stateData1;
+    public MoveState(Entity entity1, FiniteStateMachine stateMachine, string animBoolName, D_MoveState stateData) : base(entity1, stateMachine, animBoolName){
+        this.stateData = stateData;
     }
     public override void Enter(){
         base.Enter();
-        entity.SetVelocity(stateData.movementSpeed);
+        this.entity.SetVelocity(this.stateData.movementSpeed);
 
-        isDetectingWall = entity.CheckLedge();
-        isDetectingWall = entity.CheckWall();
+        isDetectingLedge = this.entity.CheckLedge();
+        isDetectingWall = this.entity.CheckWall();
     }
     public override void Exit(){
         base.Exit();
@@ -27,8 +27,7 @@ public class MoveState : State
     public override void PhysicsUpdate(){
         base.PhysicsUpdate();
         
-        isDetectingWall = entity.CheckLedge();
-        isDetectingWall = entity.CheckWall();
+        isDetectingLedge = this.entity.CheckLedge();
+        isDetectingWall = this.entity.CheckWall();
     }
-
 }

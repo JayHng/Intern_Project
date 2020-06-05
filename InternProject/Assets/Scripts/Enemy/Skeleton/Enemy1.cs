@@ -14,6 +14,8 @@ public class Enemy1 : Entity
    public override void Start(){
        base.Start();
        moveState = new Enemy1_MoveState(this, stateMachine, "move", moveStateData, this);
+       idleState = new Enemy1_IdleState(this, stateMachine, "idle", idleStateData, this);
 
+       stateMachine.Initialize(moveState);
    }
 }
