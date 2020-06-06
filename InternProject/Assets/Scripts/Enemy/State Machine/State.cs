@@ -10,10 +10,10 @@ public class State
     protected float startTime;
 
     protected string animBoolName;
-    public State(Entity entity1, FiniteStateMachine stateMachine1, string animBoolName1){
+    public State(Entity entity1, FiniteStateMachine stateMachine, string animBoolName){
         this.entity = entity1;
-        this.stateMachine = stateMachine1;
-        this.animBoolName = animBoolName1;
+        this.stateMachine = stateMachine;
+        this.animBoolName = animBoolName;
     }
 
     public virtual void Enter(){

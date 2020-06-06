@@ -129,8 +129,8 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 5
-  m_Material: {fileID: 0}
+  m_GravityScale: 8
+  m_Material: {fileID: 6200000, guid: ec3c8b6f072e36549abb193994813bd0, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -224,6 +224,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7704344286305758906}
   - component: {fileID: 6412740942022077583}
+  - component: {fileID: 5406577653599757497}
   m_Layer: 0
   m_Name: Ske
   m_TagString: Untagged
@@ -283,6 +284,25 @@ MonoBehaviour:
     type: 3}
   brokenBoneParticle: {fileID: 8650365346734743979, guid: 94387645415575f4f9a5dd2952b1acd8,
     type: 3}
+--- !u!114 &5406577653599757497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7704344286305758909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2538e2bb798d75b4dbb2f3fe960c06a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entityData: {fileID: 11400000, guid: 5399bdda23101a44f988c6bd9da091c6, type: 2}
+  wallCheck: {fileID: 4573554054688134951}
+  ledgeCheck: {fileID: 8140907614650643851}
+  playerCheck: {fileID: 0}
+  idleStateData: {fileID: 11400000, guid: 56b32af758b70254ca3346bf80e4f97b, type: 2}
+  moveStateData: {fileID: 11400000, guid: 06de9a8907cea50469cc4f6218a9c299, type: 2}
+  playerDetectedData: {fileID: 0}
 --- !u!1 &7728461477408125567
 GameObject:
   m_ObjectHideFlags: 0

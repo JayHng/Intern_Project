@@ -20,6 +20,9 @@ public class Enemy1_MoveState : MoveState
     public override void LogicUpdate(){
         base.LogicUpdate();
 
+        if(isPlayerInMinArgoRange){
+            stateMachine.ChangeState(enemy.playerDetectedState);
+        }
         if(isDetectingWall || !isDetectingLedge){
             enemy.idleState.SetFlipAfterIdle(true);
             stateMachine.ChangeState(enemy.idleState);
