@@ -22,9 +22,11 @@ public class Enemy1_PlayerDetectedState : PlayerDetectedState
     {
         base.LogicUpdate();
 
-        if(!isPlayerInMaxArgoRange){
-            enemy.idleState.SetFlipAfterIdle(false);
-            stateMachine.ChangeState(enemy.idleState);
+        if(performLongRangeAction){
+            stateMachine.ChangeState(enemy.chargeState);
+        }
+        else if(!isPlayerInMaxArgoRange){
+            stateMachine.ChangeState(enemy.lookForPlayerState);
         }
     }
     public override void PhysicsUpdate()

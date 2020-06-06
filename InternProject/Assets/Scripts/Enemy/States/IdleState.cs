@@ -14,11 +14,15 @@ public class IdleState : State
     public IdleState(Entity entity1, FiniteStateMachine stateMachine, string animBoolName, D_IdleState stateData) : base(entity1, stateMachine, animBoolName){
         this.stateData = stateData;
     }
+    public override void DoChecks(){
+        base.DoChecks();
+
+        isPlayerInMinArgoRange = entity.CheckPlayerInMinArgoRange();
+    }
     public override void Enter(){
         base.Enter();
         entity.SetVelocity(0.0f);
         isIdleTimeOver = false;
-        isPlayerInMinArgoRange = entity.CheckPlayerInMinArgoRange();
         SetRandomIdleTime();
     }
     public override void Exit(){
@@ -37,8 +41,7 @@ public class IdleState : State
     }
     public override void PhysicsUpdate(){
         base.PhysicsUpdate();
-        isPlayerInMinArgoRange = entity.CheckPlayerInMinArgoRange();
-    }
+        }
     public void SetFlipAfterIdle(bool flip){
         flipAfterIdle = flip;
     }

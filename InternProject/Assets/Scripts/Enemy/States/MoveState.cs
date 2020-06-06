@@ -12,13 +12,17 @@ public class MoveState : State
     public MoveState(Entity entity1, FiniteStateMachine stateMachine, string animBoolName, D_MoveState stateData) : base(entity1, stateMachine, animBoolName){
         this.stateData = stateData;
     }
-    public override void Enter(){
-        base.Enter();
-        this.entity.SetVelocity(this.stateData.movementSpeed);
+    public override void DoChecks()
+    {
+        base.DoChecks();
 
         isDetectingLedge = this.entity.CheckLedge();
         isDetectingWall = this.entity.CheckWall();
         isPlayerInMinArgoRange = entity.CheckPlayerInMaxArgoRange();
+    }
+    public override void Enter(){
+        base.Enter();
+        this.entity.SetVelocity(this.stateData.movementSpeed);
     }
     public override void Exit(){
         base.Exit();
@@ -28,9 +32,5 @@ public class MoveState : State
     }
     public override void PhysicsUpdate(){
         base.PhysicsUpdate();
-        
-        isDetectingLedge = this.entity.CheckLedge();
-        isDetectingWall = this.entity.CheckWall();
-        isPlayerInMinArgoRange = entity.CheckPlayerInMaxArgoRange();
     }
 }

@@ -179,7 +179,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4406458312939172693}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.556, y: -0.61, z: 0}
+  m_LocalPosition: {x: 0.689, y: -0.61, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 677850717009355934}
@@ -239,7 +239,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5924786490589713445}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.569, y: 0, z: 0}
+  m_LocalPosition: {x: 0.672, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 677850717009355934}
@@ -254,7 +254,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7704344286305758906}
-  - component: {fileID: 6412740942022077583}
   - component: {fileID: 5406577653599757497}
   m_Layer: 0
   m_Name: Ske
@@ -278,43 +277,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6412740942022077583
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7704344286305758909}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cf33059c22b8f54fa02ae01a9520db8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  groundDistance: 0.5
-  wallDistance: 0.1
-  movementSpeed: 1.3
-  maxHP: 30
-  knockbackDuration: 0.1
-  lastTouchDamageTime: 0
-  touchDamageCooldown: 0.2
-  touchDamage: 10
-  touchDamageWidth: 0.9
-  touchDamageHeight: 1.31
-  groundCheck: {fileID: 8140907614650643851}
-  wallCheck: {fileID: 4573554054688134951}
-  touchDamageCheck: {fileID: 5983168952142689732}
-  isGround:
-    serializedVersion: 2
-    m_Bits: 512
-  isPlayer:
-    serializedVersion: 2
-    m_Bits: 256
-  knockbackSpeed: {x: 10, y: 5}
-  player: {fileID: 0}
-  hitParticle: {fileID: 2273012858384306483, guid: d18197b37c9c3f04fa0ea131aa923095,
-    type: 3}
-  brokenBoneParticle: {fileID: 8650365346734743979, guid: 94387645415575f4f9a5dd2952b1acd8,
-    type: 3}
 --- !u!114 &5406577653599757497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,10 +292,13 @@ MonoBehaviour:
   entityData: {fileID: 11400000, guid: 5399bdda23101a44f988c6bd9da091c6, type: 2}
   wallCheck: {fileID: 4573554054688134951}
   ledgeCheck: {fileID: 8140907614650643851}
-  playerCheck: {fileID: 0}
+  playerCheck: {fileID: 8547867415539265927}
   idleStateData: {fileID: 11400000, guid: 56b32af758b70254ca3346bf80e4f97b, type: 2}
   moveStateData: {fileID: 11400000, guid: 06de9a8907cea50469cc4f6218a9c299, type: 2}
-  playerDetectedData: {fileID: 0}
+  playerDetectedData: {fileID: 11400000, guid: 9438fb76dc43e154ca47ff3e2825c2e7, type: 2}
+  chargeStateData: {fileID: 11400000, guid: dd353eb0d06591a4f8b4477012452842, type: 2}
+  lookForPlayerStateData: {fileID: 11400000, guid: de7b979fabb00294a8960a585f2df7ce,
+    type: 2}
 --- !u!1 &7728461477408125567
 GameObject:
   m_ObjectHideFlags: 0
