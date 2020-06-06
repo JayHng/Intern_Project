@@ -17,7 +17,7 @@ public class Enemy1 : Entity
        base.Start();
        moveState = new Enemy1_MoveState(this, stateMachine, "move", moveStateData, this);
        idleState = new Enemy1_IdleState(this, stateMachine, "idle", idleStateData, this);
-       playerDetectedState = new Enemy1_PlayerDetectedState(this, stateMachine, "player", playerDetectedData, this);
+       playerDetectedState = new Enemy1_PlayerDetectedState(this, stateMachine, "playerDetected", playerDetectedData, this);
 
        stateMachine.Initialize(moveState);
    }

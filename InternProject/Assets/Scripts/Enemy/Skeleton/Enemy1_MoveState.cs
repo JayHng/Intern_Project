@@ -23,7 +23,7 @@ public class Enemy1_MoveState : MoveState
         if(isPlayerInMinArgoRange){
             stateMachine.ChangeState(enemy.playerDetectedState);
         }
-        if(isDetectingWall || !isDetectingLedge){
+        else if(isDetectingWall || !isDetectingLedge){
             enemy.idleState.SetFlipAfterIdle(true);
             stateMachine.ChangeState(enemy.idleState);
         }

@@ -32,6 +32,5 @@ public class MoveState : State
         isDetectingLedge = this.entity.CheckLedge();
         isDetectingWall = this.entity.CheckWall();
         isPlayerInMinArgoRange = entity.CheckPlayerInMaxArgoRange();
-
     }
 }
