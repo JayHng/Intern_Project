@@ -10,7 +10,7 @@ public class PlayerCombatController : MonoBehaviour
     [SerializeField]private Transform attack1HitBoxPos;
     [SerializeField]private LayerMask isDamageable;
     private float lastInputTime = Mathf.NegativeInfinity;
-    private float[] attackDetails = new float[2];
+    private AttackDetails attackDetails;
     private Animator anim;
     private bool isAttacking, inputEntered, isFirstAttack;
     private Controller2D playerController;
@@ -57,8 +57,8 @@ public class PlayerCombatController : MonoBehaviour
 
     private void CheckAttackHitBox(){
         Collider2D[] detectedObjects = Physics2D.OverlapCircleAll(attack1HitBoxPos.position, attack1Radius, isDamageable);
-        attackDetails[0] = attack1Damage;
-        attackDetails[1] = this.transform.position.x;
+        attackDetails.damageAmount = attack1Damage;
+        attackDetails.position = this.transform.position;
 
         foreach(Collider2D collider in detectedObjects){
             collider.transform.parent.SendMessage("SkeDamage", attackDetails);
@@ -71,10 +71,12 @@ public class PlayerCombatController : MonoBehaviour
         anim.SetBool("attack1", false);
     }
 
-    private void Damage(float[] attackDetails){
+    private void Damage(AttackDetails attackDetails){
         int dir;
+
         player.DecreasePlayerHP(1);
-        if(attackDetails[1] < this.transform.position.x){
+
+        if(attackDetails.position.x < this.transform.position.x){
             dir = 1;
         }else{
             dir = -1;

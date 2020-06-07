@@ -22,10 +22,13 @@ public class Enemy1_PlayerDetectedState : PlayerDetectedState
     {
         base.LogicUpdate();
 
-        if(performLongRangeAction){
+        if (performCloseRangeAction){
+            stateMachine.ChangeState(enemy.meleeAttackState);
+        }
+        else if (performLongRangeAction){
             stateMachine.ChangeState(enemy.chargeState);
         }
-        else if(!isPlayerInMaxArgoRange){
+        else if (!isPlayerInMaxArgoRange){
             stateMachine.ChangeState(enemy.lookForPlayerState);
         }
     }
