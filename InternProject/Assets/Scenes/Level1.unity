@@ -568,36 +568,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 29.15, y: 0.3}
   m_EdgeRadius: 0
---- !u!1 &2050058638
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2050058639}
-  m_Layer: 11
-  m_Name: MeleeAttack
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2050058639
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2050058638}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.77, y: -0.2, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 7704344286895344240}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3035718817135441485
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -852,7 +822,7 @@ PrefabInstance:
     - target: {fileID: 1587348214988312640, guid: f707953a051861d4c8c00a207d166421,
         type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 1.1052631
+      value: 1.1578947
       objectReference: {fileID: 0}
     - target: {fileID: 1587348214988312640, guid: f707953a051861d4c8c00a207d166421,
         type: 3}
@@ -894,17 +864,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: LedgeCheck
       objectReference: {fileID: 0}
-    - target: {fileID: 5406577653599757497, guid: f707953a051861d4c8c00a207d166421,
-        type: 3}
-      propertyPath: meleeAttackPosition
-      value: 
-      objectReference: {fileID: 2050058639}
-    - target: {fileID: 5406577653599757497, guid: f707953a051861d4c8c00a207d166421,
-        type: 3}
-      propertyPath: meleeAttackStateData
-      value: 
-      objectReference: {fileID: 11400000, guid: f5678acf36e690546ba586ac5d466801,
-        type: 2}
     - target: {fileID: 7000866757859250060, guid: f707953a051861d4c8c00a207d166421,
         type: 3}
       propertyPath: m_Size.x
@@ -1007,12 +966,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f707953a051861d4c8c00a207d166421, type: 3}
---- !u!4 &7704344286895344240 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 677850717009355934, guid: f707953a051861d4c8c00a207d166421,
-    type: 3}
-  m_PrefabInstance: {fileID: 7704344286895344239}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7704344286895344241 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2046992838762263949, guid: f707953a051861d4c8c00a207d166421,

@@ -61,8 +61,6 @@ public class LookForPlayerState : State
         }
     }
 
-
-
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();

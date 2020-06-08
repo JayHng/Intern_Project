@@ -10,15 +10,17 @@ public class Enemy1 : Entity
    public Enemy1_PlayerDetectedState playerDetectedState {get; private set; }
    public Enemy1_ChargeState chargeState {get; private set; }
    public Enemy1_LookForPlayerState lookForPlayerState {get; private set;} 
-   public Enemy1_MeleeAttackState meleeAttackState {get; private set;} 
+   public Enemy1_MeleeAttackState meleeAttackState {get; private set;}
+   public Enemy1_StunState stunState {get; private set;}
 
    
-   [SerializeField] private  D_IdleState idleStateData;
+   [SerializeField] private D_IdleState idleStateData;
    [SerializeField] private D_MoveState moveStateData;
    [SerializeField] private D_PlayerDetected playerDetectedData;
    [SerializeField] private D_ChargeState chargeStateData;
    [SerializeField] private D_LookForPlayer lookForPlayerStateData;
    [SerializeField] private D_MeleeAttack meleeAttackStateData;
+   [SerializeField] private D_StunState stunStateData;
    [SerializeField] private Transform meleeAttackPosition;
 
    public override void Start(){
@@ -30,6 +32,7 @@ public class Enemy1 : Entity
        lookForPlayerState = new Enemy1_LookForPlayerState(this, stateMachine, "lookForPlayer", lookForPlayerStateData, this);
        lookForPlayerState = new Enemy1_LookForPlayerState(this, stateMachine, "lookForPlayer", lookForPlayerStateData, this);
        meleeAttackState = new Enemy1_MeleeAttackState(this, stateMachine, "meleeAttack", meleeAttackPosition, meleeAttackStateData, this);
+       stunState = new Enemy1_StunState(this, stateMachine, "stun", stunStateData, this);
 
        stateMachine.Initialize(moveState);
    }
@@ -38,5 +41,12 @@ public class Enemy1 : Entity
        base.OnDrawGizmos();
 
        Gizmos.DrawWireSphere(meleeAttackPosition.position, meleeAttackStateData.attackRadius);
+   }
+    public override void Damage(AttackDetails attackDetails){
+       base.Damage(attackDetails);
+
+       if(isStunned && stateMachine.currentState != stunState){
+           stateMachine.ChangeState(stunState);
+       }
    }
 }

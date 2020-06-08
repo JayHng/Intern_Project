@@ -9,6 +9,7 @@ public class PlayerCombatController : MonoBehaviour
     [SerializeField]private float inputTimer, attack1Radius, attack1Damage;
     [SerializeField]private Transform attack1HitBoxPos;
     [SerializeField]private LayerMask isDamageable;
+    [SerializeField]private float stunDamageAmount = 1.0f;
     private float lastInputTime = Mathf.NegativeInfinity;
     private AttackDetails attackDetails;
     private Animator anim;
@@ -59,9 +60,10 @@ public class PlayerCombatController : MonoBehaviour
         Collider2D[] detectedObjects = Physics2D.OverlapCircleAll(attack1HitBoxPos.position, attack1Radius, isDamageable);
         attackDetails.damageAmount = attack1Damage;
         attackDetails.position = this.transform.position;
+        attackDetails.stunDamageAmount = stunDamageAmount;
 
         foreach(Collider2D collider in detectedObjects){
-            collider.transform.parent.SendMessage("SkeDamage", attackDetails);
+            collider.transform.parent.SendMessage("Damage", attackDetails);
         }
     }
 

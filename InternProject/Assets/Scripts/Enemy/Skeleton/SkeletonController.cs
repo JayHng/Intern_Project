@@ -141,7 +141,7 @@ public class SkeletonController : MonoBehaviour
         faceDir *= -1;
         alive.transform.Rotate(0f, 180f,0f);
     }
-    private void SkeDamage(float[] attackDetails){
+    private void Damage(float[] attackDetails){
         currentHP -= attackDetails[0];
         Instantiate(hitParticle, alive.transform.position, Quaternion.Euler(0.0f,0.0f, Random.Range(0.0f, 360.0f)));
         if(attackDetails[1] > alive.transform.position.x){

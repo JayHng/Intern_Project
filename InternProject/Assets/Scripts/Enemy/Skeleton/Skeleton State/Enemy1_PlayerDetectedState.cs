@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//This code belongs to Bardent (Youtuber)
 public class Enemy1_PlayerDetectedState : PlayerDetectedState
 {
     private Enemy1 enemy;

@@ -2,17 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class D_StunState : MonoBehaviour
+//This code belongs to Bardent (Youtuber)
+[CreateAssetMenu(fileName = "newStunStateData", menuName = "Data/State Data/Stun State")]
+public class D_StunState : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public float stunTime = 3.0f;
+    public float stunKnockbackTime = 0.2f;
+    public Vector2 stunKnockbackAngle;
+    public float stunKnockbackSpeed = 20f;
 }
