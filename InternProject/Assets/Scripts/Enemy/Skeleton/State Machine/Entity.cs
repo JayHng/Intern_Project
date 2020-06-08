@@ -16,8 +16,11 @@ public class Entity : MonoBehaviour
     [SerializeField] private Transform wallCheck;
     [SerializeField] private Transform ledgeCheck;
     [SerializeField] private Transform playerCheck;
+    private float currentHP;
+    private int lastDamageDir;
     public virtual void Start() {
         faceDir = 1;
+        currentHP = entityData.maxHP;
 
         aliveGO = transform.Find("Alive").gameObject;
         rb = aliveGO.GetComponent<Rigidbody2D>();
@@ -55,6 +58,21 @@ public class Entity : MonoBehaviour
     }
     public virtual bool CheckPlayerInCloseRangeAction(){
         return Physics2D.Raycast(playerCheck.position, aliveGO.transform.right, entityData.closeRangeActionDistance, entityData.isPlayer);      
+    }
+    public virtual void DamageHop(float velocity){
+        velocityWorkspace.Set(rb.velocity.x, velocity);
+        rb.velocity = velocityWorkspace;
+    }
+    public virtual void SkeDamage(AttackDetails attackDetails){
+        currentHP -= attackDetails.damageAmount;
+
+        DamageHop(entityData.damageHopSpeed);
+
+        if(attackDetails.position.x > aliveGO.transform.position.x){
+            lastDamageDir = -1;
+        }else{
+            lastDamageDir = 1;
+        }
     }
     public virtual void Flip(){
         faceDir *= -1;
