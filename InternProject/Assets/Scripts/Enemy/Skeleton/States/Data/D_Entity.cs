@@ -15,7 +15,7 @@ public class D_Entity : ScriptableObject
     public float maxArgoDistance = 4.0f;
 
 
-    public float maxHP = 30.0f;
+    public float maxHP = 50.0f;
     public float damageHopSpeed = 3.0f;
 
     public float stunResistance = 3.0f;
@@ -24,6 +24,7 @@ public class D_Entity : ScriptableObject
 
     public float closeRangeActionDistance = 1.0f;
 
+    public GameObject hitParticle;
 
     public LayerMask isGround;
     public LayerMask isPlayer;

@@ -22,6 +22,7 @@ public class Entity : MonoBehaviour
     private  float currentStunResistance;
     private float lastDamageTime;
     protected bool isStunned;
+    protected bool isDead;
     public virtual void Start() {
         faceDir = 1;
         currentHP = entityData.maxHP;
@@ -93,6 +94,8 @@ public class Entity : MonoBehaviour
 
         DamageHop(entityData.damageHopSpeed);
 
+        Instantiate(entityData.hitParticle, aliveGO.transform.position, Quaternion.Euler(0.0f, 0.0f, Random.Range(0.0f, 360.0f)));
+
         if(attackDetails.position.x > aliveGO.transform.position.x){
             lastDamageDir = -1;
         }else{
@@ -100,7 +103,10 @@ public class Entity : MonoBehaviour
         }
 
         if(currentStunResistance <= 0){
-            isStunned=true;
+            isStunned = true;
+        }
+        if(currentHP <= 0){
+            isDead = true;
         }
     }
     public virtual void Flip(){
