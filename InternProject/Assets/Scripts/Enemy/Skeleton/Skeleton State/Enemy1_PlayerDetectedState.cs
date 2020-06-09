@@ -31,7 +31,7 @@ public class Enemy1_PlayerDetectedState : PlayerDetectedState
         }
         else if (!isPlayerInMaxArgoRange){
             stateMachine.ChangeState(enemy.lookForPlayerState);
-        }else if(isDetectingLedge){
+        }else if(!isDetectingLedge){
             entity.Flip();
             stateMachine.ChangeState(enemy.moveState);
         }
