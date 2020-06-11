@@ -1376,6 +1376,31 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 0.621
       objectReference: {fileID: 0}
+    - target: {fileID: 8201472896758576400, guid: 4526da9fbe5c0c5429e22295988e647e,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.8888889
+      objectReference: {fileID: 0}
+    - target: {fileID: 8201472896758576400, guid: 4526da9fbe5c0c5429e22295988e647e,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.1111112
+      objectReference: {fileID: 0}
+    - target: {fileID: 8201472896758576400, guid: 4526da9fbe5c0c5429e22295988e647e,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.86
+      objectReference: {fileID: 0}
+    - target: {fileID: 8201472896758576400, guid: 4526da9fbe5c0c5429e22295988e647e,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8201472896758576400, guid: 4526da9fbe5c0c5429e22295988e647e,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1.11
+      objectReference: {fileID: 0}
     - target: {fileID: 8201472896758576401, guid: 4526da9fbe5c0c5429e22295988e647e,
         type: 3}
       propertyPath: moveSpeed
