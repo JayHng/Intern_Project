@@ -17,8 +17,8 @@ MonoBehaviour:
   groundCheckRadius: 0.3
   minArgoDistance: 4
   maxArgoDistance: 5
-  maxHP: 50
-  damageHopSpeed: 3
+  maxHP: 30
+  damageHopSpeed: 10
   stunResistance: 3
   stunRecoveryTime: 2
   closeRangeActionDistance: 1

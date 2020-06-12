@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Slime_PlayerDetectedState : PlayerDetectedState
+public class Slime_DeadState : DeadState
 {
     private Slime enemy;
-
-    public Slime_PlayerDetectedState(Entity entity1, FiniteStateMachine stateMachine, string animBoolName, D_PlayerDetected stateData, Slime enemy) : base(entity1, stateMachine, animBoolName, stateData)
+    public Slime_DeadState(Entity entity1, FiniteStateMachine stateMachine, string animBoolName, D_DeadState stateData, Slime enemy) : base(entity1, stateMachine, animBoolName, stateData)
     {
         this.enemy = enemy;
     }
@@ -26,13 +25,8 @@ public class Slime_PlayerDetectedState : PlayerDetectedState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-
-        if(performCloseRangeAction){
-            stateMachine.ChangeState(enemy.meleeAttackState);
-        }else if(!isPlayerInMaxArgoRange){
-            stateMachine.ChangeState(enemy.lookForPlayerState);
-        }
     }
+
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
