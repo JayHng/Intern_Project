@@ -283,15 +283,15 @@ public class Controller2D : RaycastController
 
     private void CheckKnockback(){
         if(Time.time >= knockbackStartTime + knockbackDuration && playerKnockback){
-            playerKnockback=false;
+            playerKnockback = false;
             playerRb.velocity = new Vector2(0.0f, playerRb.velocity.y);
 
         }
     }
     private void isOnGround(){
-        objectCol.below=true;
+        objectCol.below = true;
     }
     private void isInAir(){
-        objectCol.below=false;
+        objectCol.below = false;
     }
 }
