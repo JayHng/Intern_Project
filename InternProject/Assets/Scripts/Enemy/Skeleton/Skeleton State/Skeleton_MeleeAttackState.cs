@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //This code belongs to Bardent (Youtuber)
-public class Enemy1_StunState : StunState
+public class Skeleton_MeleeAttackState : MeleeAttackState
 {
-    private Enemy1 enemy;
-    public Enemy1_StunState(Entity entity1, FiniteStateMachine stateMachine, string animBoolName, D_StunState stateData, Enemy1 enemy) : base(entity1, stateMachine, animBoolName, stateData)
+    private Skeleton enemy;
+
+    public Skeleton_MeleeAttackState(Entity entity1, FiniteStateMachine stateMachine, string animBoolName, Transform attackPosition, D_MeleeAttack stateData, Skeleton enemy) : base(entity1, stateMachine, animBoolName, attackPosition, stateData)
     {
         this.enemy = enemy;
     }
@@ -15,27 +16,27 @@ public class Enemy1_StunState : StunState
     {
         base.DoChecks();
     }
-
     public override void Enter()
     {
         base.Enter();
     }
-
     public override void Exit()
     {
         base.Exit();
     }
+
+    public override void FinishAttack()
+    {
+        base.FinishAttack();
+    }
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        
-        if(isStunTimeOver){
-            if(performCloseRangeAction){
-                stateMachine.ChangeState(enemy.meleeAttackState);
-            }else if(isPlayerInMinArgoRange){
-                stateMachine.ChangeState(enemy.chargeState);               
+
+        if(isAnimationFinished){
+            if(isPlayerInMinArgoRange){
+                stateMachine.ChangeState(enemy.playerDetectedState);
             }else{
-                enemy.lookForPlayerState.SetTurnImmediately(true);
                 stateMachine.ChangeState(enemy.lookForPlayerState);
             }
         }
@@ -45,5 +46,8 @@ public class Enemy1_StunState : StunState
     {
         base.PhysicsUpdate();
     }
-
+    public override void TriggerAttack()
+    {
+        base.TriggerAttack();
+    }
 }

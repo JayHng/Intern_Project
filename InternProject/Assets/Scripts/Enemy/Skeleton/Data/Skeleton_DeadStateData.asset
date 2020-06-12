@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73db138e5cb941d4facb9f2bed43cf53, type: 3}
-  m_Name: Enemy1_LookForPlayerData
+  m_Script: {fileID: 11500000, guid: d6c7a19431f0b834a94dfb103dc2942f, type: 3}
+  m_Name: Skeleton_DeadStateData
   m_EditorClassIdentifier: 
-  amountOfTurn: 2
-  timeBetweenTurns: 0.75
+  brokenBonePartical: {fileID: 8650365346734743979, guid: 94387645415575f4f9a5dd2952b1acd8,
+    type: 3}

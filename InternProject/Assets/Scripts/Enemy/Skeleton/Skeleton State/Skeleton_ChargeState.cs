@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //This code belongs to Bardent (Youtuber)
-public class Enemy1_ChargeState : ChargeState
+public class Skeleton_ChargeState : ChargeState
 {
-    protected Enemy1 enemy;
-    public Enemy1_ChargeState(Entity entity1, FiniteStateMachine stateMachine, string animBoolName, D_ChargeState stateData, Enemy1 enemy) : base(entity1, stateMachine, animBoolName, stateData)
+    protected Skeleton enemy;
+    public Skeleton_ChargeState(Entity entity1, FiniteStateMachine stateMachine, string animBoolName, D_ChargeState stateData, Skeleton enemy) : base(entity1, stateMachine, animBoolName, stateData)
     {
         this.enemy = enemy;
     }

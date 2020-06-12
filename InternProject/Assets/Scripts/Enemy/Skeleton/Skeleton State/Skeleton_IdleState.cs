@@ -1,19 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-//This code belongs to Bardent(Youtuber)
-public class Enemy1_MoveState : MoveState
+ 
+// This code belongs to Bardent (Youtuber)
+public class Skeleton_IdleState : IdleState
 {
-    private Enemy1 enemy;
+    private Skeleton enemy;
 
-    public Enemy1_MoveState(Entity entity1, FiniteStateMachine stateMachine, string animBoolName, D_MoveState stateData, Enemy1 enemy) : base(entity1, stateMachine, animBoolName, stateData){
+    public Skeleton_IdleState(Entity entity1, FiniteStateMachine stateMachine, string animBoolName, D_IdleState stateData, Skeleton enemy) : base(entity1, stateMachine, animBoolName, stateData){
         this.enemy = enemy;
     }
-    
+
     public override void Enter(){
         base.Enter();
     }
+
     public override void Exit(){
         base.Exit();
     }
@@ -22,10 +23,8 @@ public class Enemy1_MoveState : MoveState
 
         if(isPlayerInMinArgoRange){
             stateMachine.ChangeState(enemy.playerDetectedState);
-        }
-        else if(isDetectingWall || !isDetectingLedge){
-            enemy.idleState.SetFlipAfterIdle(true);
-            stateMachine.ChangeState(enemy.idleState);
+        }else if(isIdleTimeOver){
+            stateMachine.ChangeState(enemy.moveState);
         }
     }
     public override void PhysicsUpdate(){

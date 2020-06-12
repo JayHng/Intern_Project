@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6c7a19431f0b834a94dfb103dc2942f, type: 3}
-  m_Name: Enemy1_DeadStateData
+  m_Script: {fileID: 11500000, guid: 2a77eaa786cc5d541a9e5968f3b320e2, type: 3}
+  m_Name: Skeleton_playerDetectedData
   m_EditorClassIdentifier: 
-  brokenBonePartical: {fileID: 8650365346734743979, guid: 94387645415575f4f9a5dd2952b1acd8,
-    type: 3}
+  longRangeActionTime: 1.5

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //This code belongs to Bardent (Youtuber)
-public class Enemy1_PlayerDetectedState : PlayerDetectedState
+public class Skeleton_PlayerDetectedState : PlayerDetectedState
 {
-    private Enemy1 enemy;
-    public Enemy1_PlayerDetectedState(Entity entity1, FiniteStateMachine stateMachine, string animBoolName, D_PlayerDetected stateData, Enemy1 enemy) : base(entity1, stateMachine, animBoolName, stateData)
+    private Skeleton enemy;
+    public Skeleton_PlayerDetectedState(Entity entity1, FiniteStateMachine stateMachine, string animBoolName, D_PlayerDetected stateData, Skeleton enemy) : base(entity1, stateMachine, animBoolName, stateData)
     {
         this.enemy = enemy;
     }

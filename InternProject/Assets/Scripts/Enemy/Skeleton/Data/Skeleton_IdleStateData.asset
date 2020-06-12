@@ -9,6 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a77eaa786cc5d541a9e5968f3b320e2, type: 3}
-  m_Name: Enemy1_playerDetectedData
+  m_Script: {fileID: 11500000, guid: a5dd9c140d39d454fb5dd7ae6b15b636, type: 3}
+  m_Name: Skeleton_IdleStateData
   m_EditorClassIdentifier: 
+  minIdleTime: 1
+  maxIdleTime: 2

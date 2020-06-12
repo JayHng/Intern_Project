@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1771a223383a2ac4dac1e7ae4af4ff8d, type: 3}
-  m_Name: Enemy1_BaseData
+  m_Name: Skeleton_BaseData
   m_EditorClassIdentifier: 
   wallCheckDistance: 0.2
   ledgeCheckDistance: 0.4
