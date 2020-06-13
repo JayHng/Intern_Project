@@ -181,6 +181,7 @@ MonoBehaviour:
   stunStateData: {fileID: 11400000, guid: 80c8b061249ce834fbb06152c5c308d6, type: 2}
   deadStateData: {fileID: 11400000, guid: 5daae80acbb39284183298e14013f80e, type: 2}
   meleeAttackPosition: {fileID: 806573422}
+  dodgeStateData: {fileID: 11400000, guid: d229cae20be59524d83e063eedd1f1cd, type: 2}
 --- !u!1001 &420793723
 PrefabInstance:
   m_ObjectHideFlags: 0

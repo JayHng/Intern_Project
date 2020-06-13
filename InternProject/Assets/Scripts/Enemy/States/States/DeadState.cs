@@ -20,6 +20,7 @@ public class DeadState : State
     {
         base.Enter();
         GameObject.Instantiate(stateData.brokenBonePartical, entity.aliveGO.transform.position, stateData.brokenBonePartical.transform.rotation);
+        
         entity.gameObject.SetActive(false);
     }
     public override void Exit()

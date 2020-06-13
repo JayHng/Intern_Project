@@ -28,7 +28,11 @@ public class Slime_PlayerDetectedState : PlayerDetectedState
         base.LogicUpdate();
 
         if(performCloseRangeAction){
-            stateMachine.ChangeState(enemy.meleeAttackState);
+            if(Time.time >= enemy.dodgeState.startTime + enemy.dodgeStateData.dodgeCooldown){
+                stateMachine.ChangeState(enemy.dodgeState);
+            }else{
+                stateMachine.ChangeState(enemy.meleeAttackState);           
+            }
         }else if(!isPlayerInMaxArgoRange){
             stateMachine.ChangeState(enemy.lookForPlayerState);
         }

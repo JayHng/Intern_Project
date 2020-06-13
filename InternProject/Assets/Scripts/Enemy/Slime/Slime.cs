@@ -11,6 +11,7 @@ public class Slime : Entity
     public Slime_LookForPlayerState lookForPlayerState {get; private set;}
     public Slime_StunState stunState {get; private set;}
     public Slime_DeadState deadState {get; private set;}
+    public Slime_DodgeState dodgeState {get; private set;}
 
     [SerializeField] private D_MoveState moveStateData;
     [SerializeField] private D_IdleState idleStateData;
@@ -20,6 +21,7 @@ public class Slime : Entity
     [SerializeField] private D_StunState stunStateData;
     [SerializeField] private D_DeadState deadStateData;
     [SerializeField] private Transform meleeAttackPosition;
+    [SerializeField] public D_DodgeState dodgeStateData;
 
     public override void Start() {
         base.Start();
@@ -31,6 +33,7 @@ public class Slime : Entity
         lookForPlayerState = new Slime_LookForPlayerState(this, stateMachine, "lookForPlayer", lookForPlayerStateData, this);
         stunState = new Slime_StunState(this, stateMachine, "stun", stunStateData, this);
         deadState = new Slime_DeadState(this, stateMachine, "dead", deadStateData, this);
+        dodgeState = new Slime_DodgeState(this, stateMachine, "dodge", dodgeStateData, this);
 
         stateMachine.Initialize(moveState);
     }
