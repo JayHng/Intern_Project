@@ -20,8 +20,8 @@ public class Slime : Entity
     [SerializeField] private D_LookForPlayer lookForPlayerStateData;
     [SerializeField] private D_StunState stunStateData;
     [SerializeField] private D_DeadState deadStateData;
-    [SerializeField] private Transform meleeAttackPosition;
     [SerializeField] public D_DodgeState dodgeStateData;
+    [SerializeField] private Transform meleeAttackPosition;
 
     public override void Start() {
         base.Start();
