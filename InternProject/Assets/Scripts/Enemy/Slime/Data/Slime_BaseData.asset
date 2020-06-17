@@ -15,8 +15,8 @@ MonoBehaviour:
   wallCheckDistance: 0.2
   ledgeCheckDistance: 0.4
   groundCheckRadius: 0.3
-  minArgoDistance: 3
-  maxArgoDistance: 4
+  minArgoDistance: 4
+  maxArgoDistance: 4.5
   maxHP: 30
   damageHopSpeed: 10
   stunResistance: 3

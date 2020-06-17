@@ -29,7 +29,11 @@ public class Slime_DodgeState : DodgeState
         if(isDodgeOver){
             if(isPlayerInMaxArgoRange && performCloseRangeAction){
                 stateMachine.ChangeState(enemy.meleeAttackState);
-            }else if(!isPlayerInMaxArgoRange){
+            }
+            else if (isPlayerInMaxArgoRange && ! performCloseRangeAction){
+                stateMachine.ChangeState(enemy.rangeAttackState);
+            }
+            else if(!isPlayerInMaxArgoRange){
                 stateMachine.ChangeState(enemy.lookForPlayerState);
             }
         }

@@ -33,7 +33,11 @@ public class Slime_PlayerDetectedState : PlayerDetectedState
             }else{
                 stateMachine.ChangeState(enemy.meleeAttackState);           
             }
-        }else if(!isPlayerInMaxArgoRange){
+        }
+        else if(performLongRangeAction){
+            stateMachine.ChangeState(enemy.rangeAttackState);
+        }
+        else if(!isPlayerInMaxArgoRange){
             stateMachine.ChangeState(enemy.lookForPlayerState);
         }
     }

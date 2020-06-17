@@ -29,6 +29,7 @@ public class Projectile : MonoBehaviour
     }
     private void Update() {
         if(!hasHitGround){
+            attackDetails.position = transform.position;
             if(isGravityOn){
                 float angle = Mathf.Atan2(projectileRb.velocity.y, projectileRb.velocity.x) * Mathf.Rad2Deg;
                 transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
@@ -55,7 +56,11 @@ public class Projectile : MonoBehaviour
             }
         }
     }
-
+    public void FireProjectile(float speed, float travelDistance, float damage){
+        this.speed=speed;
+        this.travelDistance=travelDistance;
+        attackDetails.damageAmount = damage;
+    }
     private void OnDrawGizmos() {
         Gizmos.DrawWireSphere(damagePosition.position,damageRadius);
     }

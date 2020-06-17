@@ -12,6 +12,7 @@ public class Slime : Entity
     public Slime_StunState stunState {get; private set;}
     public Slime_DeadState deadState {get; private set;}
     public Slime_DodgeState dodgeState {get; private set;}
+    public Slime_RangeAttackState rangeAttackState {get; private set;}
 
     [SerializeField] private D_MoveState moveStateData;
     [SerializeField] private D_IdleState idleStateData;
@@ -21,7 +22,9 @@ public class Slime : Entity
     [SerializeField] private D_StunState stunStateData;
     [SerializeField] private D_DeadState deadStateData;
     [SerializeField] public D_DodgeState dodgeStateData;
+    [SerializeField] public D_RangeAttackState rangeAttackStateData;
     [SerializeField] private Transform meleeAttackPosition;
+    [SerializeField] private Transform rangeAttackPosition;
 
     public override void Start() {
         base.Start();
@@ -34,6 +37,7 @@ public class Slime : Entity
         stunState = new Slime_StunState(this, stateMachine, "stun", stunStateData, this);
         deadState = new Slime_DeadState(this, stateMachine, "dead", deadStateData, this);
         dodgeState = new Slime_DodgeState(this, stateMachine, "dodge", dodgeStateData, this);
+        rangeAttackState = new Slime_RangeAttackState(this, stateMachine, "rangeAttack", rangeAttackPosition, rangeAttackStateData, this);
 
         stateMachine.Initialize(moveState);
     }
@@ -46,6 +50,9 @@ public class Slime : Entity
         }
         else if(isStunned && stateMachine.currentState != stunState){
             stateMachine.ChangeState(stunState);
+        }
+        else if(CheckPlayerInMinArgoRange()){
+            stateMachine.ChangeState(rangeAttackState);
         }
         else if(!CheckPlayerInMinArgoRange()){
             lookForPlayerState.SetTurnImmediately(true);
