@@ -14,8 +14,8 @@ public class Controller2D : RaycastController
     private CollisionInfo objectCol;
     [SerializeField] private float gravity;
     public float jumpVelocity;
-    private float jumpHeight = 4;
-    private float timeToJumpApex = .4f;
+    private float jumpHeight = 4.0f;
+    private float timeToJumpApex = 0.4f;
     [SerializeField] private Vector3 velocity;
 
     private Vector2 input;
@@ -44,7 +44,7 @@ public class Controller2D : RaycastController
         anim = GetComponent<Animator>();
         playerRb = GetComponent<Rigidbody2D>();
         currentLevel = 2;
-        gravity = -(2*jumpHeight)/Mathf.Pow(timeToJumpApex,2);
+        gravity = -(2.0f*jumpHeight)/Mathf.Pow(timeToJumpApex,2.0f);
         jumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
     }
 
@@ -53,8 +53,8 @@ public class Controller2D : RaycastController
         // if (objectCol.above || objectCol.below && velocity.y != 0){
         //     velocity.y = 0;
         // }
-        if(objectCol.above && velocity.y != 0){
-            velocity.y=0;
+        if(objectCol.above && velocity.y != 0.0f){
+            velocity.y=0.0f;
         }
         anim.SetBool("Grounded", objectCol.below);
         anim.SetFloat("Speed", Mathf.Abs(targetVelocityX));
@@ -65,7 +65,7 @@ public class Controller2D : RaycastController
     }
 
     private void LoadAsyncLevel(){
-        if(currentLevel < 4)
+        if(currentLevel < 4.0f)
             {
                 if (async != null)
                     if (async.isDone) currentLevel = levelToLoad;
@@ -150,7 +150,7 @@ public class Controller2D : RaycastController
             Debug.DrawRay(rayOrigin, Vector2.right * dirX * rayLength,Color.cyan);
             if(hit)
             {
-                if(hit.distance==0){
+                if(hit.distance == 0){
                     continue;
                 }
                 float slopeAngle = Vector2.Angle(hit.normal, Vector2.up);

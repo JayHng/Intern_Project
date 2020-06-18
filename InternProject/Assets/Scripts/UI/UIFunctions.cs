@@ -54,4 +54,17 @@ public class UIFunctions : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Update is called every frame, if the MonoBehaviour is enabled.
+    /// </summary>
+    void Update()
+    {       
+        if(SceneManager.GetActiveScene().buildIndex == 0 && Input.anyKey){
+            Invoke("LoadScene", 1f);
+        }
+    }
+    
+    void LoadScene(){
+        SceneManager.LoadScene(1);
+    }
 }
