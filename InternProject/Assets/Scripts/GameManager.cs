@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Cinemachine;
 
@@ -12,6 +13,9 @@ public class GameManager : MonoBehaviour
     private UIFunctions ui;
     public static GameManager gm;
     public Player player;
+
+    public int points;
+    public Text points_Text;
  
     void Awake()
     {
@@ -24,6 +28,7 @@ public class GameManager : MonoBehaviour
 
     }
     void Start(){
+
     }
     void Update() {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -42,6 +47,7 @@ public class GameManager : MonoBehaviour
             done = true;
             Time.timeScale = 1;
         }
+        points_Text.text = ("" + points);
     }
     public void Respawn(){
         StartCoroutine("RespawnCoroutine");
