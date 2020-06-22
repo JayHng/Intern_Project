@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3807767884802433133}
   - component: {fileID: 3807767884802433132}
   - component: {fileID: 3807767884802433135}
+  - component: {fileID: 8042190989376588279}
   m_Layer: 0
   m_Name: Turret
   m_TagString: Turret
@@ -122,8 +123,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turretHP: 100
   awakeRange: 5
-  bulletSpeed: 4
-  shootInterval: 1
+  bulletSpeed: 5
+  shootInterval: 2
   bulletTimer: 0
   isAwake: 0
   isLookRight: 1
@@ -132,8 +133,24 @@ MonoBehaviour:
   anim: {fileID: 0}
   shootPointL: {fileID: 3807767886581980693}
   shootPointR: {fileID: 3807767886731699601}
-  playerDistance: 0
+  turretPartical: {fileID: 0}
   distanceToPlayer: 0
+--- !u!111 &8042190989376588279
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3807767884802433123}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 4c38670890d505a4290f89c7878c5119, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 4c38670890d505a4290f89c7878c5119, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &3807767884915926983
 GameObject:
   m_ObjectHideFlags: 0

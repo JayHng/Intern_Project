@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TurretAI : MonoBehaviour
 {
-    [SerializeField]private int turretHP = 100;
+    [SerializeField]private float turretHP = 50f;
     [SerializeField]private float awakeRange = 10f;
     [SerializeField]private float bulletSpeed = 100f;
     public float shootInterval;
@@ -17,6 +17,7 @@ public class TurretAI : MonoBehaviour
     public Player player;
     public Animator anim;
     public Transform shootPointL, shootPointR;
+    public GameObject turretPartical;
 
     public float distanceToPlayer;
     void Awake(){
@@ -44,8 +45,10 @@ public class TurretAI : MonoBehaviour
             isLookRight = false;
         }
 
-        if(turretHP < 0){
-            GameObject.FindGameObjectWithTag("Turret").GetComponent<TurretAI>().enabled = false; 
+        if(turretHP <= 0){
+            Instantiate(turretPartical, gameObject.transform.position, turretPartical.transform.rotation);
+            gameObject.SetActive(false);
+            //GameObject.FindGameObjectWithTag("Turret").GetComponent<TurretAI>().enabled = false; 
         }
     }
 
@@ -80,7 +83,8 @@ public class TurretAI : MonoBehaviour
         }
     }
 
-    public void Damage(int dam){
-        turretHP -= dam;
+    public void Damage(AttackDetails attackDetails){
+        turretHP -= attackDetails.damageAmount;
+        gameObject.GetComponent<Animation>().Play("redflash");
     }
 }
