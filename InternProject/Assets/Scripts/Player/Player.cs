@@ -35,6 +35,9 @@ public class Player : MonoBehaviour
         Instantiate(bloodParticle, transform.position, bloodParticle.transform.rotation);
         gm.Respawn();
         Destroy(gameObject);
+        if(PlayerPrefs.GetInt("highScore") < gm.points){
+            PlayerPrefs.SetInt("highScore", gm.points);
+        }
     }
 
     public void DecreasePlayerHP(int dam){

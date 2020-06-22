@@ -14,8 +14,11 @@ public class GameManager : MonoBehaviour
     public static GameManager gm;
     public Player player;
 
-    public int points;
+    public int points=0;
+    public int highScore=0;
     public Text points_Text;
+    public Text highScore_Text;
+
  
     void Awake()
     {
@@ -28,7 +31,18 @@ public class GameManager : MonoBehaviour
 
     }
     void Start(){
+        highScore_Text.text = ("" + PlayerPrefs.GetInt("highScore"));
+        highScore = PlayerPrefs.GetInt("highScore", 0);
 
+        if(PlayerPrefs.HasKey("points")){
+            Scene ActiveScreen = SceneManager.GetActiveScene();
+            if(ActiveScreen.buildIndex == 1){
+                PlayerPrefs.DeleteKey("points");
+                points = 0;
+            }else{
+                points = PlayerPrefs.GetInt("points");
+            }
+        }
     }
     void Update() {
         if (Input.GetKeyDown(KeyCode.Escape))

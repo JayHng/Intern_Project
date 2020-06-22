@@ -14,9 +14,9 @@ public class Door : MonoBehaviour
             isLoading = true;
             collider2D.GetComponent<Player>().enabled = false;
             GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().enabled = false;
-
             if (!string.IsNullOrWhiteSpace(nextLevelName))
             {
+                SaveScore();
                 Invoke("LoadLevel", 1f);
             }
             else
@@ -33,5 +33,9 @@ public class Door : MonoBehaviour
         GameManager.gm.sceneName = nextLevelName;
         SceneManager.LoadSceneAsync(nextLevelName, LoadSceneMode.Additive);
         GameManager.gm.player.enabled = true;
+    }
+
+    void SaveScore(){
+        PlayerPrefs.SetInt("points", GameManager.gm.points);
     }
 }
