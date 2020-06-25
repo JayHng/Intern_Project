@@ -288,10 +288,10 @@ public class Controller2D : RaycastController
 
         }
     }
-    private void isOnGround(){
+    public void isOnGround(){
         objectCol.below = true;
     }
-    private void isInAir(){
+    public void isInAir(){
         objectCol.below = false;
     }
 }

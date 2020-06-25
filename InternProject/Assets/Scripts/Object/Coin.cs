@@ -7,7 +7,7 @@ public class Coin : MonoBehaviour
     [SerializeField] private GameManager gm;
     void Start()
     {
-        gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+       gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
     }
 
     void Update()
