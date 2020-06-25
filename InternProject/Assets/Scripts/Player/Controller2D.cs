@@ -62,6 +62,7 @@ public class Controller2D : RaycastController
         CheckInput();
         MovementDirection();
         CheckKnockback();
+        CheckJump();
     }
 
     private void LoadAsyncLevel(){
@@ -93,6 +94,7 @@ public class Controller2D : RaycastController
         }
     }
 
+    
     private void CheckInput(){
 
         input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
@@ -112,6 +114,14 @@ public class Controller2D : RaycastController
         Move(velocity * Time.deltaTime);
     }
 
+    private void CheckJump(){
+        if(playerRb.velocity.y > 3){
+            playerRb.velocity = new Vector2(playerRb.velocity.x, 3);
+        }
+        if(playerRb.velocity.y < -3){
+            playerRb.velocity = new Vector2(playerRb.velocity.x, -3);
+        }
+    }
     //This code belongs to Sebastian Lague
     public void Move(Vector3 velocity, bool standingOnPlatform = false)
     {
@@ -207,7 +217,7 @@ public class Controller2D : RaycastController
             }
         }
         if(objectCol.isClimbing){
-            float dirX =Mathf.Sign(velocity.x);
+            float dirX = Mathf.Sign(velocity.x);
             rayLength = Mathf.Abs(velocity.x) + skinWidth;
 			Vector2 rayOrigin = ((dirX == -1)?raycastOrigins.bottomLeft:raycastOrigins.bottomRight) + Vector2.up * velocity.y;
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * dirX, rayLength, collisionMask);

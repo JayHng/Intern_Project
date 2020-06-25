@@ -135,8 +135,8 @@ GameObject:
   - component: {fileID: 193684375}
   - component: {fileID: 193684374}
   m_Layer: 9
-  m_Name: Tile (15)
-  m_TagString: Untagged
+  m_Name: Falling Platform
+  m_TagString: FallPlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -219,7 +219,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collisionMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   horizontalRayCount: 4
   verticalRayCount: 4
   horizontalRaySpacing: 0
@@ -426,7 +426,7 @@ PrefabInstance:
     - target: {fileID: 3807767884802433123, guid: c0b21d825a82b9040927899925b7b55b,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3807767884802433123, guid: c0b21d825a82b9040927899925b7b55b,
         type: 3}

@@ -12,6 +12,7 @@ TagManager:
   - Skeleton
   - Death
   - Enemy
+  - FallPlatform
   layers:
   - Default
   - TransparentFX

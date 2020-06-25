@@ -4,28 +4,28 @@ using UnityEngine;
 
 public class FallingPlatController : RaycastController
 {
-    private Rigidbody2D rb;
+    private Rigidbody2D fallPlatRb;
     public float fallDelay;
-    public Controller2D controller;
+    private Controller2D controller;
 
     // Start is called before the first frame update
     public override void Start()
     {
         base.Start();
-        rb = GetComponent<Rigidbody2D>();    
+        fallPlatRb = gameObject.GetComponent<Rigidbody2D>();    
     }
     
-    void OnCollisionEnter2D(Collision2D other)
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.collider.tag == "Player"){
-            controller.isOnGround();
+        if(other.collider.CompareTag("Player")){
+            Debug.Log("Fall");
+            controller.isOnGround();        
             StartCoroutine(FallPlatform());
         }
     }
-
-    IEnumerator FallPlatform(){
+    IEnumerator FallPlatform(){                                    
         yield return new WaitForSeconds(fallDelay);
-        rb.bodyType = RigidbodyType2D.Dynamic;
+        fallPlatRb.bodyType = RigidbodyType2D.Dynamic;
         yield return 0;
     }
 }
