@@ -10,7 +10,6 @@ public class Door : MonoBehaviour
     {
         if (collider2D.tag == "Player" && !isLoading)
         {
-            Debug.Log("Door");
             isLoading = true;
             collider2D.GetComponent<Player>().enabled = false;
             GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().enabled = false;

@@ -6,19 +6,16 @@ public class FallingPlatController : MonoBehaviour
 {
     private Rigidbody2D fallPlatRb;
     public float fallDelay;
-    private Controller2D controller;
 
     // Start is called before the first frame update
     public void Start()
     {
-        //base.Start();
-        fallPlatRb = gameObject.GetComponent<Rigidbody2D>();    
+        fallPlatRb = gameObject.GetComponent<Rigidbody2D>();  
     }
     
-    private void OnCollisionEnter2D(Collision2D other)
+    void OnCollisionEnter2D(Collision2D col)
     {
-        if(other.collider.CompareTag("Player")){
-            controller.isOnGround();        
+        if(col.collider.tag == "Player"){
             StartCoroutine(FallPlatform());
         }
     }
