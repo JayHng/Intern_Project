@@ -23,7 +23,7 @@ public class Bullet : MonoBehaviour
                 player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
                 //player.DecreasePlayerHP(1);
                 other.SendMessageUpwards("Damage", attackDetails);
-                Destroy(gameObject);
+                gameObject.SetActive(false);
             }
                 
         }
@@ -35,7 +35,7 @@ public class Bullet : MonoBehaviour
         lifetime -= Time.deltaTime;
         if (lifetime <= 0)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

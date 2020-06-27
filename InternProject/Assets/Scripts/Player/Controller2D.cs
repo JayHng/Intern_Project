@@ -16,6 +16,7 @@ public class Controller2D : RaycastController
     public float jumpVelocity;
     private float jumpHeight = 4.0f;
     private float timeToJumpApex = 0.4f;
+    private float maxJump = 3f;
     [SerializeField] private Vector3 velocity;
 
     private Vector2 input;
@@ -102,6 +103,7 @@ public class Controller2D : RaycastController
         if(Input.GetKeyDown(KeyCode.Space) && objectCol.below){
             velocity.y = jumpVelocity;
             objectCol.below = false;
+            Debug.Log("Space: " + playerRb.velocity.y);
         }
 
         targetVelocityX = input.x * moveSpeed;
@@ -110,17 +112,18 @@ public class Controller2D : RaycastController
 
         //update gravity to the velocity
         velocity.y += gravity * Time.deltaTime;
+        //Debug.Log("jkjfkdjkjdkf: " + playerRb.velocity.y);
 
         Move(velocity * Time.deltaTime);
     }
 
     private void CheckJump(){
-        if(playerRb.velocity.y > 3){
-            playerRb.velocity = new Vector2(playerRb.velocity.x, 3);
+        if(playerRb.velocity.y >= maxJump){
+            playerRb.velocity = new Vector2(playerRb.velocity.x, 0);
         }
-        if(playerRb.velocity.y < -3){
-            playerRb.velocity = new Vector2(playerRb.velocity.x, -3);
-        }
+        // if(playerRb.velocity.y < -3){
+        //     playerRb.velocity = new Vector2(playerRb.velocity.x, -3);
+        // }
     }
     //This code belongs to Sebastian Lague
     public void Move(Vector3 velocity, bool standingOnPlatform = false)
