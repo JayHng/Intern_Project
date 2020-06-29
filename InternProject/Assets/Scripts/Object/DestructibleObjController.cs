@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class DestructibleObjController : MonoBehaviour
 {
-    [SerializeField] private float maxHP;
-    private float currentHP;
-    private Player player;
+    [SerializeField] private float maxHP, knockbackSpeedX, knockbackSpeedY,knockbackDeathSpeedY, knockbackDeathSpeedX, deathTorque;
+    [SerializeField] private bool applyKnockback;
+    [SerializeField] private GameObject hitParticle;
+    private float currentHP, knockbackStart;
+    private Controller2D controller;
+    private bool playerOnLeft, knockback;
+
+    private int playerFacingDirection;
     private GameObject aliveGO, brokenTopGO, brokenBotGO;
     private Rigidbody2D rbAlive, rbBrokenTop, rbBrokenBot;
     private Animator aliveAnim;
@@ -14,7 +19,7 @@ public class DestructibleObjController : MonoBehaviour
     private void Start() {
         currentHP =  maxHP;
 
-        player = GameObject.Find("Player").GetComponent<Player>();
+        controller = GetComponent<Controller2D>();
         aliveGO = transform.Find("Vase").gameObject;
         brokenTopGO = transform.Find("Broken Top").gameObject;
         brokenBotGO = transform.Find("Broken Bottom").gameObject;
@@ -29,7 +34,48 @@ public class DestructibleObjController : MonoBehaviour
         brokenBotGO.SetActive(false);
     }
 
+    private void Update() {
+        controller.CheckKnockback();
+    }
     private void Damage(float amount){
         currentHP -= amount;
+
+        Instantiate(hitParticle, aliveAnim.transform.position, Quaternion.Euler(0.0f, 0.0f, Random.Range(0.0f, 360.0f)));
+        if(!controller.faceright){
+            playerOnLeft = true;
+            playerFacingDirection = 1;
+        }else{
+            playerOnLeft = false;
+            playerFacingDirection = -1;
+        }
+        aliveAnim.SetBool("playerOnLeft", playerOnLeft);
+        aliveAnim.SetTrigger("Damage");
+
+        if(applyKnockback && currentHP > 0.0f){
+            Knockback();
+        }
+
+        if(currentHP <= 0.0f){
+            Die();
+        }
+    }
+
+    private void Knockback(){
+        knockback = true;
+        knockbackStart = Time.time;
+        rbAlive.velocity = new Vector2(knockbackSpeedX * playerFacingDirection, knockbackSpeedY);
+    }
+
+    private void Die(){
+        aliveGO.SetActive(false);
+        brokenTopGO.SetActive(true);
+        brokenBotGO.SetActive(true);
+
+        brokenTopGO.transform.position = aliveGO.transform.position;
+        brokenBotGO.transform.position = aliveGO.transform.position;
+
+        rbBrokenBot .velocity = new Vector2(knockbackSpeedX * playerFacingDirection, knockbackSpeedY);
+        rbBrokenTop .velocity = new Vector2(knockbackDeathSpeedX * playerFacingDirection, knockbackDeathSpeedY);
+        rbBrokenTop.AddTorque(deathTorque * -playerFacingDirection, ForceMode2D.Impulse);
     }
 }

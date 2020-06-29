@@ -792,6 +792,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 703278759}
+  - component: {fileID: 703278757}
   m_Layer: 0
   m_Name: Destructible Object
   m_TagString: Untagged
@@ -799,6 +800,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &703278757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 703278756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fa1123992f182045a7cf2847a12e0ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 30
+  knockbackSpeedX: 10
+  knockbackSpeedY: 5
+  knockbackDeathSpeedY: 15
+  knockbackDeathSpeedX: 8
+  deathTorque: 1
+  applyKnockback: 1
+  hitParticle: {fileID: 2273012858384306483, guid: d18197b37c9c3f04fa0ea131aa923095,
+    type: 3}
 --- !u!4 &703278759
 Transform:
   m_ObjectHideFlags: 0
@@ -833,7 +855,7 @@ GameObject:
   - component: {fileID: 808026111}
   m_Layer: 11
   m_Name: Vase
-  m_TagString: Enemy
+  m_TagString: Skeleton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1174,7 +1196,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1221678481}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.89, y: 0.44, z: 0}
+  m_LocalPosition: {x: 14.166, y: -0.203, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

@@ -25,7 +25,7 @@ public class Controller2D : RaycastController
      //This code belongs to me
     public int levelToLoad;
     public int currentLevel;
-    private bool faceright;
+    public bool faceright;
     [SerializeField] private float moveSpeed = 10.0f;
     AsyncOperation async;
     [SerializeField] private Animator anim;
@@ -291,7 +291,7 @@ public class Controller2D : RaycastController
         playerRb.velocity = new Vector2(knockbackSpeed.x * knockDir, knockbackSpeed.y);
     }
 
-    private void CheckKnockback(){
+    public void CheckKnockback(){
         if(Time.time >= knockbackStartTime + knockbackDuration && playerKnockback){
             playerKnockback = false;
             playerRb.velocity = new Vector2(0.0f, playerRb.velocity.y);
