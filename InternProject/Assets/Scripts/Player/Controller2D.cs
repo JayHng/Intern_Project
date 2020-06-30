@@ -291,7 +291,7 @@ public class Controller2D : RaycastController
         playerRb.velocity = new Vector2(knockbackSpeed.x * knockDir, knockbackSpeed.y);
     }
 
-    public void CheckKnockback(){
+    private void CheckKnockback(){
         if(Time.time >= knockbackStartTime + knockbackDuration && playerKnockback){
             playerKnockback = false;
             playerRb.velocity = new Vector2(0.0f, playerRb.velocity.y);

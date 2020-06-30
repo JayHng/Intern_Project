@@ -679,7 +679,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 696625787}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.153, z: 0}
+  m_LocalPosition: {x: 0, y: -0.175, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 703278759}
@@ -795,7 +795,7 @@ GameObject:
   - component: {fileID: 703278757}
   m_Layer: 0
   m_Name: Destructible Object
-  m_TagString: Untagged
+  m_TagString: Skeleton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -815,12 +815,15 @@ MonoBehaviour:
   maxHP: 30
   knockbackSpeedX: 10
   knockbackSpeedY: 5
+  knockbackDuration: 0
   knockbackDeathSpeedY: 15
   knockbackDeathSpeedX: 8
   deathTorque: 1
   applyKnockback: 1
   hitParticle: {fileID: 2273012858384306483, guid: d18197b37c9c3f04fa0ea131aa923095,
     type: 3}
+  currentHP: 0
+  knockbackStart: 0
 --- !u!4 &703278759
 Transform:
   m_ObjectHideFlags: 0
@@ -850,7 +853,6 @@ GameObject:
   m_Component:
   - component: {fileID: 808026107}
   - component: {fileID: 808026108}
-  - component: {fileID: 808026109}
   - component: {fileID: 808026110}
   - component: {fileID: 808026111}
   m_Layer: 11
@@ -924,27 +926,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &808026109
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 808026106}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 8
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!61 &808026110
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2148,24 +2129,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f707953a051861d4c8c00a207d166421, type: 3}
---- !u!1 &7704344286895344241 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2046992838762263949, guid: f707953a051861d4c8c00a207d166421,
-    type: 3}
-  m_PrefabInstance: {fileID: 7704344286895344239}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &7704344286895344242
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7704344286895344241}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb15c254d301b4b4c8916bcd9e1db381, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &8947346101199851470
 PrefabInstance:
   m_ObjectHideFlags: 0
