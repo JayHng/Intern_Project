@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 8201472896758576401}
   - component: {fileID: 8201472896758576406}
   - component: {fileID: 2659119177627059116}
+  - component: {fileID: 4290452560669128831}
   m_Layer: 8
   m_Name: Player_0
   m_TagString: Player
@@ -214,6 +215,7 @@ MonoBehaviour:
   velocity: {x: 0, y: 0, z: 0}
   levelToLoad: 0
   currentLevel: 0
+  faceright: 0
   moveSpeed: 7
   anim: {fileID: 0}
   playerKnockback: 0
@@ -261,3 +263,19 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   stunDamageAmount: 5
+--- !u!111 &4290452560669128831
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8201472896758576410}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 4c38670890d505a4290f89c7878c5119, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 4c38670890d505a4290f89c7878c5119, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0

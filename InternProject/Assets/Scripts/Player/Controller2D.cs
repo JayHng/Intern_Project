@@ -26,7 +26,7 @@ public class Controller2D : RaycastController
     public int levelToLoad;
     public int currentLevel;
     public bool faceright;
-    [SerializeField] private float moveSpeed = 10.0f;
+    [SerializeField] private float moveSpeed = 7.0f;
     AsyncOperation async;
     [SerializeField] private Animator anim;
     private Rigidbody2D playerRb;

@@ -4,91 +4,88 @@ using UnityEngine;
 
 public class DestructibleObjController : MonoBehaviour
 {
-    [SerializeField] private float maxHP, knockbackSpeedX, knockbackSpeedY, knockbackDuration, knockbackDeathSpeedY, knockbackDeathSpeedX, deathTorque;
+    [SerializeField] private float maxHP, knockbackSpeedX, knockbackSpeedY, knockbackDuration;
     [SerializeField] private bool applyKnockback;
     [SerializeField] private GameObject hitParticle;
     [SerializeField] private float currentHP, knockbackStart;
+    [SerializeField] private GameObject brokenVase, coin;
+    [SerializeField] private float timeDelay;
     private Controller2D controller;
     private bool playerOnLeft, knockback;
 
     private int playerFacingDirection;
-    private GameObject aliveGO, brokenTopGO, brokenBotGO;
-    private Rigidbody2D rbAlive, rbBrokenTop, rbBrokenBot;
+    private GameObject aliveGO;
+    private Rigidbody2D rbAlive;
     private Animator aliveAnim;
+    private Player player;
+
+    private GameManager gm; 
 
     private void Start() {
         currentHP =  maxHP;
 
         controller = GetComponent<Controller2D>();
         aliveGO = transform.Find("Vase").gameObject;
-        brokenTopGO = transform.Find("Broken Top").gameObject;
-        brokenBotGO = transform.Find("Broken Bottom").gameObject;
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+
 
         aliveAnim = aliveGO.GetComponent<Animator>();
         rbAlive = aliveGO.GetComponent<Rigidbody2D>();
-        rbBrokenTop = brokenTopGO.GetComponent<Rigidbody2D>();
-        rbBrokenBot = brokenBotGO.GetComponent<Rigidbody2D>();
-
-        aliveGO.SetActive(true);
-        brokenTopGO.SetActive(false);
-        brokenBotGO.SetActive(false);
     }
 
     private void Update() {
         CheckKnockback();
 
-        if(currentHP <= 0.0f){
-            Die();
-            Debug.Log("Die");
-        }
-        if(applyKnockback && currentHP > 0.0f){
-            Knockback();
-            Debug.Log("Knockback");
-        }
+        aliveAnim.SetBool("playerOnLeft", playerOnLeft);
+        aliveAnim.SetTrigger("Damage");
     }
     private void Damage(AttackDetails attackDetails){
         currentHP -= attackDetails.damageAmount;
 
         Instantiate(hitParticle, aliveAnim.transform.position, Quaternion.Euler(0.0f, 0.0f, Random.Range(0.0f, 360.0f)));
 
-        if(!controller.faceright){
+        if(player.transform.position.x < aliveAnim.transform.position.x){
             playerOnLeft = true;
             playerFacingDirection = 1;
-            Debug.Log("Left");
-
         }else{
             playerOnLeft = false;
             playerFacingDirection = -1;
-            Debug.Log("Right");
         }
-        aliveAnim.SetBool("playerOnLeft", playerOnLeft);
-        aliveAnim.SetTrigger("Damage");
+
+        if(applyKnockback && currentHP > 0.0f){
+            Knockback();
+            Debug.Log("Knockback");
+        }
+        if(currentHP <= 0.0f){
+            aliveGO.GetComponent<Animation>().Play("redflash");
+            Die();
+            Debug.Log("Die");
+        }
+        Debug.Log(playerFacingDirection);
     }
 
     private void Knockback(){
-        Debug.Log("Knockback");
         knockback = true;
         knockbackStart = Time.time;
         rbAlive.velocity = new Vector2(knockbackSpeedX * playerFacingDirection, knockbackSpeedY);
     }
     public void CheckKnockback(){
         if(Time.time >= knockbackStart + knockbackDuration && knockback){
-            //Debug.Log("Check Knockback");
             knockback = false;
             rbAlive.velocity = new Vector2(0.0f, rbAlive.velocity.y);
         }
     }
     private void Die(){
+        Instantiate(coin, aliveGO.transform.position, coin.transform.rotation);
+        gm.points += 5;
+        StartCoroutine("CoinPartical");
+    }
+
+    IEnumerator CoinPartical(){                                    
+        yield return new WaitForSeconds(timeDelay);
+        Instantiate(brokenVase, aliveGO.transform.position, brokenVase.transform.rotation);      
         aliveGO.SetActive(false);
-        brokenTopGO.SetActive(true);
-        brokenBotGO.SetActive(true);
-
-        brokenTopGO.transform.position = aliveGO.transform.position;
-        brokenBotGO.transform.position = aliveGO.transform.position;
-
-        Debug.Log("knock");
-        rbBrokenBot.velocity = new Vector2(knockbackSpeedX * playerFacingDirection, knockbackSpeedY);
-        rbBrokenTop.velocity = new Vector2(knockbackDeathSpeedX * playerFacingDirection, knockbackDeathSpeedY);
-        rbBrokenTop.AddTorque(deathTorque * -playerFacingDirection, ForceMode2D.Impulse);
+        yield return 0;
     }
 }
