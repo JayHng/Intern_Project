@@ -5,6 +5,7 @@ public class Door : MonoBehaviour
 {
     [SerializeField] string nextLevelName;
     bool isLoading;
+    public Animator transition;
 
     void OnTriggerEnter2D(Collider2D collider2D)
     {
@@ -27,8 +28,9 @@ public class Door : MonoBehaviour
     }
 
     void LoadLevel()
-    {
+    {    
         SceneManager.UnloadSceneAsync(GameManager.gm.sceneName);
+        transition.SetTrigger("Start");
         GameManager.gm.sceneName = nextLevelName;
         SceneManager.LoadSceneAsync(nextLevelName, LoadSceneMode.Additive);
         GameManager.gm.player.enabled = true;
