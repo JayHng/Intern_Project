@@ -26,10 +26,10 @@ public class BlinkingText : MonoBehaviour
                     yield return new WaitForSeconds(0.5f);
                     break;
             }
+            // yield return new WaitForSeconds(1f);
             // text.text = "HELLO";
             // yield return new WaitForSeconds(1f);
             // text.text = "Hi";
-            // yield return new WaitForSeconds(1f);
 
         }
     }
