@@ -122,8 +122,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turretHP: 100
-  awakeRange: 5
-  bulletSpeed: 5
+  awakeRange: 8
+  bulletSpeed: 6
   shootInterval: 2
   bulletTimer: 0
   isAwake: 0
