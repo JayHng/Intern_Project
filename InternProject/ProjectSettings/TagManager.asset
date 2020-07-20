@@ -13,6 +13,8 @@ TagManager:
   - Death
   - Enemy
   - FallPlatform
+  - heal
+  - doorAlert
   layers:
   - Default
   - TransparentFX

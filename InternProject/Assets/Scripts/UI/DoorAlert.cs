@@ -5,12 +5,11 @@ using UnityEngine;
 public class DoorAlert : MonoBehaviour
 {
 
-    [SerializeField] GameObject doorPanel;
+    public GameObject doorPanel;
 
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -19,15 +18,17 @@ public class DoorAlert : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        if(other.gameObject.tag == "Player"){
+    void OnTriggerEnter2D(Collider2D other) {
+        if(other.tag == "Player"){
             doorPanel.SetActive(true);
+            Debug.Log("Panel On");
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other) {
-        if(other.gameObject.tag == "Player"){
+    void OnTriggerExit2D(Collider2D other) {
+        if(other.tag == "Player"){
             doorPanel.SetActive(false);
+            Debug.Log("Panel Off");
         }
     }
 }
