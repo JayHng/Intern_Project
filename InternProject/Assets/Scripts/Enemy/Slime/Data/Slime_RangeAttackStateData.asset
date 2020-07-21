@@ -16,4 +16,4 @@ MonoBehaviour:
     type: 3}
   projectileDamage: 10
   projectileSpeed: 12
-  projectileTravelDistance: 7
+  projectileTravelDistance: 8.02
