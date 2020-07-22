@@ -20,7 +20,7 @@ public class Coin : MonoBehaviour
         if (collider2D.tag == "Player")
         {
             Destroy(gameObject);
-            gm.points += 5;
+            gm.points += 1;
         }
     }
 }
