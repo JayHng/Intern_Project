@@ -49,6 +49,8 @@ public class Projectile : MonoBehaviour
                 hasHitGround = true;
                 projectileRb.gravityScale = 0.0f;
                 projectileRb.velocity = Vector2.zero;
+                Destroy(gameObject);
+                
             }
             if(Mathf.Abs(xStartPos - transform.position.x) >= travelDistance && !isGravityOn){
                 isGravityOn = true;

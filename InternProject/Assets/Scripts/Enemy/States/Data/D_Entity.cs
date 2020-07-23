@@ -11,15 +11,15 @@ public class D_Entity : ScriptableObject
     public float groundCheckRadius = 0.3f;
 
 
-    public float minArgoDistance = 3.0f;
-    public float maxArgoDistance = 4.0f;
+    public float minArgoDistance = 6.0f;
+    public float maxArgoDistance = 7.0f;
 
 
     public float maxHP = 50.0f;
     public float damageHopSpeed = 3.0f;
 
-    public float stunResistance = 3.0f;
-    public float stunRecoveryTime = 2.0f;
+    public float stunResistance = 2.0f;
+    public float stunRecoveryTime = 1.0f;
 
 
     public float closeRangeActionDistance = 1.0f;

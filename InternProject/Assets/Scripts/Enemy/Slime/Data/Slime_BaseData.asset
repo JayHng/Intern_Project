@@ -15,12 +15,12 @@ MonoBehaviour:
   wallCheckDistance: 0.2
   ledgeCheckDistance: 0.4
   groundCheckRadius: 0.3
-  minArgoDistance: 4
-  maxArgoDistance: 4.5
-  maxHP: 30
+  minArgoDistance: 6
+  maxArgoDistance: 7
+  maxHP: 50
   damageHopSpeed: 10
-  stunResistance: 3
-  stunRecoveryTime: 2
+  stunResistance: 2
+  stunRecoveryTime: 1
   closeRangeActionDistance: 1.2
   hitParticle: {fileID: 2273012858384306483, guid: d18197b37c9c3f04fa0ea131aa923095,
     type: 3}
