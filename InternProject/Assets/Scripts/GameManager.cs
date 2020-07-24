@@ -18,7 +18,6 @@ public class GameManager : MonoBehaviour
     public int highScore=0;
     public Text points_Text;
     public Text highScore_Text;
-
  
     void Awake()
     {
@@ -66,13 +65,20 @@ public class GameManager : MonoBehaviour
     public void Respawn(){
         StartCoroutine("RespawnCoroutine");
     }
-    public  IEnumerator RespawnCoroutine(){
+    public IEnumerator RespawnCoroutine(){
         player.gameObject.SetActive(false);
         yield return new WaitForSeconds(1f);
         
         ReloadScene();
-        player.gameObject.SetActive(true);
-        player.gameObject.transform.position = player.respawnPosition;
+
+        NewPlayer();
+        //player.gameObject.SetActive(true);
+        //player.gameObject.transform.position = player.respawnPosition;
+    }
+
+    public void NewPlayer(){
+        Instantiate(player, player.respawnPosition, player.transform.rotation);
+
     }
     public void ReloadScene(){
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

@@ -75,8 +75,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 812119477
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -539579915749326718, guid: e07e5f744bb35f74b80f978955a7178a,
     type: 3}
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b68f7649fb663e4bbc87b20a9cb247f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turretHP: 100
+  turretHP: 50
   awakeRange: 8
   bulletSpeed: 6
   shootInterval: 2
@@ -133,7 +133,8 @@ MonoBehaviour:
   anim: {fileID: 0}
   shootPointL: {fileID: 3807767886581980693}
   shootPointR: {fileID: 3807767886731699601}
-  turretPartical: {fileID: 0}
+  turretPartical: {fileID: 8545976197533613919, guid: aa5b21fb1618e63469614e734b690142,
+    type: 3}
   distanceToPlayer: 0
 --- !u!111 &8042190989376588279
 Animation:
@@ -177,7 +178,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3807767884915926983}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.3, y: 0, z: 0}
+  m_LocalPosition: {x: -3.34, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3807767884802433134}
@@ -234,9 +235,9 @@ GameObject:
   - component: {fileID: 3807767884961403053}
   - component: {fileID: 3807767884961403054}
   - component: {fileID: 896252751298235385}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Collider
-  m_TagString: Turret
+  m_TagString: Skeleton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -386,7 +387,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3807767886912376869}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.32, y: 0, z: 0}
+  m_LocalPosition: {x: 3.336, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3807767884802433134}

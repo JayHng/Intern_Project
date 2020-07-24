@@ -14,7 +14,7 @@ public class Controller2D : RaycastController
     private CollisionInfo objectCol;
     [SerializeField] private float gravity;
     public float jumpVelocity;
-    private float jumpHeight = 6.0f;
+    private float jumpHeight = 5.0f;
     private float timeToJumpApex = 0.4f;
     private float maxJump = 5f;
     [SerializeField] private Vector3 velocity;
@@ -48,7 +48,6 @@ public class Controller2D : RaycastController
         gravity = -(2.0f*jumpHeight)/Mathf.Pow(timeToJumpApex,2.0f);
         jumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
         playerRb.useFullKinematicContacts = true; 
-
     }
 
     private void Update()

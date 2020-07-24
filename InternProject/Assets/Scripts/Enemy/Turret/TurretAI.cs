@@ -48,6 +48,7 @@ public class TurretAI : MonoBehaviour
         if(turretHP <= 0){
             Instantiate(turretPartical, gameObject.transform.position, turretPartical.transform.rotation);
             gameObject.SetActive(false);
+            Debug.Log("Turret Die");
             //GameObject.FindGameObjectWithTag("Turret").GetComponent<TurretAI>().enabled = false; 
         }
     }
