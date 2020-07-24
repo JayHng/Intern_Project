@@ -10,7 +10,11 @@ public class Skeleton_IdleState : IdleState
     public Skeleton_IdleState(Entity entity1, FiniteStateMachine stateMachine, string animBoolName, D_IdleState stateData, Skeleton enemy) : base(entity1, stateMachine, animBoolName, stateData){
         this.enemy = enemy;
     }
-
+    
+    public override void DoChecks()
+    {
+        base.DoChecks();
+    }
     public override void Enter(){
         base.Enter();
     }

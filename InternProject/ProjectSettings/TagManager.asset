@@ -58,11 +58,11 @@ TagManager:
   - name: Platform
     uniqueID: 1472593537
     locked: 0
-  - name: Decoration
-    uniqueID: 931197237
-    locked: 0
   - name: Skeleton
     uniqueID: 812119477
+    locked: 0
+  - name: Decoration
+    uniqueID: 931197237
     locked: 0
   - name: Player
     uniqueID: 2903748809

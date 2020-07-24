@@ -32,7 +32,6 @@ public class Skeleton : Entity
        playerDetectedState = new Skeleton_PlayerDetectedState(this, stateMachine, "playerDetected", playerDetectedData, this);
        chargeState = new Skeleton_ChargeState(this, stateMachine, "charge", chargeStateData, this);
        lookForPlayerState = new Skeleton_LookForPlayerState(this, stateMachine, "lookForPlayer", lookForPlayerStateData, this);
-       lookForPlayerState = new Skeleton_LookForPlayerState(this, stateMachine, "lookForPlayer", lookForPlayerStateData, this);
        meleeAttackState = new Skeleton_MeleeAttackState(this, stateMachine, "meleeAttack", meleeAttackPosition, meleeAttackStateData, this);
        stunState = new Skeleton_StunState(this, stateMachine, "stun", stunStateData, this);
        deadState = new Skeleton_DeadState(this, stateMachine, "dead", deadStateData, this);

@@ -36,7 +36,7 @@ public class Skeleton_MeleeAttackState : MeleeAttackState
         if(isAnimationFinished){
             if(isPlayerInMinArgoRange){
                 stateMachine.ChangeState(enemy.playerDetectedState);
-            }else{
+            }else if(!isPlayerInMinArgoRange){
                 stateMachine.ChangeState(enemy.lookForPlayerState);
             }
         }
