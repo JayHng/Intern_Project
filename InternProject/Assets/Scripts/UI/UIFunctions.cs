@@ -7,9 +7,9 @@ using UnityEngine.SceneManagement;
 public class UIFunctions : MonoBehaviour
 {
     private bool isPaused = false;
-    public GameObject loadingScreen;
-    public Slider slider;
-    public Text progressTxt;
+    //public GameObject loadingScreen;
+    //public Slider slider;
+    //public Text progressTxt;
 
     public GameObject pauseMenu;
 
@@ -62,25 +62,27 @@ public class UIFunctions : MonoBehaviour
     void Update()
     {       
         if(SceneManager.GetActiveScene().buildIndex == 0 && Input.anyKey){
-            LoadLevel(1);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            //LoadLevel(1);
         }
     }
 
-    //Loading Screen
-    public void LoadLevel(int sceneIndex){
-        StartCoroutine(LoadAsynchronously(sceneIndex));
-    }
-    IEnumerator LoadAsynchronously (int sceneIndex){
-        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
-        loadingScreen.SetActive(true);
+    // //Loading Screen
+    // public void LoadLevel(int sceneIndex){
+    //     StartCoroutine(LoadAsynchronously(sceneIndex));
+    // }
+
+    // IEnumerator LoadAsynchronously (int sceneIndex){
+    //     AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
+    //     loadingScreen.SetActive(true);
         
-        while(!operation.isDone){
-            float progress = Mathf.Clamp01(operation.progress / 0.9f);
-            slider.value = progress;
-            progressTxt.text = progress * 100f + "%";
+    //     while(!operation.isDone){
+    //         float progress = Mathf.Clamp01(operation.progress / 0.9f);
+    //         slider.value = progress;
+    //         progressTxt.text = progress * 100f + "%";
                     
-            yield return null;
-        }
+    //         yield return null;
+    //     }
 
-    }
+    // }
 }

@@ -51,7 +51,7 @@ public class AutoTypeText : MonoBehaviour
     }
 
     IEnumerator disablePanel(){
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2.0f);
         gameObject.SetActive(false);
     }
 }
