@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 7084360219867997460}
   - component: {fileID: 5797974644048835481}
   m_Layer: 9
-  m_Name: Moving Platform
+  m_Name: Moving Plat Robot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
