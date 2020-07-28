@@ -1453,9 +1453,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8265da1e58e86ca4e9b0778b29319c9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadingScreen: {fileID: 0}
-  slider: {fileID: 0}
-  progressTxt: {fileID: 0}
   pauseMenu: {fileID: 0}
 --- !u!4 &1225435451
 Transform:
@@ -1923,6 +1920,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8201472896758576407, guid: 4526da9fbe5c0c5429e22295988e647e,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8201472896758576407, guid: 4526da9fbe5c0c5429e22295988e647e,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8201472896758576410, guid: 4526da9fbe5c0c5429e22295988e647e,
         type: 3}

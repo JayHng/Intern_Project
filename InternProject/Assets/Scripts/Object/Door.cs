@@ -17,7 +17,7 @@ public class Door : MonoBehaviour
             if (!string.IsNullOrWhiteSpace(nextLevelName))
             {
                 SaveScore();
-                Invoke("LoadLevel", 1f);
+                Invoke("LoadLevel", 0.5f);
             }
             else
             {

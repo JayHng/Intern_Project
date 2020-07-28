@@ -26,7 +26,9 @@ public class Player : MonoBehaviour
     }
     void Update()
     {
-        
+        if(currentHP > maxHP){
+            currentHP = maxHP;
+        }
     }
     //This code belongs to me
     public void Death()

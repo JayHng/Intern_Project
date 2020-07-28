@@ -15,6 +15,7 @@ TagManager:
   - FallPlatform
   - heal
   - doorAlert
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -55,6 +56,12 @@ TagManager:
   - name: Background
     uniqueID: 1836914763
     locked: 0
+  - name: Decoration 1
+    uniqueID: 2889414565
+    locked: 0
+  - name: Player
+    uniqueID: 2903748809
+    locked: 0
   - name: Decoration
     uniqueID: 931197237
     locked: 0
@@ -63,7 +70,4 @@ TagManager:
     locked: 0
   - name: Skeleton
     uniqueID: 812119477
-    locked: 0
-  - name: Player
-    uniqueID: 2903748809
     locked: 0

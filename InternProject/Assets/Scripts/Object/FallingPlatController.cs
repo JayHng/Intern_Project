@@ -18,6 +18,10 @@ public class FallingPlatController : MonoBehaviour
         if(col.collider.tag == "Player"){
             StartCoroutine(FallPlatform());
         }
+
+        if(col.collider.tag == "Ground"){
+            gameObject.SetActive(false);
+        }
     }
     IEnumerator FallPlatform(){                                    
         Debug.Log("Fall");
@@ -25,4 +29,6 @@ public class FallingPlatController : MonoBehaviour
         fallPlatRb.bodyType = RigidbodyType2D.Dynamic;
         yield return 0;
     }
+
+    
 }

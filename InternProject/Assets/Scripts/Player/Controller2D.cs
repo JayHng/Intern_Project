@@ -14,7 +14,7 @@ public class Controller2D : RaycastController
     private CollisionInfo objectCol;
     [SerializeField] private float gravity;
     public float jumpVelocity;
-    private float jumpHeight = 5.0f;
+    private float jumpHeight = 4.0f;
     private float timeToJumpApex = 0.4f;
     private float maxJump = 5f;
     [SerializeField] private Vector3 velocity;
