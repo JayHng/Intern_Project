@@ -45,8 +45,8 @@ public class Controller2D : RaycastController
         anim = GetComponent<Animator>();
         playerRb = GetComponent<Rigidbody2D>();
         currentLevel = 2;
-        gravity = -(2.0f*jumpHeight)/Mathf.Pow(timeToJumpApex,2.0f);
-        jumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
+        gravity = (-(2.0f*jumpHeight)/Mathf.Pow(timeToJumpApex,2.0f));
+        jumpVelocity = (Mathf.Abs(gravity) * timeToJumpApex);
         playerRb.useFullKinematicContacts = true; 
     }
 
@@ -95,7 +95,6 @@ public class Controller2D : RaycastController
             transform.localScale = Scale;
         }
     }
-
     
     private void CheckInput(){
 

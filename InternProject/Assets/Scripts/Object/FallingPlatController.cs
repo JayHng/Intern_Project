@@ -5,6 +5,7 @@ using UnityEngine;
 public class FallingPlatController : MonoBehaviour
 {
     private Rigidbody2D fallPlatRb;
+    private Controller2D controller;
     public float fallDelay;
 
     // Start is called before the first frame update
