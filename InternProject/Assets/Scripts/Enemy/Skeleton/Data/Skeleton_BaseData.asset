@@ -26,7 +26,7 @@ MonoBehaviour:
     type: 3}
   isGround:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 0
   isPlayer:
     serializedVersion: 2
     m_Bits: 256
