@@ -14,6 +14,8 @@ public class Entity : MonoBehaviour
     public AnimationToStateMachine animToStateMachine { get; private set;}
     public int lastDamageDir { get; private set;}
     private Vector2 velocityWorkspace;
+
+    
     [SerializeField] private Transform wallCheck;
     [SerializeField] private Transform ledgeCheck;
     [SerializeField] private Transform playerCheck;

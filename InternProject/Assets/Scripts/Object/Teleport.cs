@@ -6,6 +6,7 @@ public class Teleport : MonoBehaviour
 {
     [SerializeField]private GameObject portal;
     [SerializeField]private Player player;
+    [SerializeField]private Vector2 playerNewPosition;
 
     
     // Start is called before the first frame update
@@ -27,6 +28,7 @@ public class Teleport : MonoBehaviour
     
     IEnumerator Teleportation(){
         yield return new WaitForSeconds(1);
-        player.transform.position = new Vector2(portal.transform.position.x,portal.transform.position.y);
+        player.transform.position = playerNewPosition;
+        //player.transform.position = new Vector2(portal.transform.position.x + 1,portal.transform.position.y);
     }
 }
