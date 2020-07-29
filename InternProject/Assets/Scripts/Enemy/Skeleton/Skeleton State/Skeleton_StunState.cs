@@ -32,9 +32,11 @@ public class Skeleton_StunState : StunState
         if(isStunTimeOver){
             if(performCloseRangeAction){
                 stateMachine.ChangeState(enemy.meleeAttackState);
-            }else if(isPlayerInMinArgoRange){
+            }
+            else if(isPlayerInMinArgoRange){
                 stateMachine.ChangeState(enemy.chargeState);               
-            }else{
+            }
+            else{
                 enemy.lookForPlayerState.SetTurnImmediately(true);
                 stateMachine.ChangeState(enemy.lookForPlayerState);
             }
