@@ -7,12 +7,14 @@ public class Treasure : MonoBehaviour
 {
     [SerializeField] Animator anim;
     [SerializeField] GameObject coinPartical;
+    [SerializeField] GameManager gm;
     
     public Animator transition;
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
+        gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -24,11 +26,13 @@ public class Treasure : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.tag == "Player"){
             StartCoroutine("OpenChest");
+            
         }
     }
 
     IEnumerator OpenChest(){
         anim.SetBool("playerTouchChest", true);
+        gm.points += 100;
         yield return new WaitForSeconds(1.0f);
         Instantiate(coinPartical, gameObject.transform.position, coinPartical.transform.rotation);
         yield return new WaitForSeconds(3.5f);

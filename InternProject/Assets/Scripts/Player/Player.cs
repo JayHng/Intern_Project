@@ -21,8 +21,6 @@ public class Player : MonoBehaviour
         //This code belongs to Sebastian Lague
         controller = GetComponent<Controller2D>();
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
-        deathPanel = GameObject.FindGameObjectWithTag("DeathPanel");
-
         //This code belongs to me
         currentHP = maxHP;    
         respawnPosition = this.transform.position;
@@ -65,13 +63,6 @@ public class Player : MonoBehaviour
             gm.Respawn();
             Debug.Log("Death");
         }
-    }
-    
-    IEnumerator disablePanel(){
-        deathPanel.SetActive(true);
-        yield return new WaitForSeconds(1.0f);
-        deathPanel.SetActive(false);
-        yield return new WaitForSeconds(1.0f);
     }
 
 }
