@@ -5,10 +5,11 @@ using UnityEngine;
 public class UnlockedElectric : MonoBehaviour
 {
     [SerializeField] GameObject electric;
+    [SerializeField] Animator animator;
     // Start is called before the first frame update
     void Start()
     {
-        
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -21,11 +22,16 @@ public class UnlockedElectric : MonoBehaviour
     {
         if(collision.tag == "Player")
         {
-            gameObject.GetComponent<Animation>().Play("Switch_On");
-
-            electric.SetActive(false);
-            //electric.SetActive(!electric.gameObject.activeSelf);
+            StartCoroutine("UnlockedSwitch");
+            //electric.SetActive(false);
         }
+    }
+
+    IEnumerator UnlockedSwitch(){
+        animator.SetBool("playerTouch", true);
+        yield return new WaitForSeconds(1f);
+        animator.SetBool("playerTouch",false);
+        electric.SetActive(false);
     }
 
 }
