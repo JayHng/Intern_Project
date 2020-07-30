@@ -6,7 +6,7 @@ public class Treasure : MonoBehaviour
 {
     [SerializeField] Animator anim;
     [SerializeField] GameObject coinPartical;
-    [SerializeField] GameObject victoryPanel;
+    //[SerializeField] GameObject victoryPanel;
 
     // Start is called before the first frame update
     void Start()
@@ -29,8 +29,8 @@ public class Treasure : MonoBehaviour
     IEnumerator OpenChest(){
         anim.SetBool("playerTouchChest", true);
         yield return new WaitForSeconds(1.0f);
-        coinPartical.SetActive(true);
+        Instantiate(coinPartical, gameObject.transform.position, coinPartical.transform.rotation);
         yield return new WaitForSeconds(2.0f);
-        victoryPanel.SetActive(true);       
+        //victoryPanel.SetActive(true);       
     }
 }
