@@ -13,20 +13,20 @@ MonoBehaviour:
   m_Name: Skeleton_BaseData
   m_EditorClassIdentifier: 
   wallCheckDistance: 0.2
-  ledgeCheckDistance: 0.4
+  ledgeCheckDistance: 0.5
   groundCheckRadius: 0.3
   minArgoDistance: 6
   maxArgoDistance: 7
   maxHP: 50
-  damageHopSpeed: 3
+  damageHopSpeed: 2.5
   stunResistance: 3
   stunRecoveryTime: 2
-  closeRangeActionDistance: 1
+  closeRangeActionDistance: 1.2
   hitParticle: {fileID: 2273012858384306483, guid: d18197b37c9c3f04fa0ea131aa923095,
     type: 3}
   isGround:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   isPlayer:
     serializedVersion: 2
     m_Bits: 256
