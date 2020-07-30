@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public int highScore=0;
     public Text points_Text;
     public Text highScore_Text;
+    public GameObject deathPanel;
  
     void Awake()
     {
@@ -27,9 +28,9 @@ public class GameManager : MonoBehaviour
         {
             gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         }
-
     }
     void Start(){
+        deathPanel = GameObject.FindGameObjectWithTag("DeathPanel");
         highScore_Text.text = ("" + PlayerPrefs.GetInt("highScore"));
         highScore = PlayerPrefs.GetInt("highScore", 0);
 
@@ -67,18 +68,15 @@ public class GameManager : MonoBehaviour
     }
     public IEnumerator RespawnCoroutine(){
         player.gameObject.SetActive(false);
-        yield return new WaitForSeconds(1f);
-        
+        yield return new WaitForSeconds(1.0f);
         ReloadScene();
 
         NewPlayer();
         //player.gameObject.SetActive(true);
         //player.gameObject.transform.position = player.respawnPosition;
     }
-
     public void NewPlayer(){
         Instantiate(player, player.respawnPosition, player.transform.rotation);
-
     }
     public void ReloadScene(){
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77561adcdb5604140be4b4b3a4de865e, type: 3}
   m_Name: Skeleton_MoveStateData
   m_EditorClassIdentifier: 
-  movementSpeed: 2
+  movementSpeed: 2.3

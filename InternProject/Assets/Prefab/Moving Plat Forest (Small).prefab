@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3844039923309437526}
   - component: {fileID: 5598949039435486712}
   - component: {fileID: 201846182311170773}
+  - component: {fileID: 8522210458035910468}
   m_Layer: 9
   m_Name: Moving Plat Forest (Small)
   m_TagString: Untagged
@@ -100,7 +101,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1472593537
-  m_SortingLayer: 2
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -3569355809510593558, guid: f3535a36bef41c34fa456d12202d5ed3,
     type: 3}
@@ -140,3 +141,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.0101166, y: 2.1787229}
   m_EdgeRadius: 0
+--- !u!50 &8522210458035910468
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5292747909081240673}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

@@ -21,14 +21,12 @@ public class DoorAlert : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other) {
         if(other.tag == "Player"){
             doorPanel.SetActive(true);
-            Debug.Log("Panel On");
         }
     }
 
     void OnTriggerExit2D(Collider2D other) {
         if(other.tag == "Player"){
             doorPanel.SetActive(false);
-            Debug.Log("Panel Off");
         }
     }
 }

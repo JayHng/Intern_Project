@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
+using System.Collections;
 
 //This code belongs to Sebastian Lague
 [RequireComponent (typeof(Controller2D))]
@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject deadChunkParticle, bloodParticle; 
     private GameManager gm;
     public Vector2 respawnPosition;
+    [SerializeField] private GameObject deathPanel;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +21,8 @@ public class Player : MonoBehaviour
         //This code belongs to Sebastian Lague
         controller = GetComponent<Controller2D>();
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        deathPanel = GameObject.FindGameObjectWithTag("DeathPanel");
+
         //This code belongs to me
         currentHP = maxHP;    
         respawnPosition = this.transform.position;
@@ -58,7 +61,17 @@ public class Player : MonoBehaviour
     {
         if(other.tag == "Death")
         {
+            StartCoroutine("disablePanel");
             gm.Respawn();
+            Debug.Log("Death");
         }
     }
+    
+    IEnumerator disablePanel(){
+        deathPanel.SetActive(true);
+        yield return new WaitForSeconds(1.0f);
+        deathPanel.SetActive(false);
+        yield return new WaitForSeconds(1.0f);
+    }
+
 }

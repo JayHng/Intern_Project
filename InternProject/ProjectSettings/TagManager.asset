@@ -17,6 +17,7 @@ TagManager:
   - doorAlert
   - Ground
   - VictoryPanel
+  - DeathPanel
   layers:
   - Default
   - TransparentFX

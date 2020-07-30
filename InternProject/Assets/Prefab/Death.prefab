@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5077554919641261540}
   - component: {fileID: 2277698555821865112}
+  - component: {fileID: -536678797002225918}
   m_Layer: 0
   m_Name: Death
   m_TagString: Death
@@ -57,3 +58,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.58, y: 0.3}
   m_EdgeRadius: 0
+--- !u!114 &-536678797002225918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8298314943492221302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db4fddb6cfc758341a95852d1b68f24e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doorPanel: {fileID: 6881038571565644151, guid: 93c360a5d27f747479de226f5d10bbc7,
+    type: 3}

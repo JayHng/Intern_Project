@@ -52,12 +52,12 @@ public class Controller2D : RaycastController
 
     private void Update()
     {
-        // if (objectCol.above || objectCol.below && velocity.y != 0){
-        //     velocity.y = 0;
-        // }
-        if(objectCol.above && velocity.y != 0.0f){
-            velocity.y=0.0f;
+        if (objectCol.above || objectCol.below && velocity.y != 0){
+            velocity.y = 0;
         }
+        // if(objectCol.above && velocity.y != 0.0f){
+        //     velocity.y=0.0f;
+        // }
         anim.SetBool("Grounded", objectCol.below);
         anim.SetFloat("Speed", Mathf.Abs(targetVelocityX));
         LoadAsyncLevel();
