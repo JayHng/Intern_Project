@@ -55,6 +55,9 @@ public class UIFunctions : MonoBehaviour
     {
         SceneManager.LoadScene("TitleScreen");
     }
+    public void Replay(){
+        SceneManager.LoadScene("MainScene");
+    }
 
     /// <summary>
     /// Update is called every frame, if the MonoBehaviour is enabled.

@@ -6,12 +6,13 @@ public class Treasure : MonoBehaviour
 {
     [SerializeField] Animator anim;
     [SerializeField] GameObject coinPartical;
-    //[SerializeField] GameObject victoryPanel;
+    [SerializeField] GameObject victoryPanel;
 
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
+        victoryPanel = GameObject.FindGameObjectWithTag("VictoryPanel");
     }
 
     // Update is called once per frame
@@ -31,6 +32,6 @@ public class Treasure : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
         Instantiate(coinPartical, gameObject.transform.position, coinPartical.transform.rotation);
         yield return new WaitForSeconds(2.0f);
-        //victoryPanel.SetActive(true);       
+        victoryPanel.SetActive(true);       
     }
 }

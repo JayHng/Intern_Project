@@ -16,6 +16,7 @@ TagManager:
   - heal
   - doorAlert
   - Ground
+  - VictoryPanel
   layers:
   - Default
   - TransparentFX
