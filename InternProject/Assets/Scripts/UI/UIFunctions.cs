@@ -59,6 +59,9 @@ public class UIFunctions : MonoBehaviour
         SceneManager.LoadScene("MainScene");
     }
 
+    public void LoadCurrentScene(){
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
     /// <summary>
     /// Update is called every frame, if the MonoBehaviour is enabled.
     /// </summary>

@@ -1867,10 +1867,30 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1225435450}
+    - target: {fileID: 7870572103637229993, guid: f4b9f071029e79743b7521a61e97d94a,
+        type: 3}
+      propertyPath: m_Name
+      value: Replay_Button
+      objectReference: {fileID: 0}
     - target: {fileID: 7870572103637229995, guid: f4b9f071029e79743b7521a61e97d94a,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1225435450}
+    - target: {fileID: 7870572103637229995, guid: f4b9f071029e79743b7521a61e97d94a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadCurrentScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 7870572104262589257, guid: f4b9f071029e79743b7521a61e97d94a,
+        type: 3}
+      propertyPath: m_Text
+      value: REPLAY
+      objectReference: {fileID: 0}
+    - target: {fileID: 7870572104262589260, guid: f4b9f071029e79743b7521a61e97d94a,
+        type: 3}
+      propertyPath: m_Name
+      value: Replay_txt
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4b9f071029e79743b7521a61e97d94a, type: 3}
