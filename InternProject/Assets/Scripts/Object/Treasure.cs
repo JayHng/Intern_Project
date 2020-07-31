@@ -32,10 +32,10 @@ public class Treasure : MonoBehaviour
 
     IEnumerator OpenChest(){
         anim.SetBool("playerTouchChest", true);
-        gm.points += 100;
         yield return new WaitForSeconds(1.0f);
+        gm.points += 100;
         Instantiate(coinPartical, gameObject.transform.position, coinPartical.transform.rotation);
-        yield return new WaitForSeconds(3.5f);
+        yield return new WaitForSeconds(2.5f);
         transition.SetTrigger("Start");
         yield return new WaitForSeconds(2.0f);
         transition.SetTrigger("End");
